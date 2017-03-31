@@ -56,7 +56,7 @@ public class Box {
 
     private void setOriented_length(int oriented_length) {
     	
-    	if (oriented_length >= 0) throw new IllegalArgumentException("Oriented length should be bigger than 0");
+    	if (oriented_length <= 0) throw new IllegalArgumentException("Oriented length should be bigger than 0");
     	
         this.oriented_length = oriented_length;
     }
@@ -67,7 +67,7 @@ public class Box {
 
     private void setOriented_width(int oriented_width) {
     	
-    	if (oriented_width >= 0) throw new IllegalArgumentException("Oriented width should be bigger than 0");
+    	if (oriented_width <= 0) throw new IllegalArgumentException("Oriented width should be bigger than 0");
     	
         this.oriented_width = oriented_width;
     }
@@ -78,7 +78,7 @@ public class Box {
 
     private void setOriented_height(int oriented_height) {
     	
-    	if (oriented_height >= 0) throw new IllegalArgumentException("Oriented height should be bigger than 0");
+    	if (oriented_height <= 0) throw new IllegalArgumentException("Oriented height should be bigger than 0");
     	
         this.oriented_height = oriented_height;
     }
