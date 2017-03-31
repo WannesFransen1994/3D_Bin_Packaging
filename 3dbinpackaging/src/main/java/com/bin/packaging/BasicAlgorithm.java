@@ -9,6 +9,9 @@ package com.bin.packaging;
  *
  * @author erowan
  */
-public class BasicAlgorithm {
-    
+public class BasicAlgorithm implements FillBehaviour{
+    @Override
+    public Container fillContainer(Container container, Box box, int amount) {
+        return container;
+    }
 }
