@@ -20,10 +20,25 @@ public class Container {
     private Map<Coordinate,Box> items;
 
     public Container(int length, int width, int height) {
-        this.length = length;
-        this.width = width;
-        this.height = height;
+        setLength(length);
+        setWidth(width);
+        setHeight(height);
         this.items = new HashMap<>();
+    }
+    
+    private void setLength(int length) {
+    	if (length <= 0) throw new IllegalArgumentException("Length should be bigger than 0");
+    	this.length = length;
+    }
+    
+    private void setHeight(int height) {
+    	if (height <= 0) throw new IllegalArgumentException("Height should be bigger than 0");
+    	this.height = height;
+    }
+    
+    private void setWidth(int width) {
+    	if (width <= 0) throw new IllegalArgumentException("Width should be bigger than 0");
+    	this.width = width;
     }
 
     public int getLength() {
