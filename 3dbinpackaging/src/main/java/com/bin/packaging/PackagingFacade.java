@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class PackagingFacade {
     private BoxFitter fitter;
+    private TestFitter test = new TestFitter();
 
     public PackagingFacade() {
         fitter = new BoxFitter();
@@ -20,7 +21,7 @@ public class PackagingFacade {
     }
 
     public List<Container> getFitterSampleData() {
-        return fitter.getSampleData();
+        return test.getSampleData();
     }
 
 }

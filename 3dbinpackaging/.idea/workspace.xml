@@ -18,123 +18,34 @@
       <file leaf-file-name="BoxFitter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/BoxFitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+            <state relative-caret-position="442">
+              <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2274#2275#0" expanded="true" />
-                <element signature="e#2319#2320#0" expanded="true" />
+                <element signature="e#1069#1070#0" expanded="true" />
+                <element signature="e#1105#1106#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JAVA/com.bin.packaging.Coordinate" pinned="false" current-in-tab="false">
-        <entry file="uml://JAVA/com.bin.packaging.Coordinate">
-          <provider selected="true" editor-type-id="UmlEditorProvider">
-            <state>
-              <ID>JAVA</ID>
-              <OriginalElement>com.bin.packaging.Coordinate</OriginalElement>
-              <nodes>
-                <node x="84.0" y="292.0">com.bin.packaging.Container</node>
-                <node x="360.8173076923077" y="394.0">com.bin.packaging.FillBehaviour</node>
-                <node x="183.0" y="598.0">com.bin.packaging.PackagingFacade</node>
-                <node x="141.5" y="474.0">com.bin.packaging.BoxFitter</node>
-                <node x="265.75" y="179.0">com.bin.packaging.Box</node>
-                <node x="658.8173076923076" y="0.0">java.io.Serializable</node>
-                <node x="379.8173076923077" y="496.0">com.bin.packaging.BasicAlgorithm</node>
-                <node x="560.5673076923076" y="204.0">com.bin.packaging.ContainerType</node>
-                <node x="168.72115384615384" y="0.0">com.bin.packaging.VolumeObject</node>
-                <node x="577.5673076923076" y="80.0">java.lang.Enum</node>
-                <node x="179.72115384615384" y="394.0">com.bin.packaging.VolumeObjectFactory</node>
-                <node x="539.8173076923076" y="0.0">java.lang.Comparable</node>
-                <node x="0.0" y="146.0">com.bin.packaging.Coordinate</node>
-              </nodes>
-              <notes />
-              <edges>
-                <edge source="com.bin.packaging.BasicAlgorithm" target="com.bin.packaging.FillBehaviour">
-                  <point x="0.0" y="-15.0" />
-                  <point x="25.5" y="15.0" />
-                </edge>
-                <edge source="com.bin.packaging.VolumeObjectFactory" target="com.bin.packaging.Container">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="java.lang.Enum" target="java.lang.Comparable">
-                  <point x="-34.75" y="-37.0" />
-                  <point x="612.3173076923076" y="55.0" />
-                  <point x="589.3173076923076" y="55.0" />
-                  <point x="0.0" y="15.0" />
-                </edge>
-                <edge source="com.bin.packaging.PackagingFacade" target="com.bin.packaging.BoxFitter">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.bin.packaging.BoxFitter" target="com.bin.packaging.FillBehaviour">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.bin.packaging.Box" target="com.bin.packaging.VolumeObject">
-                  <point x="0.0" y="-15.0" />
-                  <point x="292.25" y="121.0" />
-                  <point x="278.2211538461538" y="121.0" />
-                  <point x="36.5" y="48.0" />
-                </edge>
-                <edge source="com.bin.packaging.VolumeObjectFactory" target="com.bin.packaging.Box">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.bin.packaging.Container" target="com.bin.packaging.Coordinate">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.bin.packaging.ContainerType" target="java.lang.Enum">
-                  <point x="0.0" y="-81.0" />
-                  <point x="0.0" y="37.0" />
-                </edge>
-                <edge source="com.bin.packaging.Container" target="com.bin.packaging.VolumeObject">
-                  <point x="0.0" y="-26.0" />
-                  <point x="189.5" y="121.0" />
-                  <point x="205.22115384615384" y="121.0" />
-                  <point x="-36.5" y="48.0" />
-                </edge>
-                <edge source="com.bin.packaging.BoxFitter" target="com.bin.packaging.Coordinate">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="java.lang.Enum" target="java.io.Serializable">
-                  <point x="34.75" y="-37.0" />
-                  <point x="681.8173076923076" y="55.0" />
-                  <point x="704.8173076923076" y="55.0" />
-                  <point x="0.0" y="15.0" />
-                </edge>
-                <edge source="com.bin.packaging.Container" target="com.bin.packaging.Box">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.bin.packaging.BoxFitter" target="com.bin.packaging.VolumeObjectFactory">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-              </edges>
-              <settings layout="Hierarchic Group" zoom="0.9119402985074627" x="190.1751227495908" y="253.1751227495908" />
-              <SelectedNodes>
-                <node>com.bin.packaging.VolumeObjectFactory</node>
-              </SelectedNodes>
-              <Categories>
-                <Category>Fields</Category>
-              </Categories>
-              <SCOPE>All</SCOPE>
-              <VISIBILITY>private</VISIBILITY>
+      <file leaf-file-name="TestFitter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/TestFitter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContainerType.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ContainerType.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/ContainerType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+            <state relative-caret-position="170">
+              <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
               <folding>
                 <element signature="e#432#433#0" expanded="true" />
                 <element signature="e#461#462#0" expanded="true" />
@@ -170,11 +81,11 @@
       <file leaf-file-name="PackagingFacade.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/PackagingFacade.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+            <state relative-caret-position="323">
+              <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
               <folding>
-                <element signature="e#504#505#0" expanded="true" />
-                <element signature="e#549#550#0" expanded="true" />
+                <element signature="e#552#553#0" expanded="true" />
+                <element signature="e#595#596#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -196,6 +107,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -217,8 +129,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/bin/packaging/BasicAlgorithm.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bin/packaging/ContainerTypes.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bin/packaging/VolumeObjectFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bin/packaging/BoxFitter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bin/packaging/TestFitter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bin/packaging/PackagingFacade.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bin/packaging/BoxFitter.java" />
       </list>
     </option>
   </component>
@@ -750,12 +663,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1491048804816</updated>
-      <workItem from="1491048806208" duration="5375000" />
+      <workItem from="1491048806208" duration="5697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5375000" />
+    <option name="totallyTimeSpent" value="5697000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="776" extended-state="6" />
@@ -931,22 +844,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/BasicAlgorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/Box.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/Container.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -971,97 +868,84 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/ContainerType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+          <folding>
+            <element signature="e#432#433#0" expanded="true" />
+            <element signature="e#461#462#0" expanded="true" />
+            <element signature="e#490#491#0" expanded="true" />
+            <element signature="e#518#519#0" expanded="true" />
+            <element signature="e#548#549#0" expanded="true" />
+            <element signature="e#577#578#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/Box.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/BasicAlgorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/PackagingFacade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+          <folding>
+            <element signature="e#552#553#0" expanded="true" />
+            <element signature="e#595#596#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/BoxFitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1069#1070#0" expanded="true" />
+            <element signature="e#1105#1106#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="uml://JAVA/com.bin.packaging.Coordinate">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
           <ID>JAVA</ID>
           <OriginalElement>com.bin.packaging.Coordinate</OriginalElement>
           <nodes>
-            <node x="84.0" y="292.0">com.bin.packaging.Container</node>
-            <node x="360.8173076923077" y="394.0">com.bin.packaging.FillBehaviour</node>
-            <node x="183.0" y="598.0">com.bin.packaging.PackagingFacade</node>
-            <node x="141.5" y="474.0">com.bin.packaging.BoxFitter</node>
-            <node x="265.75" y="179.0">com.bin.packaging.Box</node>
-            <node x="658.8173076923076" y="0.0">java.io.Serializable</node>
-            <node x="379.8173076923077" y="496.0">com.bin.packaging.BasicAlgorithm</node>
-            <node x="560.5673076923076" y="204.0">com.bin.packaging.ContainerType</node>
-            <node x="168.72115384615384" y="0.0">com.bin.packaging.VolumeObject</node>
-            <node x="577.5673076923076" y="80.0">java.lang.Enum</node>
-            <node x="179.72115384615384" y="394.0">com.bin.packaging.VolumeObjectFactory</node>
-            <node x="539.8173076923076" y="0.0">java.lang.Comparable</node>
-            <node x="0.0" y="146.0">com.bin.packaging.Coordinate</node>
+            <node x="" y="">com.bin.packaging.Container</node>
+            <node x="" y="">com.bin.packaging.FillBehaviour</node>
+            <node x="" y="">com.bin.packaging.PackagingFacade</node>
+            <node x="" y="">com.bin.packaging.BoxFitter</node>
+            <node x="" y="">com.bin.packaging.Box</node>
+            <node x="" y="">java.io.Serializable</node>
+            <node x="" y="">com.bin.packaging.BasicAlgorithm</node>
+            <node x="" y="">com.bin.packaging.ContainerType</node>
+            <node x="" y="">com.bin.packaging.VolumeObject</node>
+            <node x="" y="">java.lang.Enum</node>
+            <node x="" y="">com.bin.packaging.VolumeObjectFactory</node>
+            <node x="" y="">java.lang.Comparable</node>
+            <node x="" y="">com.bin.packaging.Coordinate</node>
           </nodes>
           <notes />
-          <edges>
-            <edge source="com.bin.packaging.BasicAlgorithm" target="com.bin.packaging.FillBehaviour">
-              <point x="0.0" y="-15.0" />
-              <point x="25.5" y="15.0" />
-            </edge>
-            <edge source="com.bin.packaging.VolumeObjectFactory" target="com.bin.packaging.Container">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="java.lang.Enum" target="java.lang.Comparable">
-              <point x="-34.75" y="-37.0" />
-              <point x="612.3173076923076" y="55.0" />
-              <point x="589.3173076923076" y="55.0" />
-              <point x="0.0" y="15.0" />
-            </edge>
-            <edge source="com.bin.packaging.PackagingFacade" target="com.bin.packaging.BoxFitter">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="com.bin.packaging.BoxFitter" target="com.bin.packaging.FillBehaviour">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="com.bin.packaging.Box" target="com.bin.packaging.VolumeObject">
-              <point x="0.0" y="-15.0" />
-              <point x="292.25" y="121.0" />
-              <point x="278.2211538461538" y="121.0" />
-              <point x="36.5" y="48.0" />
-            </edge>
-            <edge source="com.bin.packaging.VolumeObjectFactory" target="com.bin.packaging.Box">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="com.bin.packaging.Container" target="com.bin.packaging.Coordinate">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="com.bin.packaging.ContainerType" target="java.lang.Enum">
-              <point x="0.0" y="-81.0" />
-              <point x="0.0" y="37.0" />
-            </edge>
-            <edge source="com.bin.packaging.Container" target="com.bin.packaging.VolumeObject">
-              <point x="0.0" y="-26.0" />
-              <point x="189.5" y="121.0" />
-              <point x="205.22115384615384" y="121.0" />
-              <point x="-36.5" y="48.0" />
-            </edge>
-            <edge source="com.bin.packaging.BoxFitter" target="com.bin.packaging.Coordinate">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="java.lang.Enum" target="java.io.Serializable">
-              <point x="34.75" y="-37.0" />
-              <point x="681.8173076923076" y="55.0" />
-              <point x="704.8173076923076" y="55.0" />
-              <point x="0.0" y="15.0" />
-            </edge>
-            <edge source="com.bin.packaging.Container" target="com.bin.packaging.Box">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="com.bin.packaging.BoxFitter" target="com.bin.packaging.VolumeObjectFactory">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="0.9119402985074627" x="190.1751227495908" y="253.1751227495908" />
-          <SelectedNodes>
-            <node>com.bin.packaging.VolumeObjectFactory</node>
-          </SelectedNodes>
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.9119402985074627" x="376.04255319148933" y="325.0" />
+          <SelectedNodes />
           <Categories>
             <Category>Fields</Category>
           </Categories>
@@ -1070,40 +954,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/PackagingFacade.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/TestFitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-          <folding>
-            <element signature="e#504#505#0" expanded="true" />
-            <element signature="e#549#550#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/BoxFitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        <state relative-caret-position="119">
+          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2274#2275#0" expanded="true" />
-            <element signature="e#2319#2320#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bin/packaging/ContainerType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-          <folding>
-            <element signature="e#432#433#0" expanded="true" />
-            <element signature="e#461#462#0" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-            <element signature="e#518#519#0" expanded="true" />
-            <element signature="e#548#549#0" expanded="true" />
-            <element signature="e#577#578#0" expanded="true" />
           </folding>
         </state>
       </provider>
