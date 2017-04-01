@@ -3,6 +3,7 @@ package com.bin.packaging;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * Created by erowan on 01/04/2017.
@@ -11,12 +12,12 @@ public class Test {
 
     public static void main(String[] args) {
         PackagingFacade f = new PackagingFacade();
-        System.out.println(f.getFitterSampleData());
+        List<Container> data = f.getFitterSampleData();
 
         String fileName = "csvtest.csv";
         PrintWriter outputStream = null;
         try{
-            outputStream = new PrintWriter(new FileOutputStream(fileName, true));
+            outputStream = new PrintWriter(new FileOutputStream(fileName, false));
 
         } catch(FileNotFoundException fnfe) {
             System.out.println("error opening file" + fileName);
@@ -29,7 +30,7 @@ public class Test {
         String newLine = "\n";
 
 
-        for (Container c: f.getFitterSampleData()
+        for (Container c: data
              ) {
             outputStream.append("Container " + i);
             outputStream.append(newLine);

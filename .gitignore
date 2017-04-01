@@ -1,1 +1,5 @@
 /3dbinpackaging/target/
+.idea/
+/.idea/
+*/.idea/
+/*/.idea/

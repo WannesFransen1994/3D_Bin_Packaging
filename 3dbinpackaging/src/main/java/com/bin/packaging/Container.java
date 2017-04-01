@@ -25,7 +25,7 @@ public class Container extends VolumeObject{
     public float getFilled() {
         Box temp = (Box)items.values().toArray()[0];
         float volume = temp.getVolume();
-        int size = (items.size()-2)/2;
+        int size = (items.size())/2;
         float objectsVolume =volume*size;
         return objectsVolume/getVolume();
     }

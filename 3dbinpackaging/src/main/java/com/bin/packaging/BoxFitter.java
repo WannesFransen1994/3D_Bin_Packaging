@@ -49,8 +49,9 @@ public class BoxFitter {
     public List<Container> getSampleData() {
         Box samplebox = factory.createBox(70,100,50);
         List<Container> filledContainers = new ArrayList<>();
-        filledContainers.add(availableContainers.get(2));
-        filledContainers.add(availableContainers.get(2));
+        Container c = availableContainers.get(2);
+        filledContainers.add(factory.createContainer(c.getLength(),c.getWidth(),c.getHeight()));
+        filledContainers.add(factory.createContainer(c.getLength(),c.getWidth(),c.getHeight()));
         filledContainers.get(0).addItem(new Coordinate(70, 100, 0),samplebox);
         filledContainers.get(0).addItem(new Coordinate(140, 100, 0),samplebox);
         filledContainers.get(0).addItem(new Coordinate(210, 100, 0),samplebox);
