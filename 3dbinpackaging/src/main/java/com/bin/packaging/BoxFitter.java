@@ -14,34 +14,15 @@ import java.util.List;
  */
 public class BoxFitter {
     //This class will fit the maximum amount of boxes in the container
-    //TODO Factorize a lot in this class (box and container)
-    //TODO Use enum for container options or load from file?
-    private List<Container> availableContainers;
     private FillBehaviour fillBehaviour;
     private VolumeObjectFactory factory = new VolumeObjectFactory();
-
-    public BoxFitter() {
-        setupContainers();
-    }
-
-    public void calculateFitBoxInContainer(FillBehaviour algo){
-        fillBehaviour = fillBehaviour;
-        setupContainers();
-    }
-
-    private void setupContainers(){
-        this.availableContainers = new ArrayList<>();
-        this.availableContainers.add(factory.createContainer(120,80,100));
-        this.availableContainers.add(factory.createContainer(150,100,120));
-        this.availableContainers.add(factory.createContainer(210,200,150));
-        System.out.println("Added sample containers");
-    }
 
     public List<Container> fillContainersMax(int height, int width, int length, int amount) {
         Box samplebox = factory.createBox(length,width,height);
         List<Container> filledContainers = new ArrayList<>();
-        for (Container c : availableContainers) {
-            filledContainers.add(fillBehaviour.fillContainer(c,samplebox,amount));
+        for (ContainerType containerType : ContainerType.values()) {
+            Container filledContainer = fillBehaviour.fillContainer(factory.createContainer(containerType),samplebox,amount);
+            filledContainers.add(filledContainer);
         }
         return filledContainers;
     }
@@ -49,9 +30,8 @@ public class BoxFitter {
     public List<Container> getSampleData() {
         Box samplebox = factory.createBox(70,100,50);
         List<Container> filledContainers = new ArrayList<>();
-        Container c = availableContainers.get(2);
-        filledContainers.add(factory.createContainer(c.getLength(),c.getWidth(),c.getHeight()));
-        filledContainers.add(factory.createContainer(c.getLength(),c.getWidth(),c.getHeight()));
+        filledContainers.add(factory.createContainer(ContainerType.SAMPLE_CONTAINER));
+        filledContainers.add(factory.createContainer(ContainerType.SAMPLE_CONTAINER));
         filledContainers.get(0).addItem(new Coordinate(70, 100, 0),samplebox);
         filledContainers.get(0).addItem(new Coordinate(140, 100, 0),samplebox);
         filledContainers.get(0).addItem(new Coordinate(210, 100, 0),samplebox);
@@ -66,4 +46,7 @@ public class BoxFitter {
         return filledContainers;
     }
 
+    public void setFillBehaviour(FillBehaviour algo){
+        fillBehaviour = fillBehaviour;
+    }
 }

@@ -12,7 +12,12 @@ import java.util.List;
  * @author erowan
  */
 public class PackagingFacade {
-    private BoxFitter fitter = new BoxFitter();
+    private BoxFitter fitter;
+
+    public PackagingFacade() {
+        fitter = new BoxFitter();
+        fitter.setFillBehaviour(new BasicAlgorithm());
+    }
 
     public List<Container> getFitterSampleData() {
         return fitter.getSampleData();
