@@ -32,9 +32,9 @@ public class BoxFitter {
         setupContainers();
     }
     private void setupContainers(){
-        this.availableContainers.add(new Container(120,80,100));
-        this.availableContainers.add(new Container(150,100,120));
-        this.availableContainers.add(new Container(210,200,150));
+        this.availableContainers.add(VolumeObjectFactory.createContainer(120,80,100));
+        this.availableContainers.add(VolumeObjectFactory.createContainer(150,100,120));
+        this.availableContainers.add(VolumeObjectFactory.createContainer(210,200,150));
         System.out.println("Added sample containers");
     }
 

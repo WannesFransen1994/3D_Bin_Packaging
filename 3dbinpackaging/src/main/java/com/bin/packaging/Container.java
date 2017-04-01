@@ -12,11 +12,7 @@ import java.util.Map;
  *
  * @author erowan
  */
-public class Container {
-    private int length;
-    private int width;
-    private int height;
-    private float filled;
+public class Container extends VolumeObject{
     private Map<Coordinate,Box> items;
 
     public Container(int length, int width, int height) {
@@ -25,40 +21,11 @@ public class Container {
         setHeight(height);
         this.items = new HashMap<>();
     }
-    
-    private void setLength(int length) {
-    	if (length <= 0) throw new IllegalArgumentException("Length should be bigger than 0");
-    	this.length = length;
-    }
-    
-    private void setHeight(int height) {
-    	if (height <= 0) throw new IllegalArgumentException("Height should be bigger than 0");
-    	this.height = height;
-    }
-    
-    private void setWidth(int width) {
-    	if (width <= 0) throw new IllegalArgumentException("Width should be bigger than 0");
-    	this.width = width;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
 
     public float getFilled() {
-        return filled;
-    }
-
-    public void setFilled(float filled) {
-        this.filled = filled;
+        Box temp = (Box)items.values().toArray()[0];
+        int objectsVolume = temp.getVolume()*items.size();
+        return objectsVolume/getVolume();
     }
 
     public Map<Coordinate,Box> getItems() {
@@ -69,7 +36,7 @@ public class Container {
         this.items.put(coordinate,box);
     }
     
-    public void removeItem(Box box) {
-        this.items.remove(box);
+    public void removeItem(Coordinate coordinate) {
+        this.items.remove(coordinate);
     }
 }

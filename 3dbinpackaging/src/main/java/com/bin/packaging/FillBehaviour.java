@@ -10,5 +10,5 @@ package com.bin.packaging;
  * @author erowan
  */
 public interface FillBehaviour {
-    public Container fillContainer(Container container, Box samplebox, int amount);
+    Container fillContainer(Container container, Box samplebox, int amount);
 }
