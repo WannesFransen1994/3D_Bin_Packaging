@@ -5,11 +5,17 @@
  */
 package com.bin.packaging;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author erowan
  */
 public class PackagingFacade {
     BoxFitter fitter = new BoxFitter();
-    
+
+    public List<Container> getFitterSampleData() {
+        return fitter.getSampleData();
+    }
 }

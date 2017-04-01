@@ -19,6 +19,9 @@ public class BoxFitter {
     private List<Container> availableContainers;
     private FillBehaviour fillBehaviour;
 
+    public BoxFitter() {
+        this.availableContainers = new ArrayList<>();
+    }
 
     public void calculateFitBoxInContainer(){
         fillBehaviour = new BasicAlgorithm();
@@ -31,6 +34,8 @@ public class BoxFitter {
     private void setupContainers(){
         this.availableContainers.add(new Container(120,80,100));
         this.availableContainers.add(new Container(150,100,120));
+        this.availableContainers.add(new Container(210,200,150));
+        System.out.println("Added sample containers");
     }
 
     public List<Container> fillContainersMax(int height, int width, int length, int amount) {
@@ -41,4 +46,24 @@ public class BoxFitter {
         }
         return filledContainers;
     }
+    public List<Container> getSampleData() {
+        setupContainers();
+        Box samplebox = new Box(70,100,50);
+        List<Container> filledContainers = new ArrayList<>();
+        filledContainers.add(availableContainers.get(2));
+        filledContainers.add(availableContainers.get(2));
+        filledContainers.get(0).addItem(new Coordinate(70, 100, 0),samplebox);
+        filledContainers.get(0).addItem(new Coordinate(140, 100, 0),samplebox);
+        filledContainers.get(0).addItem(new Coordinate(210, 100, 0),samplebox);
+        filledContainers.get(0).addItem(new Coordinate(70, 200, 0),samplebox);
+        filledContainers.get(0).addItem(new Coordinate(140, 200, 0),samplebox);
+        filledContainers.get(0).addItem(new Coordinate(210, 200, 0),samplebox);
+        filledContainers.get(0).addItem(new Coordinate(70, 100, 50),samplebox);
+        samplebox.turnXaxis();
+        filledContainers.get(0).addItem(new Coordinate(140, 100, 70),samplebox);
+        filledContainers.get(0).addItem(new Coordinate(210, 100, 70),samplebox);
+        filledContainers.get(1).addItem(new Coordinate(70, 100, 0),samplebox);
+        return filledContainers;
+    }
+
 }

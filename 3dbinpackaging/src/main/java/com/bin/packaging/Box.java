@@ -31,23 +31,25 @@ public class Box {
         */
         this.volume = getOriented_height() * getOriented_length() * getOriented_width();
     }
-    
-    public void turnXaxis(){
+    // Width becomes height, height becomes width
+    public void turnZaxis(){
         int tmp = this.oriented_width;
-        this.oriented_width=this.oriented_height;
-        this.oriented_height=tmp;
+        this.oriented_width=this.oriented_length;
+        this.oriented_length=tmp;
     }
-    
+
+    // Length becomes height, height becomes length
     public void turnYaxis(){
         int tmp = this.oriented_height;
         this.oriented_height=this.oriented_length;
         this.oriented_length=tmp;
     }
-    
-    public void turnZaxis(){
-        int tmp = this.oriented_width;
-        this.oriented_width=this.oriented_length;
-        this.oriented_length=tmp;
+
+    // Width becomes height, height becomes width
+    public void turnXaxis(){
+        int tmp = this.oriented_height;
+        this.oriented_width=this.oriented_height;
+        this.oriented_width=tmp;
     }
 
     public int getOriented_length() {
