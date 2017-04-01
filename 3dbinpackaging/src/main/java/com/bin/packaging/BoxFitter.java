@@ -18,37 +18,36 @@ public class BoxFitter {
     //TODO Use enum for container options or load from file?
     private List<Container> availableContainers;
     private FillBehaviour fillBehaviour;
+    private VolumeObjectFactory factory = new VolumeObjectFactory();
 
     public BoxFitter() {
-        this.availableContainers = new ArrayList<>();
-    }
-
-    public void calculateFitBoxInContainer(){
-        fillBehaviour = new BasicAlgorithm();
         setupContainers();
     }
+
     public void calculateFitBoxInContainer(FillBehaviour algo){
         fillBehaviour = fillBehaviour;
         setupContainers();
     }
+
     private void setupContainers(){
-        this.availableContainers.add(VolumeObjectFactory.createContainer(120,80,100));
-        this.availableContainers.add(VolumeObjectFactory.createContainer(150,100,120));
-        this.availableContainers.add(VolumeObjectFactory.createContainer(210,200,150));
+        this.availableContainers = new ArrayList<>();
+        this.availableContainers.add(factory.createContainer(120,80,100));
+        this.availableContainers.add(factory.createContainer(150,100,120));
+        this.availableContainers.add(factory.createContainer(210,200,150));
         System.out.println("Added sample containers");
     }
 
     public List<Container> fillContainersMax(int height, int width, int length, int amount) {
-        Box samplebox = new Box(length,width,height);
+        Box samplebox = factory.createBox(length,width,height);
         List<Container> filledContainers = new ArrayList<>();
         for (Container c : availableContainers) {
             filledContainers.add(fillBehaviour.fillContainer(c,samplebox,amount));
         }
         return filledContainers;
     }
+
     public List<Container> getSampleData() {
-        setupContainers();
-        Box samplebox = new Box(70,100,50);
+        Box samplebox = factory.createBox(70,100,50);
         List<Container> filledContainers = new ArrayList<>();
         filledContainers.add(availableContainers.get(2));
         filledContainers.add(availableContainers.get(2));
