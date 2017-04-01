@@ -6,7 +6,6 @@
 package com.bin.packaging;
 
 /**
- *
  * @author erowan
  */
 public class BasicAlgorithm implements FillBehaviour{
@@ -49,20 +48,19 @@ public class BasicAlgorithm implements FillBehaviour{
             lowestBoxSetup = tempDeepCloneBox(box);
         }
         //TODO: Clean this horror up...
-        container = placeBoxes(container,lowestBoxSetup);
-        //TODO: rest of algorithm, select lowest, allocate quick & dirty
+        container = placeBoxes(container,lowestBoxSetup,amount);
         return container;
     }
 
-    private Container placeBoxes(Container container,Box box){
-        int templength=0,tempwidth=0,tempheight=0;
+    private Container placeBoxes(Container container,Box box, int limit){
+        int templength=0,tempwidth=0,tempheight=0,counter=0;
         for (int l = 0;l<container.getLength()/box.getLength();l++){
             for (int w = 0;w<container.getWidth()/box.getWidth();w++){
                 for (int h = 0;h<container.getHeight()/box.getHeight();h++){
-                    if (templength<container.getLength() && tempwidth<container.getWidth() && tempheight<container.getHeight()){
+                    if (templength<container.getLength() && tempwidth<container.getWidth() && tempheight<container.getHeight() && counter<limit){
                         container.addItem(new Coordinate(templength,tempwidth,tempheight),tempDeepCloneBox(box));
+                        counter ++;
                     }
-
                     tempheight = place.getCoordinate_z() + box.getHeight();
                 }
                 tempheight = 0;
