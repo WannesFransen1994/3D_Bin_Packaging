@@ -24,4 +24,7 @@ public class PackagingFacade {
         return test.getSampleData();
     }
 
+    public List<Container> getMaxLoadedContainers(int length,int width,int height) {
+        return fitter.fillContainersMax(height,width,length,-1);
+    }
 }

@@ -5,38 +5,80 @@
  */
 package com.bin.packaging;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author erowan
  */
 public class BasicAlgorithm implements FillBehaviour{
-    private int counter = 1;
     private Coordinate place = new Coordinate(0,0,0);
 
     @Override
     public Container fillContainer(Container container, Box box, int amount) {
         int counter = 1;
-        List<Integer> options = new ArrayList<>();
-        options.add(moduloCalculateLostSpace(container,box));
+        Box lowestBoxSetup = tempDeepCloneBox(box);
+        int lowest;
+        lowest = moduloCalculateLostSpace(container,box);
         turnBox(counter,box);
         counter ++;
-        options.add(moduloCalculateLostSpace(container,box));
-        options.add(moduloCalculateLostSpace(container,box));
-        options.add(moduloCalculateLostSpace(container,box));
-        options.add(moduloCalculateLostSpace(container,box));
-        options.add(moduloCalculateLostSpace(container,box));
-        //TODO: Clean this up...
+        if (moduloCalculateLostSpace(container,box)<lowest){
+            lowest=moduloCalculateLostSpace(container,box);
+            lowestBoxSetup = tempDeepCloneBox(box);
+        }
+        turnBox(counter,box);
+        counter ++;
+        if (moduloCalculateLostSpace(container,box)<lowest){
+            lowest=moduloCalculateLostSpace(container,box);
+            lowestBoxSetup = tempDeepCloneBox(box);
+        }
+        turnBox(counter,box);
+        counter ++;
+        if (moduloCalculateLostSpace(container,box)<lowest){
+            lowest=moduloCalculateLostSpace(container,box);
+            lowestBoxSetup = tempDeepCloneBox(box);
+        }
+        turnBox(counter,box);
+        counter ++;
+        if (moduloCalculateLostSpace(container,box)<lowest){
+            lowest=moduloCalculateLostSpace(container,box);
+            lowestBoxSetup = tempDeepCloneBox(box);
+        }
+        turnBox(counter,box);
+        counter ++;
+        if (moduloCalculateLostSpace(container,box)<lowest){
+            lowest=moduloCalculateLostSpace(container,box);
+            lowestBoxSetup = tempDeepCloneBox(box);
+        }
+        //TODO: Clean this horror up...
+        container = placeBoxes(container,lowestBoxSetup);
         //TODO: rest of algorithm, select lowest, allocate quick & dirty
         return container;
     }
 
+    private Container placeBoxes(Container container,Box box){
+        int templength=0,tempwidth=0,tempheight=0;
+        for (int l = 0;l<container.getLength()/box.getLength();l++){
+            for (int w = 0;w<container.getWidth()/box.getWidth();w++){
+                for (int h = 0;h<container.getHeight()/box.getHeight();h++){
+                    if (templength<container.getLength() && tempwidth<container.getWidth() && tempheight<container.getHeight()){
+                        container.addItem(new Coordinate(templength,tempwidth,tempheight),tempDeepCloneBox(box));
+                    }
+
+                    tempheight = place.getCoordinate_z() + box.getHeight();
+                }
+                tempheight = 0;
+                tempwidth = place.getCoordinate_y() + box.getWidth();
+            }
+            tempwidth = 0;
+            templength = place.getCoordinate_x() + box.getLength();
+        }
+        return container;
+    }
+
     private int moduloCalculateLostSpace(Container container, Box box){
-        int lostHeight = container.getHeight()%box.height;
-        int lostWidth  = container.getWidth()%box.width;
-        int lostLength = container.getLength()%box.length;
+        int lostHeight = 1, lostWidth = 1 ,lostLength = 1;
+        if (container.getHeight()%box.height!=0){lostHeight = container.getHeight()%box.height;}
+        if (container.getWidth()%box.width!=0){lostWidth  = container.getWidth()%box.width;}
+        if (container.getLength()%box.length!=0){lostLength = container.getLength()%box.length;}
 
         return lostHeight*lostLength*lostWidth;
     }
@@ -48,5 +90,13 @@ public class BasicAlgorithm implements FillBehaviour{
             box.turnXaxis();
         }
         return box;
+    }
+
+    private Box tempDeepCloneBox(Box box){
+        return new Box(box.getLength(),box.getWidth(),box.getHeight());
+    }
+
+    private Coordinate tempDeepCloneCoordinate(Coordinate coordinate){
+        return new Coordinate(coordinate.getCoordinate_x(),coordinate.getCoordinate_y(),coordinate.getCoordinate_z());
     }
 }
