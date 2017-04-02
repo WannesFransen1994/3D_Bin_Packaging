@@ -4,9 +4,9 @@ package com.bin.packaging;
  * Created by erowan on 01/04/2017.
  */
 public enum ContainerType {
-    TYPE1(120,80,100),
-    TYPE2(150,100,120),
-    SAMPLE_CONTAINER(210,200,150);
+    SMALLEST(120,80,100),
+    BIGGEST(150,100,120)/*,
+    SAMPLE_CONTAINER(210,200,150)*/;
 
     private int length;
     private int width;

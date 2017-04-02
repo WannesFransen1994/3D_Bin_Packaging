@@ -7,10 +7,7 @@ import java.util.List;
  */
 public class Test {
     public static void main(String[] args) {
-        BoxFitter boxFitter = new BoxFitter();
-        boxFitter.setFillBehaviour(new BasicAlgorithm());
-
-        List<Container> list = boxFitter.fillContainersMax(40,40,50,100);
-        System.out.println(list);
+        PackagingFacade facade = new PackagingFacade();
+        facade.temp();
     }
 }

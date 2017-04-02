@@ -23,15 +23,21 @@ public class Container extends VolumeObject{
     }
 
     public float getFilled() {
-        Box temp = (Box)items.values().toArray()[0];
-        float volume = temp.getVolume();
-        int size = (items.size())/2;
-        float objectsVolume =volume*size;
-        return objectsVolume/getVolume();
+        if (items.size()>0) {
+            Box temp = (Box) items.values().toArray()[0];
+            float volume = temp.getVolume();
+            float objectsVolume = volume * getAmountOfItems();
+            return objectsVolume / getVolume();
+        }
+        return 0;
     }
 
     public Map<Coordinate,Box> getItems() {
         return items;
+    }
+
+    public int getAmountOfItems(){
+        return items.size();
     }
 
     public void addItem(Coordinate coordinate,Box box) {
