@@ -34,8 +34,7 @@ public class PackagingFacade {
         return fitter.fillContainer(containerType,length,width,height,amount);
     }
 
-    public void temp(){
-        contSetupCalculater.calculateBestSetup(25,40,40,24);
-
+    public ContainerSetup calculateSetup(int length, int width, int height, int amount){
+        return contSetupCalculater.calculateBestSetup(length, width, height, amount);
     }
 }

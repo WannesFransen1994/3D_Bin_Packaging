@@ -9,6 +9,7 @@ public class Test {
     public static void main(String[] args) {
 
         PackagingFacade facade = new PackagingFacade();
-        facade.temp();
+        ContainerSetup cs = facade.calculateSetup(50,80,40,20);
+        System.out.println(cs);
     }
 }

@@ -66,8 +66,14 @@ public class ContSetupCalculater {
         return setups;
     }
 
-    public void calculateBestSetup(int length, int width, int height, int amount) {
+    public ContainerSetup calculateBestSetup(int length, int width, int height, int amount) {
         List<ContainerSetup> setups = makeSetups(length, width, height, amount);
-
+        ContainerSetup lowest = setups.get(0);
+        for (ContainerSetup cs: setups) {
+            if (cs.getLostSpace()<lowest.getLostSpace()){
+                lowest = cs;
+            }
+        }
+        return lowest;
     }
 }
