@@ -18,7 +18,7 @@ public class PackagingFacade {
     public PackagingFacade() {
         fitter = new BoxFitter();
         fitter.setFillBehaviour(new BasicAlgorithm());
-        contSetupCalculater = new ContSetupCalculater(fitter);
+        contSetupCalculater = new ContSetupCalculater(this);
         contSetupCalculater.setCalculateBehaviour(new OnlyTwoTypes());
     }
 
@@ -35,6 +35,6 @@ public class PackagingFacade {
     }
 
     public ContainerSetup calculateSetup(int length, int width, int height, int amount){
-        return contSetupCalculater.calculateBestSetup(length, width, height, amount);
+        return contSetupCalculater.calculateSetup(length, width, height, amount);
     }
 }

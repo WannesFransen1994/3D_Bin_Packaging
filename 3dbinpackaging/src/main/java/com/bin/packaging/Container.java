@@ -59,9 +59,4 @@ public class Container extends VolumeObject implements Cloneable {
         }else {return false;}
         return true;
     }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
 }
