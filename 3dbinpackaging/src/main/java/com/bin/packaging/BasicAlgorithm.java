@@ -13,41 +13,17 @@ public class BasicAlgorithm implements FillBehaviour{
 
     @Override
     public Container fillContainer(Container container, Box box, int amount) {
-        int counter = 1;
+        int counter = 1,lowest;
         Box lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
-        int lowest;
         lowest = moduloCalculateLostSpace(container,box);
-        turnBox(counter,box);
-        counter ++;
-        if (moduloCalculateLostSpace(container,box)<lowest){
-            lowest=moduloCalculateLostSpace(container,box);
-            lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
+        while (counter<=6){
+            turnBox(counter,box);
+            counter ++;
+            if (moduloCalculateLostSpace(container,box)<lowest){
+                lowest=moduloCalculateLostSpace(container,box);
+                lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
+            }
         }
-        turnBox(counter,box);
-        counter ++;
-        if (moduloCalculateLostSpace(container,box)<lowest){
-            lowest=moduloCalculateLostSpace(container,box);
-            lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
-        }
-        turnBox(counter,box);
-        counter ++;
-        if (moduloCalculateLostSpace(container,box)<lowest){
-            lowest=moduloCalculateLostSpace(container,box);
-            lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
-        }
-        turnBox(counter,box);
-        counter ++;
-        if (moduloCalculateLostSpace(container,box)<lowest){
-            lowest=moduloCalculateLostSpace(container,box);
-            lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
-        }
-        turnBox(counter,box);
-        counter ++;
-        if (moduloCalculateLostSpace(container,box)<lowest){
-            lowest=moduloCalculateLostSpace(container,box);
-            lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
-        }
-        //TODO: Clean this horror up...
         container = placeBoxes(container,lowestBoxSetup,amount);
         return container;
     }
