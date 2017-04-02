@@ -34,6 +34,12 @@ public class WriteSampleToCsv {
              ) {
             outputStream.append("Container " + i);
             outputStream.append(newLine);
+            outputStream.append(String.valueOf(c.getLength()));
+            outputStream.append(delim);
+            outputStream.append(String.valueOf(c.getWidth()));
+            outputStream.append(delim);
+            outputStream.append(String.valueOf(c.getHeight()));
+            outputStream.append(newLine);
 
             for (Coordinate coord : c.getItems().keySet()) {
                 outputStream.append(String.valueOf(coord.getCoordinate_x()));
