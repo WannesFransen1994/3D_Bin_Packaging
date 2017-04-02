@@ -12,7 +12,7 @@ public class WriteSampleToCsv {
 
     public static void main(String[] args) {
         PackagingFacade f = new PackagingFacade();
-        List<Container> data = f.getMaxLoadedContainers(20,40,25,50);
+        List<Container> data = f.getMaxLoadedContainers(50,80,40,15);
 
         String fileName = "csvtest.csv";
         PrintWriter outputStream = null;
@@ -33,6 +33,12 @@ public class WriteSampleToCsv {
         for (Container c: data
              ) {
             outputStream.append("Container " + i);
+            outputStream.append(newLine);
+            outputStream.append(String.valueOf(c.getLength()));
+            outputStream.append(delim);
+            outputStream.append(String.valueOf(c.getWidth()));
+            outputStream.append(delim);
+            outputStream.append(String.valueOf(c.getHeight()));
             outputStream.append(newLine);
 
             for (Coordinate coord : c.getItems().keySet()) {
