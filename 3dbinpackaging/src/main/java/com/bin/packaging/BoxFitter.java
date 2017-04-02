@@ -27,6 +27,10 @@ public class BoxFitter {
         return filledContainers;
     }
 
+    public Container fillContainer(ContainerType containerType, int length,int width,int height,int amount) {
+        return fillBehaviour.fillContainer(factory.createContainer(containerType),factory.createBox(length, width, height),amount);
+    }
+
     public void setFillBehaviour(FillBehaviour algo){
         fillBehaviour = algo;
     }

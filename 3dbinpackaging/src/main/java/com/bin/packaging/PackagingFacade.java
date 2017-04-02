@@ -13,15 +13,29 @@ import java.util.List;
  */
 public class PackagingFacade {
     private BoxFitter fitter;
-    private TestFitter test = new TestFitter();
+    private ContSetupCalculater contSetupCalculater;
 
     public PackagingFacade() {
         fitter = new BoxFitter();
         fitter.setFillBehaviour(new BasicAlgorithm());
+        contSetupCalculater = new ContSetupCalculater(fitter);
+        contSetupCalculater.setCalculateBehaviour(new OnlyTwoTypes());
     }
 
-    public List<Container> getFitterSampleData() {
-        return test.getSampleData();
+    public List<Container> getMaxLoadedContainers(int length,int width,int height) {
+        return fitter.fillContainersMax(height,width,length,-1);
     }
 
+    public List<Container> getMaxLoadedContainers(int length,int width,int height,int amount) {
+        return fitter.fillContainersMax(height,width,length,amount);
+    }
+
+    public Container getSpecificLoadedContainer(ContainerType containerType,int length,int width,int height,int amount) {
+        return fitter.fillContainer(containerType,length,width,height,amount);
+    }
+
+    public void temp(){
+        contSetupCalculater.calculateBestSetup(25,40,40,24);
+
+    }
 }
