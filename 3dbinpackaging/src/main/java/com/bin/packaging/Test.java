@@ -34,6 +34,12 @@ public class Test {
              ) {
             outputStream.append("Container " + i);
             outputStream.append(newLine);
+            outputStream.append(String.valueOf(c.getLength()));
+            outputStream.append(delim);
+            outputStream.append(String.valueOf(c.getWidth()));
+            outputStream.append(delim);
+            outputStream.append(String.valueOf(c.getHeight()));
+            outputStream.append(newLine);
 
             for (Coordinate coord : c.getItems().keySet()) {
                 outputStream.append(String.valueOf(coord.getCoordinate_x()));
@@ -47,7 +53,6 @@ public class Test {
                 outputStream.append(String.valueOf(c.getItems().get(coord).getWidth()));
                 outputStream.append(delim);
                 outputStream.append(String.valueOf(c.getItems().get(coord).getHeight()));
-
                 outputStream.append(newLine);
             }
             outputStream.append(newLine);
