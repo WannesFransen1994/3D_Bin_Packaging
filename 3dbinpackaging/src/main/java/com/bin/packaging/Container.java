@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @author erowan
  */
-public class Container extends VolumeObject implements Cloneable {
+public class Container extends VolumeObject {
     private Map<Coordinate,Box> items;
 
     public Container(int length, int width, int height) {

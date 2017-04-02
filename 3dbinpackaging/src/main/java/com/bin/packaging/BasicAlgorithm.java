@@ -9,43 +9,43 @@ package com.bin.packaging;
  * @author erowan
  */
 public class BasicAlgorithm implements FillBehaviour{
-    private Coordinate place = new Coordinate(0,0,0);
+    private ObjectFactory factory = new ObjectFactory();
 
     @Override
     public Container fillContainer(Container container, Box box, int amount) {
         int counter = 1;
-        Box lowestBoxSetup = tempDeepCloneBox(box);
+        Box lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
         int lowest;
         lowest = moduloCalculateLostSpace(container,box);
         turnBox(counter,box);
         counter ++;
         if (moduloCalculateLostSpace(container,box)<lowest){
             lowest=moduloCalculateLostSpace(container,box);
-            lowestBoxSetup = tempDeepCloneBox(box);
+            lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
         }
         turnBox(counter,box);
         counter ++;
         if (moduloCalculateLostSpace(container,box)<lowest){
             lowest=moduloCalculateLostSpace(container,box);
-            lowestBoxSetup = tempDeepCloneBox(box);
+            lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
         }
         turnBox(counter,box);
         counter ++;
         if (moduloCalculateLostSpace(container,box)<lowest){
             lowest=moduloCalculateLostSpace(container,box);
-            lowestBoxSetup = tempDeepCloneBox(box);
+            lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
         }
         turnBox(counter,box);
         counter ++;
         if (moduloCalculateLostSpace(container,box)<lowest){
             lowest=moduloCalculateLostSpace(container,box);
-            lowestBoxSetup = tempDeepCloneBox(box);
+            lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
         }
         turnBox(counter,box);
         counter ++;
         if (moduloCalculateLostSpace(container,box)<lowest){
             lowest=moduloCalculateLostSpace(container,box);
-            lowestBoxSetup = tempDeepCloneBox(box);
+            lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
         }
         //TODO: Clean this horror up...
         container = placeBoxes(container,lowestBoxSetup,amount);
@@ -58,16 +58,16 @@ public class BasicAlgorithm implements FillBehaviour{
             for (int w = 0;w<container.getWidth()/box.getWidth();w++){
                 for (int h = 0;h<container.getHeight()/box.getHeight();h++){
                     if (templength<container.getLength() && tempwidth<container.getWidth() && tempheight<container.getHeight() && counter<limit){
-                        container.addItem(new Coordinate(templength,tempwidth,tempheight),tempDeepCloneBox(box));
+                        container.addItem(factory.createCoordinate(templength,tempwidth,tempheight),factory.createBox(box.getLength(),box.getWidth(),box.getHeight()));
                         counter ++;
                     }
-                    tempheight = place.getCoordinate_z() + box.getHeight();
+                    tempheight = box.getHeight();
                 }
                 tempheight = 0;
-                tempwidth = place.getCoordinate_y() + box.getWidth();
+                tempwidth = box.getWidth();
             }
             tempwidth = 0;
-            templength = place.getCoordinate_x() + box.getLength();
+            templength = box.getLength();
         }
         return container;
     }
@@ -88,13 +88,5 @@ public class BasicAlgorithm implements FillBehaviour{
             box.turnXaxis();
         }
         return box;
-    }
-
-    private Box tempDeepCloneBox(Box box){
-        return new Box(box.getLength(),box.getWidth(),box.getHeight());
-    }
-
-    private Coordinate tempDeepCloneCoordinate(Coordinate coordinate){
-        return new Coordinate(coordinate.getCoordinate_x(),coordinate.getCoordinate_y(),coordinate.getCoordinate_z());
     }
 }
