@@ -15,20 +15,19 @@ import java.util.List;
 public class BoxFitter {
     //This class will fit the maximum amount of boxes in the container
     private FillBehaviour fillBehaviour;
-    private VolumeObjectFactory factory = new VolumeObjectFactory();
 
     public List<Container> fillContainersMax(int height, int width, int length, int amount) {
-        Box samplebox = factory.createBox(length,width,height);
+        Box samplebox = VolumeObjectFactory.createBox(length,width,height);
         List<Container> filledContainers = new ArrayList<>();
         for (ContainerType containerType : ContainerType.values()) {
-            Container filledContainer = fillBehaviour.fillContainer(factory.createContainer(containerType),samplebox,amount);
+            Container filledContainer = fillBehaviour.fillContainer(VolumeObjectFactory.createContainer(containerType),samplebox,amount);
             filledContainers.add(filledContainer);
         }
         return filledContainers;
     }
 
     public Container fillContainer(ContainerType containerType, int length,int width,int height,int amount) {
-        return fillBehaviour.fillContainer(factory.createContainer(containerType),factory.createBox(length, width, height),amount);
+        return fillBehaviour.fillContainer(VolumeObjectFactory.createContainer(containerType),VolumeObjectFactory.createBox(length, width, height),amount);
     }
 
     public void setFillBehaviour(FillBehaviour algo){

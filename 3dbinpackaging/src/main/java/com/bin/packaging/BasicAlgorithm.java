@@ -33,7 +33,7 @@ public class BasicAlgorithm implements FillBehaviour{
             for (int w = 0; w < container.getWidth() / box.getWidth(); w++){
                 for (int h = 0; h < container.getHeight() / box.getHeight(); h++){
                     if (templength<container.getLength() && tempwidth<container.getWidth() && tempheight<container.getHeight() && counter<limit){
-                        container.addItem(LocationFactory.createCoordinate(templength,tempwidth,tempheight), VolumeObjectFactory.createBox(box.getLength(),box.getWidth(),box.getHeight()));
+                        container.addItem(VolumeObjectFactory.createCoordinate(templength,tempwidth,tempheight), VolumeObjectFactory.createBox(box.getLength(),box.getWidth(),box.getHeight()));
                         counter ++;
                     }
                     tempheight = box.getHeight();

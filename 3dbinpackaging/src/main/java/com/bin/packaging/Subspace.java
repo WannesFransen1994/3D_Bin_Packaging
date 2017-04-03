@@ -12,4 +12,9 @@ public class Subspace extends VolumeObject {
         this.setWidth(width);
         this.setHeight(height);
     }
+
+    public Coordinate getCoordinate() {
+        return coordinate;
+    }
+
 }
