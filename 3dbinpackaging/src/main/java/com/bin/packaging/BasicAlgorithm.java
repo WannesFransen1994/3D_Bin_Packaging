@@ -12,18 +12,7 @@ public class BasicAlgorithm extends AlgorithmCommonMethods{
 
     @Override
     public Container fillContainer(Container container, Box box, int amount) {
-        int counter = 1,lowest;
-        Box lowestBoxSetup = VolumeObjectFactory.createBox(box.getLength(),box.getWidth(),box.getHeight());
-        lowest = moduloCalculateLostSpace(container,box);
-        while (counter<=6){
-            turnBox(counter,box);
-            counter ++;
-            if (moduloCalculateLostSpace(container,box)<lowest){
-                lowest=moduloCalculateLostSpace(container,box);
-                lowestBoxSetup = VolumeObjectFactory.createBox(box.getLength(),box.getWidth(),box.getHeight());
-            }
-        }
-        container = placeBoxes(container,lowestBoxSetup,amount);
+        container = placeBoxes(container,calculateLowestSetup(container,box),amount);
         return container;
     }
 

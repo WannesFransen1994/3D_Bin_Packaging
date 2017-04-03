@@ -4,7 +4,7 @@ package com.bin.packaging;
  * Created by erowan on 03/04/2017.
  */
 public abstract class AlgorithmCommonMethods implements FillBehaviour{
-    protected Box turnBox(int counter, Box box){
+    private Box turnBox(int counter, Box box){
         if (counter % 2 == 0) {
             box.turnZaxis();
         }else {
@@ -26,5 +26,20 @@ public abstract class AlgorithmCommonMethods implements FillBehaviour{
         }
 
         return lostHeight*lostLength*lostWidth;
+    }
+
+    protected Box calculateLowestSetup(VolumeObject subspace, Box box){
+        int counter = 1,lowest;
+        Box lowestBoxSetup = VolumeObjectFactory.createBox(box.getLength(),box.getWidth(),box.getHeight());
+        lowest = moduloCalculateLostSpace(subspace,box);
+        while (counter<=6){
+            turnBox(counter,box);
+            counter ++;
+            if (moduloCalculateLostSpace(subspace,box)<lowest){
+                lowest=moduloCalculateLostSpace(subspace,box);
+                lowestBoxSetup = VolumeObjectFactory.createBox(box.getLength(),box.getWidth(),box.getHeight());
+            }
+        }
+        return lowestBoxSetup;
     }
 }
