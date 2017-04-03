@@ -8,7 +8,7 @@ package com.bin.packaging;
 /**
  * @author erowan
  */
-public class BasicAlgorithm implements FillBehaviour{
+public class BasicAlgorithm extends AlgorithmCommonMethods{
 
     @Override
     public Container fillContainer(Container container, Box box, int amount) {
@@ -33,7 +33,7 @@ public class BasicAlgorithm implements FillBehaviour{
             for (int w = 0; w < container.getWidth() / box.getWidth(); w++){
                 for (int h = 0; h < container.getHeight() / box.getHeight(); h++){
                     if (templength<container.getLength() && tempwidth<container.getWidth() && tempheight<container.getHeight() && counter<limit){
-                        container.addItem(VolumeObjectFactory.createCoordinate(templength,tempwidth,tempheight), VolumeObjectFactory.createBox(box.getLength(),box.getWidth(),box.getHeight()));
+                        container.addItem(LocationFactory.createCoordinate(templength,tempwidth,tempheight), VolumeObjectFactory.createBox(box.getLength(),box.getWidth(),box.getHeight()));
                         counter ++;
                     }
                     tempheight = box.getHeight();
@@ -45,29 +45,5 @@ public class BasicAlgorithm implements FillBehaviour{
             templength = box.getLength();
         }
         return container;
-    }
-
-    private int moduloCalculateLostSpace(Container container, Box box){
-        int lostHeight = 1, lostWidth = 1 ,lostLength = 1;
-        if (container.getHeight()%box.height!=0){
-            lostHeight = container.getHeight()%box.height;
-        }
-        if (container.getWidth()%box.width!=0){
-            lostWidth  = container.getWidth()%box.width;
-        }
-        if (container.getLength()%box.length!=0){
-            lostLength = container.getLength()%box.length;
-        }
-
-        return lostHeight*lostLength*lostWidth;
-    }
-
-    private Box turnBox(int counter, Box box){
-        if (counter % 2 == 0) {
-            box.turnZaxis();
-        }else {
-            box.turnXaxis();
-        }
-        return box;
     }
 }

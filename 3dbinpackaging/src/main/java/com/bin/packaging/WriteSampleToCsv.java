@@ -11,7 +11,7 @@ import java.util.List;
 public class WriteSampleToCsv {
 
     public static void main(String[] args) {
-        PackagingFacade f = new PackagingFacade();
+        PackagingFacade f = new PackagingFacade(new BasicAlgorithm(),new OnlyTwoTypes());
         List<Container> data = f.getMaxLoadedContainers(50,80,40,15);
 
         String fileName = "csvtest.csv";

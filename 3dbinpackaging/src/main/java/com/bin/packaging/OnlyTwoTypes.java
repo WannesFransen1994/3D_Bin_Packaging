@@ -16,7 +16,6 @@ public class OnlyTwoTypes implements CalculateBehaviour {
     public List<ContainerSetup> makeSetups(ContSetupCalculater contSetupCalculater, int length, int width, int height, int amount){
         List<ContainerSetup> setups = new ArrayList<>();
         int counter=0,number = amount, maxcount;
-        boolean outOfItems = false;
         List<Container> containers;
         Container biggest = contSetupCalculater.getLoadedContainer(ContainerType.BIGGEST,length,width,height,number);
         Container smallest = contSetupCalculater.getLoadedContainer(ContainerType.SMALLEST,length,width,height,number);
@@ -26,14 +25,12 @@ public class OnlyTwoTypes implements CalculateBehaviour {
         while(counter<=maxcount){
             number = amount;
             containers = new ArrayList<>();
-            while(!outOfItems && number != 0){
+            while(number > 0){
                 if (number>smallest.getAmountOfItems()){
-                    for (int i=0;i<counter;i++){
+                    for (int i=0;(i<counter && number>0);i++){
                         if (number<=biggest.getAmountOfItems()){
                             containers.add(contSetupCalculater.getLoadedContainer(ContainerType.BIGGEST,length,width,height,number));
-                            outOfItems=true;
                             number=0;
-                            break;
                         }
                         containers.add(contSetupCalculater.getLoadedContainer(ContainerType.BIGGEST,length,width,height,number));
                         number-= biggest.getAmountOfItems();
@@ -41,21 +38,16 @@ public class OnlyTwoTypes implements CalculateBehaviour {
                     if (number>smallest.getAmountOfItems()) {
                         containers.add(contSetupCalculater.getLoadedContainer(ContainerType.SMALLEST,length,width,height,number));
                         number -= smallest.getAmountOfItems();
-                    }else if (number != 0){
+                    }else if (number > 0){
                         containers.add(contSetupCalculater.getLoadedContainer(ContainerType.SMALLEST,length,width,height,number));
                         number = 0;
-                        outOfItems = true;
                     }
                 }else {
-                    containers.add(smallest);
-                    outOfItems=true;
-                    number=0;
+                    containers.add(contSetupCalculater.getLoadedContainer(ContainerType.SMALLEST,length,width,height,number));
                     break;
                 }
-                if (number==0){outOfItems=true;}
             }
             setups.add(new ContainerSetup(containers));
-            outOfItems=false;
             counter++;
         }
         return setups;
