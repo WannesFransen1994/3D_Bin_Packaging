@@ -10,7 +10,7 @@ public class Test {
     public static void main(String[] args) {
 
         PackagingFacade facade = new PackagingFacade();
-        ContainerSetup cs = facade.calculateSetup(50,80,40,80);
+        ContainerSetup cs = facade.calculateSetup(20,40,40,40);
 
         Map<Container,Integer> temp = Translator.convertFromContainerSetup(cs);
 

@@ -30,9 +30,9 @@ public class BasicAlgorithm implements FillBehaviour{
 
     private Container placeBoxes(Container container,Box box, int limit){
         int templength=0,tempwidth=0,tempheight=0,counter=0;
-        for (int l = 0;l<container.getLength()/box.getLength();l++){
-            for (int w = 0;w<container.getWidth()/box.getWidth();w++){
-                for (int h = 0;h<container.getHeight()/box.getHeight();h++){
+        for (int l = 0; l < container.getLength() / box.getLength(); l++){
+            for (int w = 0; w < container.getWidth() / box.getWidth(); w++){
+                for (int h = 0; h < container.getHeight() / box.getHeight(); h++){
                     if (templength<container.getLength() && tempwidth<container.getWidth() && tempheight<container.getHeight() && counter<limit){
                         container.addItem(factory.createCoordinate(templength,tempwidth,tempheight),factory.createBox(box.getLength(),box.getWidth(),box.getHeight()));
                         counter ++;
@@ -50,9 +50,15 @@ public class BasicAlgorithm implements FillBehaviour{
 
     private int moduloCalculateLostSpace(Container container, Box box){
         int lostHeight = 1, lostWidth = 1 ,lostLength = 1;
-        if (container.getHeight()%box.height!=0){lostHeight = container.getHeight()%box.height;}
-        if (container.getWidth()%box.width!=0){lostWidth  = container.getWidth()%box.width;}
-        if (container.getLength()%box.length!=0){lostLength = container.getLength()%box.length;}
+        if (container.getHeight()%box.height!=0){
+            lostHeight = container.getHeight()%box.height;
+        }
+        if (container.getWidth()%box.width!=0){
+            lostWidth  = container.getWidth()%box.width;
+        }
+        if (container.getLength()%box.length!=0){
+            lostLength = container.getLength()%box.length;
+        }
 
         return lostHeight*lostLength*lostWidth;
     }
