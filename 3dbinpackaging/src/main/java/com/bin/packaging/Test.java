@@ -11,6 +11,9 @@ public class Test {
 
         PackagingFacade facade = new PackagingFacade(new BasicAlgorithm(),new OnlyTwoTypes());
         ContainerSetup cs = facade.calculateSetup(20,40,40,65);
+        cs = facade.calculateSetup(20,40,20,65);
+        cs = facade.calculateSetup(20,30,40,65);
+        cs = facade.calculateSetup(20,25,40,65);
 
         Map<Container,Integer> temp = Translator.convertFromContainerSetup(cs);
 
