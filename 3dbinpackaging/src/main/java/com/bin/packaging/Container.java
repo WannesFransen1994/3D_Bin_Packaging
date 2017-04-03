@@ -5,14 +5,16 @@
  */
 package com.bin.packaging;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  *
  * @author erowan
  */
-public class Container extends VolumeObject{
+public class Container extends VolumeObject {
     private Map<Coordinate,Box> items;
 
     public Container(int length, int width, int height) {
@@ -46,5 +48,16 @@ public class Container extends VolumeObject{
     
     public void removeItem(Coordinate coordinate) {
         this.items.remove(coordinate);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Container) {
+            if (this.getLength() != ((Container) obj).getLength()){return false;}
+            if (this.getWidth() != ((Container) obj).getWidth()){return false;}
+            if (this.getHeight() != ((Container) obj).getHeight()){return false;}
+            if (this.getAmountOfItems() != ((Container) obj).getAmountOfItems()){return false;}
+        }else {return false;}
+        return true;
     }
 }

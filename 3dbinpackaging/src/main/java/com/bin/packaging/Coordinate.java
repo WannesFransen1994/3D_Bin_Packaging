@@ -1,9 +1,11 @@
 package com.bin.packaging;
 
+import java.util.Comparator;
+
 /**
  * Created by erowan on 31/03/2017.
  */
-public class Coordinate {
+public class Coordinate{
     //This coordinate defines the left upper corner of the basis of the box
     private int coordinate_x; // Length  is regarded as the X-axis
     private int coordinate_y; // Width is regarded as the Y-axis

@@ -8,8 +8,8 @@ import java.util.Map;
  * Created by erowan on 01/04/2017.
  */
 public class ContainerSetup {
-    Map<Container,Float> containersSetup;
-    float lostSpace;
+    private Map<Container,Float> containersSetup;
+    private float lostSpace;
 
     public ContainerSetup(List<Container> containers) {
         lostSpace = 0;
@@ -24,5 +24,13 @@ public class ContainerSetup {
             lostSpace += lost;
         }
         return containersSetup;
+    }
+
+    public Map<Container, Float> getContainersSetup() {
+        return containersSetup;
+    }
+
+    public float getLostSpace() {
+        return lostSpace;
     }
 }

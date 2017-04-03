@@ -9,65 +9,21 @@ import java.util.List;
  */
 public class ContSetupCalculater {
     private CalculateBehaviour calculateBehaviour;
-    private BoxFitter fitter;
+    private PackagingFacade facade;
 
-    public ContSetupCalculater(BoxFitter fitter) {
-        this.fitter = fitter;
+    public ContSetupCalculater(PackagingFacade facade) {
+        this.facade = facade;
     }
 
     public void setCalculateBehaviour(CalculateBehaviour calculateBehaviour) {
         this.calculateBehaviour = calculateBehaviour;
     }
 
-    public List<ContainerSetup> makeSetups(int length, int width, int height, int amount){
-        List<ContainerSetup> setups = new ArrayList<>();
-        int counter=0,number = amount, maxcount;
-        boolean outOfItems = false;
-        Container biggest = fitter.fillContainer(ContainerType.BIGGEST,length,width,height,number);
-        Container smallest = fitter.fillContainer(ContainerType.SMALLEST,length,width,height,number);
-        List<Container> containers;
-        maxcount = amount/biggest.getAmountOfItems();
-        if (amount%biggest.getAmountOfItems()!=0){maxcount++;}
-        while(counter<=maxcount){
-            number = amount;
-            containers = new ArrayList<>();
-            while(!outOfItems && number != 0){
-                if (number>smallest.getAmountOfItems()){
-                    for (int i=0;i<counter;i++){
-                        if (number<=biggest.getAmountOfItems()){
-                            containers.add(fitter.fillContainer(ContainerType.BIGGEST,length,width,height,number));
-                            outOfItems=true;
-                            number=0;
-                            break;
-                        }
-                        containers.add(fitter.fillContainer(ContainerType.BIGGEST,length,width,height,number));
-                        number-= biggest.getAmountOfItems();
-                    }
-                    if (number>smallest.getAmountOfItems()) {
-                        containers.add(fitter.fillContainer(ContainerType.SMALLEST,length,width,height,number));
-                        number -= smallest.getAmountOfItems();
-                    }else if (number != 0){
-                        containers.add(fitter.fillContainer(ContainerType.SMALLEST,length,width,height,number));
-                        number = 0;
-                        outOfItems = true;
-                    }
-                }else {
-                    containers.add(fitter.fillContainer(ContainerType.SMALLEST,length,width,height,number));
-                    outOfItems=true;
-                    number=0;
-                    break;
-                }
-                if (number==0){outOfItems=true;}
-            }
-            setups.add(new ContainerSetup(containers));
-            outOfItems=false;
-            counter++;
-        }
-        return setups;
+    public ContainerSetup calculateSetup(int length, int width, int height, int amount) {
+        return calculateBehaviour.calculateSetup(this,length,width,height,amount);
     }
 
-    public void calculateBestSetup(int length, int width, int height, int amount) {
-        List<ContainerSetup> setups = makeSetups(length, width, height, amount);
-
+    protected Container getLoadedContainer(ContainerType type,int length, int width, int height, int amount){
+        return facade.getSpecificLoadedContainer(type, length, width, height, amount);
     }
 }
