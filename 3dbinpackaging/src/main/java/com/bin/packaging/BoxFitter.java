@@ -15,7 +15,7 @@ import java.util.List;
 public class BoxFitter {
     //This class will fit the maximum amount of boxes in the container
     private FillBehaviour fillBehaviour;
-    private ObjectFactory factory = new ObjectFactory();
+    private VolumeObjectFactory factory = new VolumeObjectFactory();
 
     public List<Container> fillContainersMax(int height, int width, int length, int amount) {
         Box samplebox = factory.createBox(length,width,height);

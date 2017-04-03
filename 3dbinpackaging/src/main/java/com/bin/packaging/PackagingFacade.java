@@ -15,11 +15,11 @@ public class PackagingFacade {
     private BoxFitter fitter;
     private ContSetupCalculater contSetupCalculater;
 
-    public PackagingFacade() {
+    public PackagingFacade(FillBehaviour fillBehaviour, CalculateBehaviour calculateBehaviour) {
         fitter = new BoxFitter();
-        fitter.setFillBehaviour(new BasicAlgorithm());
+        fitter.setFillBehaviour(fillBehaviour);
         contSetupCalculater = new ContSetupCalculater(this);
-        contSetupCalculater.setCalculateBehaviour(new OnlyTwoTypes());
+        contSetupCalculater.setCalculateBehaviour(calculateBehaviour);
     }
 
     public List<Container> getMaxLoadedContainers(int length,int width,int height) {

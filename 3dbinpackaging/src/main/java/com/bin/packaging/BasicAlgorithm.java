@@ -9,19 +9,18 @@ package com.bin.packaging;
  * @author erowan
  */
 public class BasicAlgorithm implements FillBehaviour{
-    private ObjectFactory factory = new ObjectFactory();
 
     @Override
     public Container fillContainer(Container container, Box box, int amount) {
         int counter = 1,lowest;
-        Box lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
+        Box lowestBoxSetup = VolumeObjectFactory.createBox(box.getLength(),box.getWidth(),box.getHeight());
         lowest = moduloCalculateLostSpace(container,box);
         while (counter<=6){
             turnBox(counter,box);
             counter ++;
             if (moduloCalculateLostSpace(container,box)<lowest){
                 lowest=moduloCalculateLostSpace(container,box);
-                lowestBoxSetup = factory.createBox(box.getLength(),box.getWidth(),box.getHeight());
+                lowestBoxSetup = VolumeObjectFactory.createBox(box.getLength(),box.getWidth(),box.getHeight());
             }
         }
         container = placeBoxes(container,lowestBoxSetup,amount);
@@ -34,7 +33,7 @@ public class BasicAlgorithm implements FillBehaviour{
             for (int w = 0; w < container.getWidth() / box.getWidth(); w++){
                 for (int h = 0; h < container.getHeight() / box.getHeight(); h++){
                     if (templength<container.getLength() && tempwidth<container.getWidth() && tempheight<container.getHeight() && counter<limit){
-                        container.addItem(factory.createCoordinate(templength,tempwidth,tempheight),factory.createBox(box.getLength(),box.getWidth(),box.getHeight()));
+                        container.addItem(LocationFactory.createCoordinate(templength,tempwidth,tempheight), VolumeObjectFactory.createBox(box.getLength(),box.getWidth(),box.getHeight()));
                         counter ++;
                     }
                     tempheight = box.getHeight();
