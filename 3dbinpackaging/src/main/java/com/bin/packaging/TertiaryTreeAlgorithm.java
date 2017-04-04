@@ -35,34 +35,200 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
     */
     private Container container;
     private List<Subspace> unused = new ArrayList<>();
+
     @Override
     public Container fillContainer(Container container, Box samplebox, int amount) {
-        this.container=container;
-        recursiveSubspaceallocator(new Subspace(container),samplebox);
+        this.container = container;
+        recursiveSubspaceallocator(new Subspace(container), samplebox);
 
         return container;
     }
-    private void recursiveSubspaceallocator(Subspace subspace, Box box){
-        box = calculateLowestSetup(subspace,box);
+
+    private void recursiveSubspaceallocator(Subspace subspace, Box box) {
+        box = calculateLowestSetup(subspace, box);
         //TODO: sanity check to place box
         container.addItem(
                 LocationFactory.createCoordinate(
                         subspace.getCoordinate().getCoordinate_x(),
                         subspace.getCoordinate().getCoordinate_y(),
                         subspace.getCoordinate().getCoordinate_y()),
-                VolumeObjectFactory.createBox(box.getLength(),box.getWidth(),box.getHeight()));
+                VolumeObjectFactory.createBox(box.getLength(), box.getWidth(), box.getHeight()));
         //SUBSPACE 1 hardcoded
-        if (container.getWidth()<subspace.getWidth()+box.getWidth()){
+        /*if (container.getWidth() < subspace.getWidth() + box.getWidth()) {
             Subspace subspace1 = new Subspace(new Coordinate(
                     subspace.getLength(),
-                    subspace.getWidth()+box.getWidth(),
+                    subspace.getWidth() + box.getWidth(),
                     subspace.getHeight()),
                     box.getLength(),
-                    subspace.getWidth()-box.getWidth(),
+                    subspace.getWidth() - box.getWidth(),
                     box.getHeight());
-        }else{//No new subspace 1?}
-        int newSubx =
-        int newSubx =
-        int newSubx =
+        } else {/*No new subspace 1?*///}
+//        int newSubx =
+//        int newSubx =
+//        int newSubx =*/
+    }
+
+    private void calculateSubspacing(Subspace subspace, Box box, String[] longestFirst) {
+        Subspace sub1 = VolumeObjectFactory.createSubspace(
+                LocationFactory.createCoordinate(0,0,0),
+                subspace.getLength(),subspace.getWidth(),subspace.getHeight());
+        Subspace sub2 = VolumeObjectFactory.createSubspace(
+                LocationFactory.createCoordinate(0,0,0),
+                subspace.getLength(),subspace.getWidth(),subspace.getHeight()) ;
+        Subspace sub3 = VolumeObjectFactory.createSubspace(
+                LocationFactory.createCoordinate(0,0,0),
+                subspace.getLength(),subspace.getWidth(),subspace.getHeight());
+
+        switch (longestFirst[0]) {
+            case "length":
+                if (longestFirst[1].equals("width")) {
+                    configureSubspaceHelper(
+                            sub1,
+                            subspace.getCoordinate().getCoordinate_x(),
+                            subspace.getCoordinate().getCoordinate_y(),
+                            subspace.getCoordinate().getCoordinate_z()+box.getHeight(),
+                            box.getLength(),
+                            box.getWidth(),
+                            subspace.getHeight()-box.getHeight());
+                    configureSubspaceHelper(
+                            sub2,
+                            subspace.getCoordinate().getCoordinate_x(),
+                            subspace.getCoordinate().getCoordinate_y()+box.getWidth(),
+                            subspace.getCoordinate().getCoordinate_z(),
+                            box.getLength(),
+                            subspace.getWidth()-box.getWidth(),
+                            subspace.getHeight());
+                } else {
+                    configureSubspaceHelper(
+                            sub1,
+                            subspace.getCoordinate().getCoordinate_x(),
+                            subspace.getCoordinate().getCoordinate_y()+box.getWidth(),
+                            subspace.getCoordinate().getCoordinate_z(),
+                            box.getLength(),
+                            subspace.getWidth()-box.getWidth(),
+                            box.getHeight());
+                    configureSubspaceHelper(
+                            sub2,
+                            subspace.getCoordinate().getCoordinate_x(),
+                            subspace.getCoordinate().getCoordinate_y(),
+                            subspace.getCoordinate().getCoordinate_z()+box.getHeight(),
+                            box.getLength(),
+                            subspace.getWidth(),
+                            subspace.getHeight()-box.getHeight());
+                }
+                configureSubspaceHelper(
+                        sub3,
+                        subspace.getCoordinate().getCoordinate_x() + box.getLength(),
+                        subspace.getCoordinate().getCoordinate_y(),
+                        subspace.getCoordinate().getCoordinate_z(),
+                        subspace.getLength()-box.getLength(),
+                        subspace.getWidth(),
+                        subspace.getHeight());
+                break;
+            case "width":
+                if (longestFirst[1].equals("length")) {
+                    configureSubspaceHelper(
+                            sub1,
+                            subspace.getCoordinate().getCoordinate_x(),
+                            subspace.getCoordinate().getCoordinate_y(),
+                            subspace.getCoordinate().getCoordinate_z()+box.getHeight(),
+                            box.getLength(),
+                            box.getWidth(),
+                            subspace.getHeight()-box.getHeight());
+                    configureSubspaceHelper(
+                            sub2,
+                            subspace.getCoordinate().getCoordinate_x()+box.getLength(),
+                            subspace.getCoordinate().getCoordinate_y(),
+                            subspace.getCoordinate().getCoordinate_z(),
+                            subspace.getLength()-box.getLength(),
+                            box.getWidth(),
+                            subspace.getHeight());
+                } else {
+                    configureSubspaceHelper(
+                        sub1,
+                        subspace.getCoordinate().getCoordinate_x() + box.getLength(),
+                        subspace.getCoordinate().getCoordinate_y(),
+                        subspace.getCoordinate().getCoordinate_z(),
+                        subspace.getLength() - box.getLength(),
+                        box.getWidth(),
+                        box.getHeight());
+                    configureSubspaceHelper(
+                            sub2,
+                            subspace.getCoordinate().getCoordinate_x(),
+                            subspace.getCoordinate().getCoordinate_y(),
+                            subspace.getCoordinate().getCoordinate_z() + box.getHeight(),
+                            subspace.getLength(),
+                            box.getWidth(),
+                            subspace.getHeight()-box.getHeight());
+
+                }
+                configureSubspaceHelper(
+                    sub3,
+                    subspace.getCoordinate().getCoordinate_x(),
+                    subspace.getCoordinate().getCoordinate_y()+box.getWidth(),
+                    subspace.getCoordinate().getCoordinate_z(),
+                    subspace.getLength(),
+                    subspace.getWidth()-box.getWidth(),
+                    subspace.getHeight());
+
+                break;
+
+            case "height":
+                if (longestFirst[1].equals("length")) {
+                    configureSubspaceHelper(
+                            sub1,
+                            subspace.getCoordinate().getCoordinate_x(),
+                            subspace.getCoordinate().getCoordinate_y()+box.getWidth(),
+                            subspace.getCoordinate().getCoordinate_z(),
+                            box.getLength(),
+                            subspace.getWidth()-box.getWidth(),
+                            box.getHeight());
+                    configureSubspaceHelper(
+                            sub2,
+                            subspace.getCoordinate().getCoordinate_x() + box.getLength(),
+                            subspace.getCoordinate().getCoordinate_y(),
+                            subspace.getCoordinate().getCoordinate_z(),
+                            subspace.getLength()-box.getLength(),
+                            subspace.getWidth(),
+                            box.getHeight());
+                } else {
+                    configureSubspaceHelper(
+                            sub1,
+                            subspace.getCoordinate().getCoordinate_x() + box.getLength(),
+                            subspace.getCoordinate().getCoordinate_y(),
+                            subspace.getCoordinate().getCoordinate_z(),
+                            subspace.getLength() - box.getLength(),
+                            box.getWidth(),
+                            box.getHeight());
+                    configureSubspaceHelper(
+                            sub2,
+                            subspace.getCoordinate().getCoordinate_x(),
+                            subspace.getCoordinate().getCoordinate_y()+ box.getWidth(),
+                            subspace.getCoordinate().getCoordinate_z(),
+                            subspace.getLength(),
+                            subspace.getWidth()-box.getWidth(),
+                            box.getHeight());
+                }
+                configureSubspaceHelper(
+                        sub3,
+                        subspace.getCoordinate().getCoordinate_x(),
+                        subspace.getCoordinate().getCoordinate_y(),
+                        subspace.getCoordinate().getCoordinate_z()+ box.getHeight(),
+                        subspace.getLength(),
+                        subspace.getWidth(),
+                        subspace.getHeight()-box.getHeight());
+                break;
+
+        }
+    }
+    private Subspace configureSubspaceHelper(Subspace subspace,int x, int y, int z, int l, int w, int h){
+        subspace.getCoordinate().setCoordinate_x(x);
+        subspace.getCoordinate().setCoordinate_y(y);
+        subspace.getCoordinate().setCoordinate_z(z);
+        subspace.setLength(l);
+        subspace.setWidth(w);
+        subspace.setHeight(h);
+
+        return subspace;
     }
 }
