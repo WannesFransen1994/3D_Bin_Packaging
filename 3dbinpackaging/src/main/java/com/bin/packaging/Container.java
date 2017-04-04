@@ -44,6 +44,7 @@ public class Container extends VolumeObject {
 
     public void addItem(Coordinate coordinate,Box box) {
         this.items.put(coordinate,box);
+        //TODO: Sanity check
     }
     
     public void removeItem(Coordinate coordinate) {

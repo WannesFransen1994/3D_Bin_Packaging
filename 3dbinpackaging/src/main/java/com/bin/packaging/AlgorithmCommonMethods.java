@@ -50,7 +50,6 @@ public abstract class AlgorithmCommonMethods implements FillBehaviour{
     }
 
     private Box calculateBestSetup(VolumeObject subspace, List<Box> bestSetups){
-
         String[] mostImportant = longestSideHelperFunction(subspace);
         Box bestfit = bestSetups.get(0);
         switch (mostImportant[0]){
@@ -99,7 +98,7 @@ public abstract class AlgorithmCommonMethods implements FillBehaviour{
         }
         return bestfit;
     }
-//TODO: review this horror-code.... 
+//TODO: review this horror-code....
     private String[] longestSideHelperFunction(VolumeObject subspace){
         String[] importantList = new String[3];
         if (subspace.getLength()> subspace.getWidth() && subspace.getLength() > subspace.getHeight()){
