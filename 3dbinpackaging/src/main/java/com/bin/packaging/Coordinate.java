@@ -12,9 +12,9 @@ public class Coordinate{
     private int coordinate_z; // Height is regarded as the Z-axis
 
     public Coordinate(int coordinate_x, int coordinate_y, int coordinate_z) {
-        this.coordinate_x = coordinate_x;
-        this.coordinate_y = coordinate_y;
-        this.coordinate_z = coordinate_z;
+        setCoordinate_x(coordinate_x);
+        setCoordinate_y(coordinate_y);
+        setCoordinate_z(coordinate_z);
     }
 
     public int getCoordinate_x() {
