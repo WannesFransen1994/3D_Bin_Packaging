@@ -11,12 +11,13 @@ public class Test {
 
         PackagingFacade facade = new PackagingFacade(
                 new TertiaryTreeAlgorithm(),new OnlyTwoTypes());
-        ContainerSetup cs = facade.calculateSetup(40,80,80,65);
+        /*ContainerSetup cs = facade.calculateSetup(40,80,80,65);
         cs = facade.calculateSetup(20,40,20,65);
         cs = facade.calculateSetup(20,30,40,65);
-        cs = facade.calculateSetup(20,25,40,65);
+        cs = facade.calculateSetup(20,25,40,65);*/
+        Container c = facade.getSpecificLoadedContainer(ContainerType.SMALLEST,20,40,20,65);
 
-        Map<Container,Integer> temp = Translator.convertFromContainerSetup(cs);
+        Map<Container,Integer> temp = Translator.convertFromContainerSetup(null);
 
         System.out.println(temp);
     }
