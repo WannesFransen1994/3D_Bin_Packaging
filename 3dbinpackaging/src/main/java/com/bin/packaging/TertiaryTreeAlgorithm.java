@@ -39,7 +39,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
     @Override
     public Container fillContainer(Container container, Box samplebox, int amount) {
         this.container = container;
-        recursiveSubspaceallocator(new Subspace(container), samplebox);
+        recursiveSubspaceallocator(VolumeObjectFactory.createSubspace(container), samplebox);
 
         return container;
     }
@@ -47,25 +47,17 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
     private void recursiveSubspaceallocator(Subspace subspace, Box box) {
         box = calculateLowestSetup(subspace, box);
         //TODO: sanity check to place box
-        container.addItem(
-                LocationFactory.createCoordinate(
-                        subspace.getCoordinate().getCoordinate_x(),
-                        subspace.getCoordinate().getCoordinate_y(),
-                        subspace.getCoordinate().getCoordinate_y()),
-                VolumeObjectFactory.createBox(box.getLength(), box.getWidth(), box.getHeight()));
-        //SUBSPACE 1 hardcoded
-        /*if (container.getWidth() < subspace.getWidth() + box.getWidth()) {
-            Subspace subspace1 = new Subspace(new Coordinate(
-                    subspace.getLength(),
-                    subspace.getWidth() + box.getWidth(),
-                    subspace.getHeight()),
-                    box.getLength(),
-                    subspace.getWidth() - box.getWidth(),
-                    box.getHeight());
-        } else {/*No new subspace 1?*///}
-//        int newSubx =
-//        int newSubx =
-//        int newSubx =*/
+        if (subspace.getCoordinate().getCoordinate_x()+box.getLength()<=subspace.getLength() &&
+        subspace.getCoordinate().getCoordinate_y()+box.getWidth()<=subspace.getWidth() &&
+                subspace.getCoordinate().getCoordinate_z()+box.getHeight()<=subspace.getHeight()) {
+            container.addItem(
+                    LocationFactory.createCoordinate(
+                            subspace.getCoordinate().getCoordinate_x(),
+                            subspace.getCoordinate().getCoordinate_y(),
+                            subspace.getCoordinate().getCoordinate_z()),
+                    VolumeObjectFactory.createBox(box.getLength(), box.getWidth(), box.getHeight()));
+            calculateSubspacing(subspace, box, longestSideHelperFunction(subspace));
+        }
     }
 
     private void calculateSubspacing(Subspace subspace, Box box, String[] longestFirst) {
@@ -79,10 +71,12 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                 LocationFactory.createCoordinate(0,0,0),
                 subspace.getLength(),subspace.getWidth(),subspace.getHeight());
 
+        boolean sub1canBeMade = true,sub2canBeMade= true,sub3canBeMade= true;
+
         switch (longestFirst[0]) {
             case "length":
                 if (longestFirst[1].equals("width")) {
-                    configureSubspaceHelper(
+                    sub1canBeMade = configureSubspaceHelper(
                             sub1,
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y(),
@@ -90,7 +84,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             box.getLength(),
                             box.getWidth(),
                             subspace.getHeight()-box.getHeight());
-                    configureSubspaceHelper(
+                    sub2canBeMade = configureSubspaceHelper(
                             sub2,
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y()+box.getWidth(),
@@ -99,7 +93,8 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             subspace.getWidth()-box.getWidth(),
                             subspace.getHeight());
                 } else {
-                    configureSubspaceHelper(
+                    //good job, this part works (this method call at least)
+                    sub1canBeMade = configureSubspaceHelper(
                             sub1,
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y()+box.getWidth(),
@@ -107,7 +102,8 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             box.getLength(),
                             subspace.getWidth()-box.getWidth(),
                             box.getHeight());
-                    configureSubspaceHelper(
+                    //good job, this part works (this method call at least)
+                    sub2canBeMade = configureSubspaceHelper(
                             sub2,
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y(),
@@ -116,7 +112,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             subspace.getWidth(),
                             subspace.getHeight()-box.getHeight());
                 }
-                configureSubspaceHelper(
+                sub3canBeMade = configureSubspaceHelper(
                         sub3,
                         subspace.getCoordinate().getCoordinate_x() + box.getLength(),
                         subspace.getCoordinate().getCoordinate_y(),
@@ -127,7 +123,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                 break;
             case "width":
                 if (longestFirst[1].equals("length")) {
-                    configureSubspaceHelper(
+                    sub1canBeMade = configureSubspaceHelper(
                             sub1,
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y(),
@@ -135,7 +131,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             box.getLength(),
                             box.getWidth(),
                             subspace.getHeight()-box.getHeight());
-                    configureSubspaceHelper(
+                    sub2canBeMade = configureSubspaceHelper(
                             sub2,
                             subspace.getCoordinate().getCoordinate_x()+box.getLength(),
                             subspace.getCoordinate().getCoordinate_y(),
@@ -144,7 +140,8 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             box.getWidth(),
                             subspace.getHeight());
                 } else {
-                    configureSubspaceHelper(
+                    //this one dies after first subspacing
+                    sub1canBeMade = configureSubspaceHelper(
                         sub1,
                         subspace.getCoordinate().getCoordinate_x() + box.getLength(),
                         subspace.getCoordinate().getCoordinate_y(),
@@ -152,7 +149,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                         subspace.getLength() - box.getLength(),
                         box.getWidth(),
                         box.getHeight());
-                    configureSubspaceHelper(
+                    sub2canBeMade = configureSubspaceHelper(
                             sub2,
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y(),
@@ -162,7 +159,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             subspace.getHeight()-box.getHeight());
 
                 }
-                configureSubspaceHelper(
+                sub3canBeMade = configureSubspaceHelper(
                     sub3,
                     subspace.getCoordinate().getCoordinate_x(),
                     subspace.getCoordinate().getCoordinate_y()+box.getWidth(),
@@ -175,7 +172,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
 
             case "height":
                 if (longestFirst[1].equals("length")) {
-                    configureSubspaceHelper(
+                    sub1canBeMade = configureSubspaceHelper(
                             sub1,
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y()+box.getWidth(),
@@ -183,7 +180,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             box.getLength(),
                             subspace.getWidth()-box.getWidth(),
                             box.getHeight());
-                    configureSubspaceHelper(
+                    sub2canBeMade = configureSubspaceHelper(
                             sub2,
                             subspace.getCoordinate().getCoordinate_x() + box.getLength(),
                             subspace.getCoordinate().getCoordinate_y(),
@@ -192,7 +189,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             subspace.getWidth(),
                             box.getHeight());
                 } else {
-                    configureSubspaceHelper(
+                    sub1canBeMade = configureSubspaceHelper(
                             sub1,
                             subspace.getCoordinate().getCoordinate_x() + box.getLength(),
                             subspace.getCoordinate().getCoordinate_y(),
@@ -200,7 +197,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             subspace.getLength() - box.getLength(),
                             box.getWidth(),
                             box.getHeight());
-                    configureSubspaceHelper(
+                    sub2canBeMade = configureSubspaceHelper(
                             sub2,
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y()+ box.getWidth(),
@@ -209,7 +206,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             subspace.getWidth()-box.getWidth(),
                             box.getHeight());
                 }
-                configureSubspaceHelper(
+                sub3canBeMade = configureSubspaceHelper(
                         sub3,
                         subspace.getCoordinate().getCoordinate_x(),
                         subspace.getCoordinate().getCoordinate_y(),
@@ -218,17 +215,19 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                         subspace.getWidth(),
                         subspace.getHeight()-box.getHeight());
                 break;
-
         }
+        if (sub1canBeMade){recursiveSubspaceallocator(sub1,box);}
+        if (sub2canBeMade){recursiveSubspaceallocator(sub2,box);}
+        if (sub3canBeMade){recursiveSubspaceallocator(sub3,box);}
     }
-    private Subspace configureSubspaceHelper(Subspace subspace,int x, int y, int z, int l, int w, int h){
+    private boolean configureSubspaceHelper(Subspace subspace,int x, int y, int z, int l, int w, int h){
+        if (l<=0 ||w<=0 || h<=0){return false;}
         subspace.getCoordinate().setCoordinate_x(x);
         subspace.getCoordinate().setCoordinate_y(y);
         subspace.getCoordinate().setCoordinate_z(z);
         subspace.setLength(l);
         subspace.setWidth(w);
         subspace.setHeight(h);
-
-        return subspace;
+        return true;
     }
 }

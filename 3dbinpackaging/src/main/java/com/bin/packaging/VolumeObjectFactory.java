@@ -8,6 +8,9 @@ public class VolumeObjectFactory {
     public static Subspace createSubspace(Coordinate coordinate,int length, int width, int height){
         return new Subspace(coordinate,length,width,height);
     }
+    public static Subspace createSubspace(Container container){
+        return new Subspace(container);
+    }
     public static Box createBox(int length,int width, int height){
         return new Box(length, width, height);
     }
