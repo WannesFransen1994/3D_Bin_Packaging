@@ -1,5 +1,3 @@
-package junit;
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -11,12 +9,21 @@ import com.bin.packaging.Coordinate;
 import com.bin.packaging.Subspace;
 import com.bin.packaging.VolumeObjectFactory;
 
+/**
+ * Created by Tiebevn on 5/04/2017.
+ */
+
 public class VolumeObjectFactoryTest {
+
+    private Box box;
+
+
+
 
 	@Test
 	public void Creating_a_new_box_creates_a_new_box() {
-		Box box = VolumeObjectFactory.createBox(1, 2, 3);
-		
+
+        box = VolumeObjectFactory.createBox(1, 2, 3);
 		assertEquals(1, box.getLength());
 		assertEquals(2, box.getWidth());
 		assertEquals(3, box.getHeight());
@@ -45,6 +52,6 @@ public class VolumeObjectFactoryTest {
 		
 		
 	}
-	
-	
+
+
 }

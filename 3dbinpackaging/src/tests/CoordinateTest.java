@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Created by Tiebe on 5/04/2017.
+ * Created by Tiebevn on 5/04/2017.
  */
 public class CoordinateTest {
 
@@ -45,4 +45,6 @@ public class CoordinateTest {
 
         Assert.assertEquals(5, coord.getCoordinate_z());
     }
+
+    // No coördinate is an invalid one
 }
