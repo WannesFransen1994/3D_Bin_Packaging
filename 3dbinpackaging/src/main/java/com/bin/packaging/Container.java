@@ -24,6 +24,13 @@ public class Container extends VolumeObject {
         this.items = new HashMap<>();
     }
 
+    public Container(Container container) {
+        setLength(container.getLength());
+        setWidth(container.getWidth());
+        setHeight(container.getHeight());
+        this.items = container.getItems();
+    }
+
     public float getFilled() {
         if (items.size()>0) {
             Box temp = (Box) items.values().toArray()[0];
@@ -44,6 +51,7 @@ public class Container extends VolumeObject {
 
     public void addItem(Coordinate coordinate,Box box) {
         this.items.put(coordinate,box);
+        //TODO: Sanity check
     }
     
     public void removeItem(Coordinate coordinate) {
