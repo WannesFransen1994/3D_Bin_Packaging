@@ -34,25 +34,23 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
       You want to test if these subspaces are worth "Combining". But this is an extra
     */
     private Container container;
+    private int amount;
     private List<Subspace> unused = new ArrayList<>();
 
     @Override
     public Container fillContainer(Container container, Box samplebox, int amount) {
         this.container = container;
+        this.amount = amount;
         recursiveSubspaceallocator(VolumeObjectFactory.createSubspace(container), samplebox);
 
-        return container;
+        return VolumeObjectFactory.createContainer(container);
     }
 
     private void recursiveSubspaceallocator(Subspace subspace, Box box) {
-        System.out.println("\n################################");
-        System.out.println("Subspace: \t"+subspace.getCoordinate().getCoordinate_x()+" x  \t"+subspace.getCoordinate().getCoordinate_y()+" x \t" + subspace.getCoordinate().getCoordinate_z());
-        System.out.println("size: \t\t" + subspace.getLength() + " x \t" + subspace.getWidth() + " x \t" + subspace.getHeight());
         box = calculateLowestSetup(subspace, box);
-        //TODO: sanity check to place box
-        if (subspace.getCoordinate().getCoordinate_x()+box.getLength()<=subspace.getLength() &&
-        subspace.getCoordinate().getCoordinate_y()+box.getWidth()<=subspace.getWidth() &&
-                subspace.getCoordinate().getCoordinate_z()+box.getHeight()<=subspace.getHeight()) {
+        if (box.getLength()<=subspace.getLength() && box.getWidth()<=subspace.getWidth() &&
+                box.getHeight()<=subspace.getHeight() && amount>0) {
+            amount--;
             container.addItem(
                     LocationFactory.createCoordinate(
                             subspace.getCoordinate().getCoordinate_x(),

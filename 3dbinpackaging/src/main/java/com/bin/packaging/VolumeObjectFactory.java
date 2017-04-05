@@ -17,4 +17,7 @@ public class VolumeObjectFactory {
     public static Container createContainer(ContainerType type){
         return new Container(type.getLength(), type.getWidth(), type.getHeight());
     }
+    public static Container createContainer(Container container){
+        return new Container(container);
+    }
 }
