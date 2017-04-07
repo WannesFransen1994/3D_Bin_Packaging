@@ -3,19 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bin.packaging;
+package com.bin.packaging.Model;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  *
- * @author erowan
+ * Created by Wannes Fransen.
  */
 public class Container extends VolumeObject {
-    private Map<Coordinate,Box> items;
+    private final Map<Coordinate,Box> items;
 
     public Container(int length, int width, int height) {
         setLength(length);

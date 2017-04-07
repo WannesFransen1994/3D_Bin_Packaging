@@ -1,7 +1,7 @@
-package com.bin.packaging;
+package com.bin.packaging.Model;
 
 /**
- * Created by erowan on 01/04/2017.
+ * Created by Wannes Fransen.
  */
 public class VolumeObjectFactory {
 

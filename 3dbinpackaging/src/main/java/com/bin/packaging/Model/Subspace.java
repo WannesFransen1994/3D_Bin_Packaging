@@ -1,10 +1,10 @@
-package com.bin.packaging;
+package com.bin.packaging.Model;
 
 /**
- * Created by erowan on 03/04/2017.
+ * Created by Wannes Fransen.
  */
 public class Subspace extends VolumeObject {
-    private Coordinate coordinate;
+    private final Coordinate coordinate;
 
     public Subspace(Coordinate coordinate,int length, int width, int height) {
         this.coordinate = coordinate;

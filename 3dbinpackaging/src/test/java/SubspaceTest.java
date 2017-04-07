@@ -1,7 +1,6 @@
-import com.bin.packaging.Container;
-import com.bin.packaging.Coordinate;
-import com.bin.packaging.LocationFactory;
-import com.bin.packaging.Subspace;
+import com.bin.packaging.Model.Container;
+import com.bin.packaging.Model.Coordinate;
+import com.bin.packaging.Model.Subspace;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +22,7 @@ public class SubspaceTest {
     }
 
     @Test
-    public void Create_new_valid_subspace_by_size_and_coordinate() {
+    public void valueConstructorTest() {
 
         sub = new Subspace(coord, 1, 2, 3);
 
@@ -34,7 +33,7 @@ public class SubspaceTest {
     }
 
     @Test
-    public void Create_new_container_subspace() {
+    public void containerConstructorTest() {
 
         sub = new Subspace(cont);
 

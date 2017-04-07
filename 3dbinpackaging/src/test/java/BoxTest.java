@@ -1,6 +1,6 @@
 
 
-import com.bin.packaging.Box;
+import com.bin.packaging.Model.Box;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ public class BoxTest {
 	
 	
 	@Test
-	public void Box_with_valid_arguments_creates_new_box() {
+	public void createBoxTest() {
 		box = new Box(1, 1, 1);
 		
 		Assert.assertEquals(1, box.getLength());
@@ -26,17 +26,7 @@ public class BoxTest {
 
 	
 	@Test
-	public void Turn_box_over_Z_axis_works() {
-		box = new Box(1, 2, 3);
-		box.turnZaxis();
-
-		Assert.assertEquals(2, box.getLength());
-		Assert.assertEquals(1, box.getWidth());
-		Assert.assertEquals(3, box.getHeight());
-	}
-	
-	@Test
-	public void Turn_box_over_Y_axis_works() {
+	public void turnYAxisTest() {
 		box = new Box(1, 2, 3);
 		box.turnYaxis();
 
@@ -44,9 +34,19 @@ public class BoxTest {
 		Assert.assertEquals(2, box.getWidth());
 		Assert.assertEquals(1, box.getHeight());
 	}
-	
+
 	@Test
-	public void Turn_box_over_X_axis_works() {
+	public void turnZAxisTest() {
+		box = new Box(1, 2, 3);
+		box.turnZaxis();
+
+		Assert.assertEquals(2, box.getLength());
+		Assert.assertEquals(1, box.getWidth());
+		Assert.assertEquals(3, box.getHeight());
+	}
+
+	@Test
+	public void turnXAxisTest() {
 		box = new Box(1, 2, 3);
 		box.turnXaxis();
 
@@ -56,19 +56,19 @@ public class BoxTest {
 	}
 
     @Test(expected = IllegalArgumentException.class)
-    public void Box_with_invalid_length_throws_exception() {
+    public void invalidLengthTest() {
         box = new Box(-1, 1, 1);
 
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void Box_with_invalid_width_throws_exception() {
+    public void invalidWidthTest() {
         box = new Box(1, -1, 1);
 
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void Box_with_invalid_height_throws_exception() {
+    public void invalidHeightTest() {
         box = new Box(1, 1, -1);
 
     }

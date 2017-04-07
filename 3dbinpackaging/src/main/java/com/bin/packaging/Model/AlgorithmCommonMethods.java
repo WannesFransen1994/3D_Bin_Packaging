@@ -1,22 +1,21 @@
-package com.bin.packaging;
+package com.bin.packaging.Model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by erowan on 03/04/2017.
+ * Created by Wannes Fransen.
  */
-public abstract class AlgorithmCommonMethods implements FillBehaviour {
-    private Box turnBox(int counter, Box box) {
+abstract class AlgorithmCommonMethods implements FillBehaviour {
+    private void turnBox(int counter, Box box) {
         if (counter % 2 == 0) {
             box.turnZaxis();
         } else {
             box.turnXaxis();
         }
-        return box;
     }
 
-    protected int moduloCalculateLostSpace(VolumeObject volumeObject, Box box) {
+    private int moduloCalculateLostSpace(VolumeObject volumeObject, Box box) {
         int lostHeight = 1, lostWidth = 1, lostLength = 1;
         if (volumeObject.getHeight() % box.height != 0) {
             lostHeight = volumeObject.getHeight() % box.height;
@@ -31,7 +30,7 @@ public abstract class AlgorithmCommonMethods implements FillBehaviour {
         return lostHeight * lostLength * lostWidth;
     }
 
-    protected Box calculateLowestSetup(VolumeObject subspace, Box box) {
+    Box calculateLowestSetup(VolumeObject subspace, Box box) {
         int counter = 1, lowest, lost;
         List<Box> lowestBoxSetups = new ArrayList<>();
         lowestBoxSetups.add(VolumeObjectFactory.createBox(box.getLength(), box.getWidth(), box.getHeight()));
@@ -59,13 +58,10 @@ public abstract class AlgorithmCommonMethods implements FillBehaviour {
                 for (Box box : bestSetups) {
                     if (box.getLength() < bestfit.getLength()) {
                         bestfit = box;
-                        continue;
                     } else if (mostImportant[1].equals("width") && box.getLength() == bestfit.getLength() && box.getWidth() < bestfit.getWidth()) {
                         bestfit = box;
-                        continue;
                     } else if (mostImportant[1].equals("height") && box.getLength() == bestfit.getLength() && box.getHeight() < bestfit.getHeight()) {
                         bestfit = box;
-                        continue;
                     }
                 }
                 break;
@@ -73,13 +69,10 @@ public abstract class AlgorithmCommonMethods implements FillBehaviour {
                 for (Box box : bestSetups) {
                     if (box.getWidth() < bestfit.getWidth()) {
                         bestfit = box;
-                        continue;
                     } else if (mostImportant[1].equals("length") && box.getWidth() == bestfit.getWidth() && box.getLength() < bestfit.getLength()) {
                         bestfit = box;
-                        continue;
                     } else if (mostImportant[1].equals("height") && box.getWidth() == bestfit.getWidth() && box.getHeight() < bestfit.getHeight()) {
                         bestfit = box;
-                        continue;
                     }
                 }
                 break;
@@ -87,13 +80,10 @@ public abstract class AlgorithmCommonMethods implements FillBehaviour {
                 for (Box box : bestSetups) {
                     if (box.getHeight() < bestfit.getHeight()) {
                         bestfit = box;
-                        continue;
                     } else if (mostImportant[1].equals("length") && box.getHeight() == bestfit.getHeight() && box.getLength() < bestfit.getLength()) {
                         bestfit = box;
-                        continue;
                     } else if (mostImportant[1].equals("height") && box.getHeight() == bestfit.getHeight() && box.getWidth() < bestfit.getWidth()) {
                         bestfit = box;
-                        continue;
                     }
                 }
                 break;
@@ -102,7 +92,7 @@ public abstract class AlgorithmCommonMethods implements FillBehaviour {
     }
 
     //TODO: review this horror-code....
-    protected String[] longestSideHelperFunction(VolumeObject subspace) {
+    String[] longestSideHelperFunction(VolumeObject subspace) {
         String[] importantList = new String[3];
         if (subspace.getLength() > subspace.getWidth() && subspace.getLength() > subspace.getHeight()) {
             //Most important is minimal length

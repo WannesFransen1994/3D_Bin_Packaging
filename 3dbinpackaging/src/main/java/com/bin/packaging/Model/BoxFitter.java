@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bin.packaging;
+package com.bin.packaging.Model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author erowan
+ * Created by Wannes Fransen.
  */
 public class BoxFitter {
     //This class will fit the maximum amount of boxes in the container

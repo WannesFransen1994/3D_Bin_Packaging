@@ -1,11 +1,11 @@
-package com.bin.packaging;
+package com.bin.packaging.Model;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by erowan on 01/04/2017.
+ * Created by Wannes Fransen.
  */
 public class ContainerSetup {
     private Map<Container,Float> containersSetup;

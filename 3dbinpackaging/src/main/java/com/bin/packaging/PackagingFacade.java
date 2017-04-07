@@ -5,11 +5,13 @@
  */
 package com.bin.packaging;
 
+import com.bin.packaging.Model.*;
+
 import java.util.List;
 
 /**
  *
- * @author erowan
+ * Created by Wannes Fransen.
  */
 public class PackagingFacade {
     private BoxFitter fitter;
@@ -22,7 +24,7 @@ public class PackagingFacade {
         contSetupCalculater.setCalculateBehaviour(calculateBehaviour);
     }
 
-    public List<Container> getMaxLoadedContainers(int length,int width,int height) {
+    public List<Container> getMaxLoadedContainers(int length, int width, int height) {
         return fitter.fillContainersMax(height,width,length,-1);
     }
 

@@ -1,6 +1,6 @@
-import com.bin.packaging.Box;
-import com.bin.packaging.Container;
-import com.bin.packaging.Coordinate;
+import com.bin.packaging.Model.Box;
+import com.bin.packaging.Model.Container;
+import com.bin.packaging.Model.Coordinate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +14,6 @@ import java.util.Map;
  */
 public class ContainerTest {
 
-    private Box box;
     private Coordinate coord;
     private Coordinate coord2;
     private Container container;
@@ -25,7 +24,7 @@ public class ContainerTest {
     public void setUp() {
         coord = new Coordinate(1, 1, 1);
         coord2 = new Coordinate(5, 5, 5);
-        box = new Box(1, 1, 1);
+        Box box = new Box(1, 1, 1);
         container = new Container(10, 15, 20);
 
         container.addItem(coord2, box);
@@ -39,14 +38,14 @@ public class ContainerTest {
     }
 
     @Test
-    public void Constructor_by_values_test() {
+    public void valueConstructorTest() {
         Assert.assertEquals(10, container.getLength());
         Assert.assertEquals(15, container.getWidth());
         Assert.assertEquals(20, container.getHeight());
         Assert.assertEquals(2, container.getAmountOfItems());
     }
     @Test
-    public void Constructor_by_reference_test() {
+    public void copyConstructorTest() {
         Assert.assertEquals(10, container2.getLength());
         Assert.assertEquals(15, container2.getWidth());
         Assert.assertEquals(20, container2.getHeight());
@@ -54,13 +53,13 @@ public class ContainerTest {
     }
 
     @Test
-    public void Add_box_to_items() {
+    public void itemAddTest() {
 
         Assert.assertTrue(container.getItems().equals(map));
     }
 
     @Test
-    public void Remove_item_from_items() {
+    public void itemRemoveTest() {
         container.removeItem(coord2);
         map.remove(coord2);
         Assert.assertEquals(1, container.getAmountOfItems());
@@ -68,19 +67,19 @@ public class ContainerTest {
     }
 
     @Test
-    public void Overriden_equals_method() {
+    public void equalsTest() {
         Assert.assertTrue(container.equals(container2));
     }
 
     @Test
-    public void GetFilled_with_0_items_should_return_0() {
+    public void noItemsTest() {
 
         Container test = new Container(10, 10, 10);
         Assert.assertEquals((float) 0, test.getFilled(), 0.0001);
     }
 
     @Test
-    public void GetFilled_with_full_container() {
+    public void fullContainerTest() {
         Container test = new Container(10, 10, 10);
         test.addItem(coord, new Box(10, 10, 10));
 
@@ -88,17 +87,14 @@ public class ContainerTest {
     }
 
     @Test
-    public void GetFilled_with_multiple_items_in_container() {
+    public void multipleItemsTest() {
         Container test = new Container(10, 10, 10);
         test.addItem(coord, new Box(5, 5, 5));
 
         Assert.assertEquals(0.125, test.getFilled(), 0.0001);
     }
     @Test
-    public void GetVolume_from_container() {
+    public void getVolumeTest() {
         Assert.assertEquals(3000, container.getVolume());
     }
-
-
-
 }

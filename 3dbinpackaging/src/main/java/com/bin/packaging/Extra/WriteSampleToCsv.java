@@ -1,4 +1,10 @@
-package com.bin.packaging;
+package com.bin.packaging.Extra;
+
+import com.bin.packaging.Model.BasicAlgorithm;
+import com.bin.packaging.Model.Container;
+import com.bin.packaging.Model.Coordinate;
+import com.bin.packaging.Model.OnlyTwoTypes;
+import com.bin.packaging.PackagingFacade;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -6,9 +12,10 @@ import java.io.PrintWriter;
 import java.util.List;
 
 /**
- * Created by erowan on 01/04/2017.
+ * Created by Wannes Fransen.
+ * Configured by Sarah de Wilde.
  */
-public class WriteSampleToCsv {
+class WriteSampleToCsv {
 
     public static void main(String[] args) {
         PackagingFacade f = new PackagingFacade(new BasicAlgorithm(),new OnlyTwoTypes());

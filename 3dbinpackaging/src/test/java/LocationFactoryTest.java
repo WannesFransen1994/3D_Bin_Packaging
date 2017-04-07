@@ -1,5 +1,5 @@
-import com.bin.packaging.Coordinate;
-import com.bin.packaging.LocationFactory;
+import com.bin.packaging.Model.Coordinate;
+import com.bin.packaging.Model.LocationFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -10,7 +10,7 @@ public class LocationFactoryTest {
 
 
     @Test
-    public void Create_New_location() {
+    public void createLocationTest() {
         Coordinate coord = LocationFactory.createCoordinate(1, 2, 3);
 
         Assert.assertEquals(1, coord.getCoordinate_x());

@@ -1,12 +1,17 @@
-package com.bin.packaging;
+package com.bin.packaging.Extra;
 
-import java.util.List;
+import com.bin.packaging.Model.Container;
+import com.bin.packaging.Model.ContainerSetup;
+import com.bin.packaging.Model.OnlyTwoTypes;
+import com.bin.packaging.Model.TertiaryTreeAlgorithm;
+import com.bin.packaging.PackagingFacade;
+
 import java.util.Map;
 
 /**
- * Created by erowan on 01/04/2017.
+ * Created by Wannes Fransen.
  */
-public class Test {
+class Test {
     public static void main(String[] args) {
 
         PackagingFacade facade = new PackagingFacade(

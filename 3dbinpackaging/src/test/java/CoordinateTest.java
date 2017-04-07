@@ -1,4 +1,4 @@
-import com.bin.packaging.Coordinate;
+import com.bin.packaging.Model.Coordinate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class CoordinateTest {
 
 
     @Test
-    public void Create_new_coordinate_with_valid_arguments(){
+    public void valueConstructorTest(){
 
 
         Assert.assertEquals(1, coord.getCoordinate_x());
@@ -26,25 +26,23 @@ public class CoordinateTest {
     }
 
     @Test
-    public void Set_New_valid_x() {
+    public void setXTest() {
         coord.setCoordinate_x(5);
 
         Assert.assertEquals(5, coord.getCoordinate_x());
     }
 
     @Test
-    public void Set_New_valid_y() {
+    public void setYTest() {
         coord.setCoordinate_y(5);
 
         Assert.assertEquals(5, coord.getCoordinate_y());
     }
 
     @Test
-    public void Set_New_valid_z() {
+    public void setZTest() {
         coord.setCoordinate_z(5);
 
         Assert.assertEquals(5, coord.getCoordinate_z());
     }
-
-    // No coördinate is an invalid one
 }

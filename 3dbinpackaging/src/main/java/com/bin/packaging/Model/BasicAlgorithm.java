@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bin.packaging;
+package com.bin.packaging.Model;
 
 /**
- * @author erowan
+ * Created by Wannes Fransen.
  */
 public class BasicAlgorithm extends AlgorithmCommonMethods{
 

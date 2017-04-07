@@ -1,11 +1,9 @@
-package com.bin.packaging;
+package com.bin.packaging.Model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import com.bin.packaging.PackagingFacade;
 
 /**
- * Created by erowan on 01/04/2017.
+ * Created by Wannes Fransen.
  */
 public class ContSetupCalculater {
     private CalculateBehaviour calculateBehaviour;
@@ -23,7 +21,7 @@ public class ContSetupCalculater {
         return calculateBehaviour.calculateSetup(this,length,width,height,amount);
     }
 
-    protected Container getLoadedContainer(ContainerType type,int length, int width, int height, int amount){
+    Container getLoadedContainer(ContainerType type, int length, int width, int height, int amount){
         return facade.getSpecificLoadedContainer(type, length, width, height, amount);
     }
 }

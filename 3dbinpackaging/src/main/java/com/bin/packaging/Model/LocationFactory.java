@@ -1,7 +1,7 @@
-package com.bin.packaging;
+package com.bin.packaging.Model;
 
 /**
- * Created by erowan on 03/04/2017.
+ * Created by Wannes Fransen.
  */
 public class LocationFactory {
     public static Coordinate createCoordinate(int x, int y, int z){

@@ -1,9 +1,7 @@
-package com.bin.packaging;
-
-import java.util.Comparator;
+package com.bin.packaging.Model;
 
 /**
- * Created by erowan on 31/03/2017.
+ * Created by Wannes Fransen.
  */
 public class Coordinate{
     //This coordinate defines the left upper corner of the basis of the box

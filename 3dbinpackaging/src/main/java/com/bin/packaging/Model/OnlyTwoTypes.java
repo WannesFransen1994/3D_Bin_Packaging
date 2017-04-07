@@ -1,10 +1,10 @@
-package com.bin.packaging;
+package com.bin.packaging.Model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by erowan on 01/04/2017.
+ * Created by Wannes Fransen.
  */
 public class OnlyTwoTypes implements CalculateBehaviour {
     @Override
@@ -13,7 +13,7 @@ public class OnlyTwoTypes implements CalculateBehaviour {
         return calculateBestSetup(list);
     }
 
-    public List<ContainerSetup> makeSetups(ContSetupCalculater contSetupCalculater, int length, int width, int height, int amount){
+    private List<ContainerSetup> makeSetups(ContSetupCalculater contSetupCalculater, int length, int width, int height, int amount){
         List<ContainerSetup> setups = new ArrayList<>();
         int counter=0,number = amount, maxcount;
         List<Container> containers;
@@ -53,7 +53,7 @@ public class OnlyTwoTypes implements CalculateBehaviour {
         return setups;
     }
 
-    public ContainerSetup calculateBestSetup(List<ContainerSetup> setups) {
+    private ContainerSetup calculateBestSetup(List<ContainerSetup> setups) {
         ContainerSetup lowest = setups.get(0);
         for (ContainerSetup cs : setups) {
             if (cs.getLostSpace() < lowest.getLostSpace()) {

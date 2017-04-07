@@ -2,12 +2,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.bin.packaging.Box;
-import com.bin.packaging.Container;
-import com.bin.packaging.ContainerType;
-import com.bin.packaging.Coordinate;
-import com.bin.packaging.Subspace;
-import com.bin.packaging.VolumeObjectFactory;
+import com.bin.packaging.Model.Box;
+import com.bin.packaging.Model.Container;
+import com.bin.packaging.Model.ContainerType;
+import com.bin.packaging.Model.Coordinate;
+import com.bin.packaging.Model.Subspace;
+import com.bin.packaging.Model.VolumeObjectFactory;
 
 /**
  * Created by Tiebevn on 5/04/2017.
@@ -15,22 +15,18 @@ import com.bin.packaging.VolumeObjectFactory;
 
 public class VolumeObjectFactoryTest {
 
-    private Box box;
-
-
-
 
 	@Test
-	public void Creating_a_new_box_creates_a_new_box() {
+	public void createBoxTest() {
 
-        box = VolumeObjectFactory.createBox(1, 2, 3);
+		Box box = VolumeObjectFactory.createBox(1, 2, 3);
 		assertEquals(1, box.getLength());
 		assertEquals(2, box.getWidth());
 		assertEquals(3, box.getHeight());
 	}
 	
 	@Test
-	public void Creating_a_new_container_creates_a_new_container() {
+	public void createContainerTest() {
 		Container container = VolumeObjectFactory.createContainer(ContainerType.SMALLEST);
 		
 		assertEquals(120, container.getLength());
@@ -40,7 +36,7 @@ public class VolumeObjectFactoryTest {
 	}
 	
 	@Test
-	public void Creating_a_new_subspace_creates_a_new_subspace() {
+	public void createSubspaceTest() {
 		Coordinate coord = new Coordinate(1, 2, 3);
 		
 		Subspace sub = VolumeObjectFactory.createSubspace(coord, 1, 2, 3);
@@ -52,6 +48,4 @@ public class VolumeObjectFactoryTest {
 		
 		
 	}
-
-
 }

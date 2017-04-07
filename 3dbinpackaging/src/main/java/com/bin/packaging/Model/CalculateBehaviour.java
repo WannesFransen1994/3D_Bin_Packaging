@@ -1,9 +1,7 @@
-package com.bin.packaging;
-
-import java.util.List;
+package com.bin.packaging.Model;
 
 /**
- * Created by erowan on 01/04/2017.
+ * Created by Wannes Fransen.
  */
 public interface CalculateBehaviour {
     ContainerSetup calculateSetup(ContSetupCalculater contSetupCalculater, int length, int width, int height, int amount);

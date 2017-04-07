@@ -1,12 +1,15 @@
-package com.bin.packaging;
+package com.bin.packaging.Extra;
+
+import com.bin.packaging.Model.Container;
+import com.bin.packaging.Model.ContainerSetup;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by erowan on 02/04/2017.
+ * Created by Wannes Fransen.
  */
-public class Translator {
+class Translator {
 
     public static Map<Container,Integer> convertFromContainerSetup(ContainerSetup setup){
         Map<Container,Integer> containerAmountMap = new HashMap<>();
@@ -14,7 +17,7 @@ public class Translator {
         boolean addme = true;
         Container objectToAdd=null;
         for (Container cs: setup.getContainersSetup().keySet()) {
-            if (start==true){containerAmountMap.put(cs, 1);start = false;continue;}
+            if (start){containerAmountMap.put(cs, 1);start = false;continue;}
             for (Container container:containerAmountMap.keySet()){
                 if (cs.equals(container)){
                     objectToAdd = container;
@@ -26,8 +29,8 @@ public class Translator {
                     break;
                 }
             }
-            if (addme==true && containerAmountMap.containsKey(objectToAdd)==false){containerAmountMap.put(objectToAdd,1);addme=false;}
-            else if (addme==true && containerAmountMap.containsKey(objectToAdd)==true){containerAmountMap.put(objectToAdd,containerAmountMap.get(objectToAdd)+1);addme=false;}
+            if (addme && !containerAmountMap.containsKey(objectToAdd)){containerAmountMap.put(objectToAdd,1);addme=false;}
+            else if (addme && containerAmountMap.containsKey(objectToAdd)){containerAmountMap.put(objectToAdd,containerAmountMap.get(objectToAdd)+1);addme=false;}
         }
         return containerAmountMap;
     }
