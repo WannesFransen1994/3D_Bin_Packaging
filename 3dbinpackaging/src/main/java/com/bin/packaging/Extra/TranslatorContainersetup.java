@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by Wannes Fransen.
  */
-class Translator {
+public class TranslatorContainersetup {
 
     public static Map<Container,Integer> convertFromContainerSetup(ContainerSetup setup){
         Map<Container,Integer> containerAmountMap = new HashMap<>();

@@ -19,9 +19,9 @@ class Test {
         ContainerSetup cs = facade.calculateSetup(40,80,80,65);
         cs = facade.calculateSetup(20,40,20,65);
         cs = facade.calculateSetup(20,30,40,65);
-        cs = facade.calculateSetup(20,25,40,65);
+        cs = facade.calculateSetup(20,50,45,89);
 
-        Map<Container,Integer> temp = Translator.convertFromContainerSetup(cs);
+        Map<Container,Integer> temp = TranslatorContainersetup.convertFromContainerSetup(cs);
 
         System.out.println(temp);
     }

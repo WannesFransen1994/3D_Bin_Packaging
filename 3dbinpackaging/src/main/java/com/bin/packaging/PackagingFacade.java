@@ -6,8 +6,10 @@
 package com.bin.packaging;
 
 import com.bin.packaging.Model.*;
+import com.bin.packaging.Extra.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -38,5 +40,9 @@ public class PackagingFacade {
 
     public ContainerSetup calculateSetup(int length, int width, int height, int amount){
         return contSetupCalculater.calculateSetup(length, width, height, amount);
+    }
+
+    public Map<Container,Integer> getTranslatedSetup(int length, int width, int height, int amount){
+        return TranslatorContainersetup.convertFromContainerSetup(calculateSetup(length, width, height, amount));
     }
 }
