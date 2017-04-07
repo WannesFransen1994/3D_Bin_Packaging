@@ -23,6 +23,6 @@ public class ContainerSetupController {
 
     @RequestMapping("/api/testsetup")
     public String containerSetup(){
-        return gson.toJson(facade.getTranslatedSetup(20,50,45,89));
+        return gson.toJson(facade.getTranslatedSetup(20,50,45,24));
     }
 }
