@@ -2,11 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Hello World</title>
+    <title>ISW's Bin Packaging website</title>
+    <script src="pixi.min.js"></script>
+    <script src="jquery-3.2.0.min.js"></script>
+    <script src="printer.js"></script>
 </head>
 <body>
-<script src="pixi.min.js"></script>
-<script src="jquery-3.2.0.min.js"></script>
-<script src="printer.js"></script>
+<form>
+    Box length:<input type="number" name="boxlength"><br>
+    Box width: <input type="number" name="boxwidth"><br>
+    Box height:<input type="number" name="boxheight"><br>
+    Box amount:<input type="number" name="boxamount"><br>
+    <input type="button" onclick="submitform()" value="Submit">
+</form>
+<div>
+
+</div>
 </body>
 </html>

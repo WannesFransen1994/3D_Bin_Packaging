@@ -5,14 +5,12 @@ import com.bin.packaging.PackagingFacade;
 import com.bin.packaging.Model.TertiaryTreeAlgorithm;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-
 /**
- * Created by erowan on 07/04/2017.
+ * Created by Wannes Fransen.
  */
 @RestController
 public class ContainerSetupController {
@@ -21,7 +19,12 @@ public class ContainerSetupController {
     PackagingFacade facade = new PackagingFacade(new TertiaryTreeAlgorithm(), new OnlyTwoTypes());
 
     @RequestMapping("/api/testsetup")
-    public String containerSetup(){
+    public String testSetup(){
         return gson.toJson(facade.getTranslatedSetup(20,50,45,38));
+    }
+
+    @RequestMapping("/api/containersetup")
+    public String containerSetup(@RequestParam("boxlength") int boxlength,@RequestParam("boxwidth") int boxwidth,@RequestParam("boxheight") int boxheight,@RequestParam("boxamount") int boxamount){
+        return gson.toJson(facade.getTranslatedSetup(boxlength, boxwidth, boxheight, boxamount));
     }
 }

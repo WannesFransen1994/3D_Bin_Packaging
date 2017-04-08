@@ -1,6 +1,10 @@
-$.getJSON('http://localhost:8080/api/testsetup',function (data) {
-    generateContainerLayers(data);
-});
+function submitform() {
+    $.getJSON('http://localhost:8080/api/containersetup',$("form").serialize(),function (data) {
+        $("div").empty();
+        generateContainerLayers(data);
+    });
+}
+
 
 var renderer, stage, layers, rect, counter;
 
@@ -11,20 +15,21 @@ function generateContainerLayers(obj) {
         layers = calculateZvalues(locations);
         var header = $("<h1>Container " + entry[0].length + " x " + entry[0].width + " x " + entry[0].height + "</h1>");
         var intro = $("<p>This container has to be filled " + entry[1] + " times and will contain " + locations.length + " items.</p>");
-        $("body").append(header);
-        $("body").append(intro);
+        $("div").append(header);
+        $("div").append(intro);
 
 
         layers.sort();
         layers.forEach(function (zvalue) {
             var layertekst = $("<br><i>Layer " + counter + "</i><br>");
             counter++;
-            $("body").append(layertekst);
+            $("div").append(layertekst);
             renderer = PIXI.autoDetectRenderer(entry[0].length * 3, entry[0].width * 3, {
                 transparent: false, //create tranparent
                 backgroundColor: '0x86D0F2' //create backgroundColor
             });
-            document.body.appendChild(renderer.view);// 2. Append canvas element to the body
+
+            $("div").append(renderer.view);// 2. Append canvas element to the body
             stage = new PIXI.Container();// 3. Create a container that will hold your scene
 
             for (var i = 0; i < locations.length; i++) {
