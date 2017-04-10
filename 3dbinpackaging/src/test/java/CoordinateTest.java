@@ -45,4 +45,9 @@ public class CoordinateTest {
 
         Assert.assertEquals(5, coord.getCoordinate_z());
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void Test_constructor_with_invalid_coordinates() {
+        coord.setCoordinate_x(-2);
+    }
 }

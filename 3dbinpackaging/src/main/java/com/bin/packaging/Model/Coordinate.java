@@ -20,6 +20,8 @@ public class Coordinate{
     }
 
     public void setCoordinate_x(int coordinate_x) {
+        if (coordinate_x < 0) throw new IllegalArgumentException("Invalid x-coordinate");
+
         this.coordinate_x = coordinate_x;
     }
 
@@ -28,6 +30,8 @@ public class Coordinate{
     }
 
     public void setCoordinate_y(int coordinate_y) {
+
+        if (coordinate_y < 0) throw new IllegalArgumentException("Invalid y-coordinate");
         this.coordinate_y = coordinate_y;
     }
 
@@ -36,6 +40,8 @@ public class Coordinate{
     }
 
     public void setCoordinate_z(int coordinate_z) {
+        if (coordinate_z < 0) throw new IllegalArgumentException("Invalid z-coordinate");
+
         this.coordinate_z = coordinate_z;
     }
 }
