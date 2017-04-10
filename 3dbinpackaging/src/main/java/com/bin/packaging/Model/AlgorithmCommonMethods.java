@@ -35,16 +35,19 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
         List<Box> lowestBoxSetups = new ArrayList<>();
         lowestBoxSetups.add(VolumeObjectFactory.createBox(box.getLength(), box.getWidth(), box.getHeight()));
         lowest = moduloCalculateLostSpace(subspace, box);
-        while (counter <= 6) {
+        while (counter <= 7) {
             turnBox(counter, box);
             counter++;
-            lost = moduloCalculateLostSpace(subspace, box);
-            if (lost <= lowest) {
-                if (lost < lowest) {
-                    lowestBoxSetups = new ArrayList<>();
+            if (subspace.getWidth() >= box.getWidth() && subspace.getHeight() >= box.getHeight() && subspace.getLength() >= box.getLength()) {
+                lost = moduloCalculateLostSpace(subspace, box);
+                if (lost <= lowest) {
+                    if (lost < lowest) {
+                        lowestBoxSetups = new ArrayList<>();
+                    }
+
+                    lowest = moduloCalculateLostSpace(subspace, box);
+                    lowestBoxSetups.add(VolumeObjectFactory.createBox(box.getLength(), box.getWidth(), box.getHeight()));
                 }
-                lowest = moduloCalculateLostSpace(subspace, box);
-                lowestBoxSetups.add(VolumeObjectFactory.createBox(box.getLength(), box.getWidth(), box.getHeight()));
             }
         }
         return calculateBestSetup(subspace, lowestBoxSetups);

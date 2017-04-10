@@ -16,10 +16,7 @@ class Test {
 
         PackagingFacade facade = new PackagingFacade(
                 new TertiaryTreeAlgorithm(),new OnlyTwoTypes());
-        ContainerSetup cs = facade.calculateSetup(40,80,80,65);
-        cs = facade.calculateSetup(20,40,20,65);
-        cs = facade.calculateSetup(20,30,40,65);
-        cs = facade.calculateSetup(20,50,45,89);
+        ContainerSetup cs = facade.calculateSetup(50,45,20,18);
 
         Map<Container,Integer> temp = TranslatorContainersetup.convertFromContainerSetup(cs);
 
