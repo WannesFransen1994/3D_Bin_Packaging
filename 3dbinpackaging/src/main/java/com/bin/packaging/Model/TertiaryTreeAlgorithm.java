@@ -18,13 +18,16 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
         this.container = container;
         this.amount = amount;
         recursiveSubspaceallocator(VolumeObjectFactory.createSubspace(container), samplebox);
-        for (Subspace s : calculateCombinedSubspaceZAxis(unused)) {
+        List<Subspace> templist = new ArrayList<>(calculateCombinedSubspaceZAxis(unused));
+        for (Subspace s : templist) {
             recursiveSubspaceallocator(s, samplebox);
         }
-        for (Subspace s : calculateCombinedSubspaceYAxis(unused)) {
+        templist = new ArrayList<>(calculateCombinedSubspaceYAxis(unused));
+        for (Subspace s : templist) {
             recursiveSubspaceallocator(s, samplebox);
         }
-        for (Subspace s : calculateCombinedSubspaceXAxis(unused)) {
+        templist = new ArrayList<>(calculateCombinedSubspaceXAxis(unused));
+        for (Subspace s : templist) {
             recursiveSubspaceallocator(s, samplebox);
         }
 
