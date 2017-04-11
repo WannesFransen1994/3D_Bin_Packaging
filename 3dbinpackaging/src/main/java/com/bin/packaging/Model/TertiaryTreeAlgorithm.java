@@ -18,7 +18,13 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
         this.container = container;
         this.amount = amount;
         recursiveSubspaceallocator(VolumeObjectFactory.createSubspace(container), samplebox);
-        for (Subspace s : getCombinedSubspaces(unused)) {
+        for (Subspace s : calculateCombinedSubspaceZAxis(unused)) {
+            recursiveSubspaceallocator(s, samplebox);
+        }
+        for (Subspace s : calculateCombinedSubspaceYAxis(unused)) {
+            recursiveSubspaceallocator(s, samplebox);
+        }
+        for (Subspace s : calculateCombinedSubspaceXAxis(unused)) {
             recursiveSubspaceallocator(s, samplebox);
         }
 
@@ -222,85 +228,77 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
         return true;
     }
 
-    private List<Subspace> getCombinedSubspaces(List<Subspace> subspaces) {
+    private List<Subspace> calculateCombinedSubspaceZAxis(List<Subspace> subspaces) {
         List<Subspace> newlist = new ArrayList<>();
-        //initial step te get all the ground subspaces, and split them from the other subspaces.
-        //"calculateCombinedSubspaceZAxis" will paste them together first in the Z axis, then Y axis, then X axis.
         for (int i = subspaces.size() - 1; i >= 0; i--) {
             if (subspaces.get(i).getCoordinate().getCoordinate_z() == 0) {
                 newlist.add(subspaces.get(i));
                 subspaces.remove(i);
             }
         }
-        subspaces = calculateCombinedSubspaceZAxis(newlist, subspaces);
-        newlist = new ArrayList<>();
+        for (Subspace expandableSubspace : newlist) {
+            for (int i = subspaces.size() - 1; i >= 0; i--) {
+                if (comparisonHelperFunction(expandableSubspace, subspaces.get(i), "Z")) {
+                    expandableSubspace.setHeight(expandableSubspace.getHeight() + subspaces.get(i).getHeight());
+                    subspaces.remove(i);
+                    i = subspaces.size() - 1;
+                }
+            }
+        }
+        if (newlist.size() != 0) {
+            unused = subspaces;
+            return newlist;
+        }
+        return subspaces;
+    }
+
+    private List<Subspace> calculateCombinedSubspaceYAxis(List<Subspace> subspaces) {
+        List<Subspace> newlist = new ArrayList<>();
         for (int i = subspaces.size() - 1; i >= 0; i--) {
             if (subspaces.get(i).getCoordinate().getCoordinate_y() == 0) {
                 newlist.add(subspaces.get(i));
                 subspaces.remove(i);
             }
         }
-        subspaces = calculateCombinedSubspaceYAxis(newlist, subspaces);
-        newlist = new ArrayList<>();
+        for (Subspace expandableSubspace : newlist) {
+            for (int i = subspaces.size() - 1; i >= 0; i--) {
+                if (comparisonHelperFunction(expandableSubspace, subspaces.get(i), "Y")) {
+                    expandableSubspace.setWidth(expandableSubspace.getWidth() + subspaces.get(i).getWidth());
+                    subspaces.remove(i);
+                    i = subspaces.size() - 1;
+                }
+            }
+        }
+        if (newlist.size() != 0) {
+            unused = subspaces;
+            return newlist;
+        }
+        return subspaces;
+    }
+
+    private List<Subspace> calculateCombinedSubspaceXAxis(List<Subspace> subspaces) {
+        //The elements in the list "subspacesThatWillExpand" will.. expand, first in the Z axis, then Y axis, then X axis
+        List<Subspace> newlist = new ArrayList<>();
         for (int i = subspaces.size() - 1; i >= 0; i--) {
             if (subspaces.get(i).getCoordinate().getCoordinate_x() == 0) {
                 newlist.add(subspaces.get(i));
                 subspaces.remove(i);
             }
         }
-        subspaces = calculateCombinedSubspaceXAxis(newlist, subspaces);
+        for (Subspace expandableSubspace : newlist) {
+            for (int i = subspaces.size() - 1; i >= 0; i--) {
+                if (comparisonHelperFunction(expandableSubspace, subspaces.get(i), "X")) {
+                    expandableSubspace.setLength(expandableSubspace.getLength() + subspaces.get(i).getLength());
+                    subspaces.remove(i);
+                    i = subspaces.size() - 1;
+                }
+            }
+        }
+        if (newlist.size() != 0) {
+            unused = subspaces;
+            return newlist;
+        }
         return subspaces;
-    }
-
-    private List<Subspace> calculateCombinedSubspaceZAxis(List<Subspace> subspacesThatWillExpand, List<Subspace> remainders) {
-        //The elements in the list "subspacesThatWillExpand" will.. expand, first in the Z axis, then Y axis, then X axis
-        for (Subspace expandableSubspace : subspacesThatWillExpand) {
-            for (int i = remainders.size() - 1; i >= 0; i--) {
-                if (comparisonHelperFunction(expandableSubspace, remainders.get(i), "Z")) {
-                    expandableSubspace.setHeight(expandableSubspace.getHeight() + remainders.get(i).getHeight());
-                    remainders.remove(i);
-                    i = remainders.size() - 1;
-                }
-            }
-        }
-        if (subspacesThatWillExpand.size() != 0) {
-            return subspacesThatWillExpand;
-        }
-        return remainders;
-    }
-
-    private List<Subspace> calculateCombinedSubspaceYAxis(List<Subspace> subspacesThatWillExpand, List<Subspace> remainders) {
-        //The elements in the list "subspacesThatWillExpand" will.. expand, first in the Z axis, then Y axis, then X axis
-        for (Subspace expandableSubspace : subspacesThatWillExpand) {
-            for (int i = remainders.size() - 1; i >= 0; i--) {
-                if (comparisonHelperFunction(expandableSubspace, remainders.get(i), "Y")) {
-                    expandableSubspace.setWidth(expandableSubspace.getWidth() + remainders.get(i).getWidth());
-                    remainders.remove(i);
-                    i = remainders.size() - 1;
-                }
-            }
-        }
-        if (subspacesThatWillExpand.size() != 0) {
-            return subspacesThatWillExpand;
-        }
-        return remainders;
-    }
-
-    private List<Subspace> calculateCombinedSubspaceXAxis(List<Subspace> subspacesThatWillExpand, List<Subspace> remainders) {
-        //The elements in the list "subspacesThatWillExpand" will.. expand, first in the Z axis, then Y axis, then X axis
-        for (Subspace expandableSubspace : subspacesThatWillExpand) {
-            for (int i = remainders.size() - 1; i >= 0; i--) {
-                if (comparisonHelperFunction(expandableSubspace, remainders.get(i), "X")) {
-                    expandableSubspace.setLength(expandableSubspace.getLength() + remainders.get(i).getLength());
-                    remainders.remove(i);
-                    i = remainders.size() - 1;
-                }
-            }
-        }
-        if (subspacesThatWillExpand.size() != 0) {
-            return subspacesThatWillExpand;
-        }
-        return remainders;
     }
 
     private boolean comparisonHelperFunction(Subspace expandable, Subspace remainder, String axis) {
