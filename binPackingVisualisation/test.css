@@ -1,0 +1,16 @@
+.container {
+    margin: 10px;
+}
+
+#visualisation {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column wrap;
+}
+
+.layer {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+}
