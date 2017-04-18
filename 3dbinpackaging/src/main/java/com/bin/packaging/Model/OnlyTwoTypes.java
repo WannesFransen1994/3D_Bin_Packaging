@@ -20,7 +20,8 @@ public class OnlyTwoTypes implements CalculateBehaviour {
         Container biggest = contSetupCalculater.getLoadedContainer(ContainerType.BIGGEST,length,width,height,number);
         Container smallest = contSetupCalculater.getLoadedContainer(ContainerType.SMALLEST,length,width,height,number);
 
-        maxcount = amount/biggest.getAmountOfItems();
+        maxcount = amount/ biggest.getAmountOfItems();
+
         if (amount%biggest.getAmountOfItems()!=0){maxcount++;}
         while(counter<=maxcount){
             number = amount;
@@ -31,6 +32,7 @@ public class OnlyTwoTypes implements CalculateBehaviour {
                         if (number<=biggest.getAmountOfItems()){
                             containers.add(contSetupCalculater.getLoadedContainer(ContainerType.BIGGEST,length,width,height,number));
                             number=0;
+                            break;
                         }
                         containers.add(contSetupCalculater.getLoadedContainer(ContainerType.BIGGEST,length,width,height,number));
                         number-= biggest.getAmountOfItems();
