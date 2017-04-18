@@ -5,11 +5,15 @@
  */
 package com.bin.packaging;
 
+import com.bin.packaging.Model.*;
+import com.bin.packaging.Extra.*;
+
 import java.util.List;
+import java.util.Map;
 
 /**
  *
- * @author erowan
+ * Created by Wannes Fransen.
  */
 public class PackagingFacade {
     private BoxFitter fitter;
@@ -22,7 +26,7 @@ public class PackagingFacade {
         contSetupCalculater.setCalculateBehaviour(calculateBehaviour);
     }
 
-    public List<Container> getMaxLoadedContainers(int length,int width,int height) {
+    public List<Container> getMaxLoadedContainers(int length, int width, int height) {
         return fitter.fillContainersMax(height,width,length,-1);
     }
 
@@ -36,5 +40,9 @@ public class PackagingFacade {
 
     public ContainerSetup calculateSetup(int length, int width, int height, int amount){
         return contSetupCalculater.calculateSetup(length, width, height, amount);
+    }
+
+    public Map<Container,Integer> getTranslatedSetup(int length, int width, int height, int amount){
+        return TranslatorContainersetup.convertFromContainerSetup(calculateSetup(length, width, height, amount));
     }
 }
