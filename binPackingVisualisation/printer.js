@@ -13,7 +13,12 @@ function generateContainerLayers(obj) {
     obj.forEach(function (entry) {
         layerCounter = 0;
         containerCounter++;
+        console.log(entry[0])
         var locations = entry[0].items;
+        var volumeContainer=entry[0].length*entry[0].width*entry[0].height;
+        var volumeObject = locations[0][1].height*locations[0][1].width*locations[0][1].length;
+        var itemsamount = locations.length;
+
         layers = calculateZvalues(locations);
 
         var divtag = $("<div id=\"containerdiv" + containerCounter + "\" class=container>");
@@ -21,14 +26,16 @@ function generateContainerLayers(obj) {
 
         var header = $("<h1>Container " + entry[0].length + " x " + entry[0].width + " x " + entry[0].height + "</h1>");
         var intro = $("<p>This container has to be filled " + entry[1] + " times and will contain " + locations.length + " items.</p>");
+        var volume = $("<p>Volume utilization: "+ volumeContainer/1000+"\/"+(volumeObject*itemsamount/1000)+"</p>");
         $("#containerdiv" + containerCounter).append(header);
         $("#containerdiv" + containerCounter).append(intro);
+        $("#containerdiv" + containerCounter).append(volume);
 
-        layers.sort();
+        layers.sort(sortNumber);
         layers.forEach(function (zvalue) {
             layerCounter++;
             divtag = $("<div id=\"layer" + containerCounter + "" + layerCounter + "\"style=\'float: left\' class=layer>");
-            var layertekst = $("<i>Layer " + layerCounter + "</i><br>");
+            var layertekst = $("<i>Layer " + layerCounter + "  height: " + zvalue + "</i><br>");
             $("#containerdiv" + containerCounter).append(divtag);
             $("#layer" + containerCounter + "" + layerCounter).append(layertekst);
             renderer = PIXI.autoDetectRenderer(entry[0].length, entry[0].width, {
@@ -63,10 +70,14 @@ function calculateZvalues(locations) {
     layers = [];
     for (var i = 0; i < locations.length; i++) {
         if ($.inArray(locations[i][0].coordinate_z, layers) < 0) {
-            layers.push(locations[i][0].coordinate_z);
+            layers.push(parseInt(locations[i][0].coordinate_z));
         }
     }
     return layers;
+}
+
+function sortNumber(a,b) {
+    return a - b;
 }
 
 function render() {
