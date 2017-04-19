@@ -26,7 +26,7 @@ function generateContainerLayers(obj) {
 
         var header = $("<h1>Container " + entry[0].length + " x " + entry[0].width + " x " + entry[0].height + "</h1>");
         var intro = $("<p>This container has to be filled " + entry[1] + " times and will contain " + locations.length + " items.</p>");
-        var volume = $("<p>Volume utilization: "+ volumeContainer/1000+"\/"+(volumeObject*itemsamount/1000)+"</p>");
+        var volume = $("<p>Volume utilization: "+ ((volumeObject*itemsamount)/(volumeContainer))*100+"\%</p>");
         $("#containerdiv" + containerCounter).append(header);
         $("#containerdiv" + containerCounter).append(intro);
         $("#containerdiv" + containerCounter).append(volume);
