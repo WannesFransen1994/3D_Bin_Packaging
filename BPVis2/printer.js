@@ -1,6 +1,7 @@
 function submitform() {
     $.getJSON('http://localhost:8080/api/containersetup', $("form").serialize(), function (data) {
         $("div").empty();
+
         generateContainerLayers(data);
     });
 }
@@ -51,7 +52,7 @@ function generateContainerLayers(obj) {
         var volumeObject = locations[0][1].height*locations[0][1].width*locations[0][1].length;
         var itemsamount = locations.length;
 
-        totalAmount += itemsamount;
+        totalAmount = totalAmount + entry[1]*itemsamount;
 
         layers = calculateZvalues(locations);
 
