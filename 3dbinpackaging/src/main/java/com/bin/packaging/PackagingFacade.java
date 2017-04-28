@@ -43,6 +43,9 @@ public class PackagingFacade {
     }
 
     public Map<Container,Integer> getTranslatedSetup(int length, int width, int height, int amount){
+        length = (int)Math.ceil(length*1.05);
+        width = (int)Math.ceil(width*1.05);
+        height = (int)Math.ceil(height*1.05);
         return TranslatorContainersetup.convertFromContainerSetup(calculateSetup(length, width, height, amount));
     }
 }
