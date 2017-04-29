@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
+
 <head>
+    <!-- Main stylesheet on top -->
+    <link rel="stylesheet" type="text/css" href="/global.css" mce_href="/global.css" href="/global.css" mce_href="/global.css" media="all" />
     <meta charset="UTF-8">
     <title>Box Visualization</title>
     <script src="pixi.min.js"></script>
     <script src="jquery-3.2.0.min.js"></script>
     <script src="printer.js"></script>
     <link rel="stylesheet" type="text/css" href="boxes.css">
+
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -73,7 +79,7 @@
         <div class="container">
             <div class="featured-block">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-sm-4">
                         <div class="block">
                             <div class="form-group">
                                 <label for="boxlength">Length:</label>
@@ -82,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-4">
                         <div class="block">
                             <div class="form-group">
                                 <label for="boxwith">Width:<br></label>
@@ -91,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-4">
                         <div class="block">
                             <div class="form-group">
                                 <label for="boxheight">Height:<br></label>
@@ -100,7 +106,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-4">
+                        <div class="block">
+                            <div class="form-group">
+                                <label for="numberpockets">Number of pockets:</label>
+                                <br>
+                                <input type="number" name="numberpockets" id="numberpockets" placeholder="  Number of pockets">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
                         <div class="block">
                             <div class="form-group">
                                 <label for="boxamount">Amount to be packed:</label>
@@ -138,6 +153,8 @@
 <script src="js/jquery-1.9.1.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+<!-- Print only, on bottom -->
+<link rel="stylesheet" href="/print.css"  media="all" />
 
 
 </body>
