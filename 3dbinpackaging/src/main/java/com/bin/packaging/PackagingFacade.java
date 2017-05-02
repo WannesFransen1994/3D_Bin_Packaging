@@ -16,6 +16,7 @@ import java.util.Map;
  * Created by Wannes Fransen.
  */
 public class PackagingFacade {
+    final double SAFETY_MARGIN= 1.05;
     private BoxFitter fitter;
     private ContSetupCalculater contSetupCalculater;
 
@@ -42,10 +43,36 @@ public class PackagingFacade {
         return contSetupCalculater.calculateSetup(length, width, height, amount);
     }
 
-    public Map<Container,Integer> getTranslatedSetup(int length, int width, int height, int amount){
-        length = (int)Math.ceil(length*1.05);
-        width = (int)Math.ceil(width*1.05);
-        height = (int)Math.ceil(height*1.05);
+    public Map<Container,Integer> getTranslatedSetup(int length, int width, int height, int amount, int pockets){
+        length = calculateLength(length);
+        width = calculateWidth(width);
+        height = calculateHeighth(height,pockets);
+        amount = calculateAmount(amount);
         return TranslatorContainersetup.convertFromContainerSetup(calculateSetup(length, width, height, amount));
+    }
+
+    //TODO: clean up constructor box and work with 1 sample box.
+    //TODO: Move this to the box constructor.
+    public int calculateHeighth(int height,int pockets){
+        double temp = ((height*0.05) + ((pockets +1)*0.6))*2 + 5;
+        return (int)Math.ceil(temp*SAFETY_MARGIN);
+    }
+
+    public int calculateLength(int length){
+        double temp = length*1.10;
+        return (int)Math.ceil(temp*SAFETY_MARGIN);
+    }
+
+    public int calculateWidth(int width){
+        double temp = width*1.15;
+        return (int)Math.ceil(temp*SAFETY_MARGIN);
+    }
+
+    public int calculateAmount(int amount){
+        if (amount%2==1){
+            System.out.println(amount);
+            return amount+1;
+        }
+        return amount;
     }
 }
