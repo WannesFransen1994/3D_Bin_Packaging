@@ -70,9 +70,8 @@ public class PackagingFacade {
 
     public int calculateAmount(int amount){
         if (amount%2==1){
-            System.out.println(amount);
-            return amount+1;
+            return (amount+1)/2;
         }
-        return amount;
+        return amount/2;
     }
 }

@@ -1,6 +1,6 @@
 function submitform() {
     $.getJSON('http://localhost:8080/api/containersetup', $("form").serialize(), function (data) {
-        $("div").empty();
+        $("#visualisation").empty();
 
         generateContainerLayers(data);
     });
@@ -22,9 +22,9 @@ function generateContainerLayers(obj) {
     var cont = $("<div id=\"cont\" class = container>");
     var divtag2 = $("<div id=\"bl\" class = block>");
 
-    $("#visualisation").append(Main);
-    $("#visualisation").append(Menu);
-    $("#visualisation").append(cont);
+    //$("#visualisation").append(Main);
+    //$("#visualisation").append(Menu);
+    //$("#visualisation").append(cont);
 
 
     var mainHeader = $("<h1>BOX VISUALIZATION</h1>");
@@ -35,9 +35,9 @@ function generateContainerLayers(obj) {
 
 
 
-    $("#Main").append(sC);
-    $("#hSc").append(mainHeader);
-    $("#hSc").append(subHeader);
+    //$("#Main").append(sC);
+    //$("#hSc").append(mainHeader);
+    //$("#hSc").append(subHeader);
 
 
 
@@ -56,21 +56,12 @@ function generateContainerLayers(obj) {
 
         layers = calculateZvalues(locations);
 
-
-
-        var infoInput = $("<sarah_h2> Length: "+locations[0][1].length+"&emsp; Width: "+locations[0][1].width+ "&emsp; Height: "+locations[0][1].height+ "&emsp; Amount: "+totalAmount+"</sarah_h2>");
-        $("#Menu").html(infoInput);
-
-
-
-
-
         var divtag = $("<div id=\"containerdiv" + containerCounter + "\" class=featured-item>");
 
-        $("#cont").append(divtag);
+        $("#visualisation").append(divtag);
 
         var header = $("<sarah2>Container " + entry[0].length + " x " + entry[0].width + " x " + entry[0].height + "</sarah2><br><br>");
-        var intro = $("<sarah3>This container has to be filled <b>" +entry[1] + " </b>times and will contain <b>" + locations.length + "</b> items.</sarah3><br>");
+        var intro = $("<sarah3>This container has to be filled <b>" +entry[1] + " </b>times and will contain <b>" + locations.length + "</b> pairs, or <b>" + locations.length*2 +"</b> items.</sarah3><br>");
         var volume = $("<sarah3>Volume utilization: <b>"+ roundToTwo(((volumeObject*itemsamount)/(volumeContainer))*100)+"\%</b></sarah3><br>");
         $("#containerdiv" + containerCounter).append(header);
         $("#containerdiv" + containerCounter).append(intro);
