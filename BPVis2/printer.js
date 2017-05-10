@@ -60,9 +60,9 @@ function generateContainerLayers(obj) {
 
         $("#visualisation").append(divtag);
 
-        var header = $("<sarah2>Container " + entry[0].length + " x " + entry[0].width + " x " + entry[0].height + "</sarah2><br><br>");
+        var header = $("<sarah2>Box " + entry[0].length + " x " + entry[0].width + " x " + entry[0].height + "</sarah2><br><br>");
         var intro = $("<sarah3>This container has to be filled <b>" +entry[1] + " </b>times and will contain <b>" + locations.length + "</b> pairs, or <b>" + locations.length*2 +"</b> items.</sarah3><br>");
-        var volume = $("<sarah3>Volume utilization: <b>"+ roundToTwo(((volumeObject*itemsamount)/(volumeContainer))*100)+"\%</b></sarah3><br>");
+        var volume = $("<sarah3>Volume utilisation: <b>"+ roundToTwo(((volumeObject*itemsamount)/(volumeContainer))*100)+"\%</b></sarah3><br>");
         $("#containerdiv" + containerCounter).append(header);
         $("#containerdiv" + containerCounter).append(intro);
         $("#containerdiv" + containerCounter).append(volume);
