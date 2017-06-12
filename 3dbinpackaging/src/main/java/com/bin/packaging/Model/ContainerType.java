@@ -5,8 +5,7 @@ package com.bin.packaging.Model;
  */
 public enum ContainerType {
     SMALLEST(120,80,100),
-    BIGGEST(150,100,120)/*,
-    SAMPLE_CONTAINER(210,200,150)*/;
+    BIGGEST(150,100,120);
 
     private final int length;
     private final int width;
