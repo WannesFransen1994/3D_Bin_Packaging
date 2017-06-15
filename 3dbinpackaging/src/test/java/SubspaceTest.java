@@ -1,4 +1,4 @@
-import com.bin.packaging.Model.Container;
+import com.bin.packaging.Model.Box;
 import com.bin.packaging.Model.Coordinate;
 import com.bin.packaging.Model.Subspace;
 import org.junit.Assert;
@@ -11,13 +11,13 @@ import org.junit.Test;
 public class SubspaceTest {
 
     private Coordinate coord;
-    private Container cont;
+    private Box cont;
     private Subspace sub;
 
     @Before
     public void setUp() {
 
-        cont = new Container(1, 2, 3);
+        cont = new Box(1, 2, 3);
         coord = new Coordinate(0, 0, 0);
     }
 

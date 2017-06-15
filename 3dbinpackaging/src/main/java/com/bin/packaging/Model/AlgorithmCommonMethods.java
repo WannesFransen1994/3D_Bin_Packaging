@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Wannes Fransen.
  */
 abstract class AlgorithmCommonMethods implements FillBehaviour {
-    private void turnBox(int counter, Box box) {
+    private void turnBox(int counter, Column box) {
         if (counter % 2 == 0) {
             box.turnZaxis();
         } else {
@@ -15,7 +15,7 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
         }
     }
 
-    private int moduloCalculateLostSpace(VolumeObject volumeObject, Box box) {
+    private int moduloCalculateLostSpace(VolumeObject volumeObject, Column box) {
         int lostHeight = 1, lostWidth = 1, lostLength = 1;
         if (volumeObject.getHeight() % box.height != 0) {
             lostHeight = volumeObject.getHeight() % box.height;
@@ -30,9 +30,9 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
         return lostHeight * lostLength * lostWidth;
     }
 
-    Box calculateLowestSetup(VolumeObject subspace, Box box) {
+    Column calculateLowestSetup(VolumeObject subspace, Column box) {
         int counter = 1, lowest, lost;
-        List<Box> lowestBoxSetups = new ArrayList<>();
+        List<Column> lowestBoxSetups = new ArrayList<>();
         lowestBoxSetups.add(VolumeObjectFactory.createBox(box.getLength(), box.getWidth(), box.getHeight()));
         lowest = moduloCalculateLostSpace(subspace, box);
         while (counter <= 7) {
@@ -53,12 +53,12 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
         return calculateBestSetup(subspace, lowestBoxSetups);
     }
 
-    private Box calculateBestSetup(VolumeObject subspace, List<Box> bestSetups) {
+    private Column calculateBestSetup(VolumeObject subspace, List<Column> bestSetups) {
         String[] mostImportant = longestSideHelperFunction(subspace);
-        Box bestfit = bestSetups.get(0);
+        Column bestfit = bestSetups.get(0);
         switch (mostImportant[0]) {
             case "length":
-                for (Box box : bestSetups) {
+                for (Column box : bestSetups) {
                     if (box.getLength() < bestfit.getLength()) {
                         bestfit = box;
                     } else if (mostImportant[1].equals("width") && box.getLength() == bestfit.getLength() && box.getWidth() < bestfit.getWidth()) {
@@ -69,7 +69,7 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
                 }
                 break;
             case "width":
-                for (Box box : bestSetups) {
+                for (Column box : bestSetups) {
                     if (box.getWidth() < bestfit.getWidth()) {
                         bestfit = box;
                     } else if (mostImportant[1].equals("length") && box.getWidth() == bestfit.getWidth() && box.getLength() < bestfit.getLength()) {
@@ -80,7 +80,7 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
                 }
                 break;
             case "height":
-                for (Box box : bestSetups) {
+                for (Column box : bestSetups) {
                     if (box.getHeight() < bestfit.getHeight()) {
                         bestfit = box;
                     } else if (mostImportant[1].equals("length") && box.getHeight() == bestfit.getHeight() && box.getLength() < bestfit.getLength()) {

@@ -11,12 +11,12 @@ package com.bin.packaging.Model;
 public class BasicAlgorithm extends AlgorithmCommonMethods{
 
     @Override
-    public Container fillContainer(Container container, Box box, int amount) {
+    public Box fillContainer(Box container, Column box, int amount) {
         container = placeBoxes(container,calculateLowestSetup(container,box),amount);
         return container;
     }
 
-    private Container placeBoxes(Container container,Box box, int limit){
+    private Box placeBoxes(Box container, Column box, int limit){
         //TODO: FIXME ASAP!!!!! bug in placing boxes on same spot
         int templength=0,tempwidth=0,tempheight=0,counter=0;
         for (int l = 0; l < container.getLength() / box.getLength(); l++){

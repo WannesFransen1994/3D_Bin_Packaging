@@ -13,7 +13,7 @@ public class Subspace extends VolumeObject {
         this.setHeight(height);
     }
 
-    public Subspace(Container container) {
+    public Subspace(Box container) {
         this.coordinate = LocationFactory.createCoordinate(0,0,0);
         this.setHeight(container.getHeight());
         this.setLength(container.getLength());

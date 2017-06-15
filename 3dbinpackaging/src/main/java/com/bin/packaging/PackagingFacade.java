@@ -17,29 +17,26 @@ import java.util.Map;
  */
 public class PackagingFacade {
     final double SAFETY_MARGIN= 1.05;
-    private BoxFitter fitter;
-    private ContSetupCalculater contSetupCalculater;
 
     public PackagingFacade(FillBehaviour fillBehaviour, CalculateBehaviour calculateBehaviour) {
-        fitter = new BoxFitter();
-        fitter.setFillBehaviour(fillBehaviour);
-        contSetupCalculater = new ContSetupCalculater(this);
-        contSetupCalculater.setCalculateBehaviour(calculateBehaviour);
+        Box.setFillBehaviour(fillBehaviour);
+        BoxSetup.setFacade(this);
+        BoxSetup.setCalculateBehaviour(calculateBehaviour);
     }
 
-    public List<Container> getMaxLoadedContainers(int length,int width,int height,int amount) {
-        return fitter.fillContainersMax(height,width,length,amount);
+    public List<Box> getMaxLoadedContainers(int length, int width, int height, int amount) {
+        return Box.fillContainersMax(height,width,length,amount);
     }
 
-    public Container getSpecificLoadedContainer(ContainerType containerType,int length,int width,int height,int amount) {
-        return fitter.fillContainer(containerType,length,width,height,amount);
+    public Box getSpecificLoadedContainer(BoxType containerType, int length, int width, int height, int amount) {
+        return Box.fillContainer(containerType,length,width,height,amount);
     }
 
-    public ContainerSetup calculateSetup(int length, int width, int height, int amount){
-        return contSetupCalculater.calculateSetup(length, width, height, amount);
+    public BoxSetup calculateSetup(int length, int width, int height, int amount){
+        return BoxSetup.calculateSetup(length, width, height, amount);
     }
 
-    public Map<Container,Integer> getTranslatedSetup(int length, int width, int height, int amount, int pockets){
+    public Map<Box,Integer> getTranslatedSetup(int length, int width, int height, int amount, int pockets){
         length = calculateLength(length);
         width = calculateWidth(width);
         height = calculateHeighth(height,pockets);

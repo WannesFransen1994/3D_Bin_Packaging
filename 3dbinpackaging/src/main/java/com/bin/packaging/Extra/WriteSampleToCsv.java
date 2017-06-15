@@ -1,7 +1,7 @@
 package com.bin.packaging.Extra;
 
 import com.bin.packaging.Model.BasicAlgorithm;
-import com.bin.packaging.Model.Container;
+import com.bin.packaging.Model.Box;
 import com.bin.packaging.Model.Coordinate;
 import com.bin.packaging.Model.OnlyTwoTypes;
 import com.bin.packaging.PackagingFacade;
@@ -19,7 +19,7 @@ class WriteSampleToCsv {
 
     public static void main(String[] args) {
         PackagingFacade f = new PackagingFacade(new BasicAlgorithm(),new OnlyTwoTypes());
-        List<Container> data = f.getMaxLoadedContainers(50,80,40,15);
+        List<Box> data = f.getMaxLoadedContainers(50,80,40,15);
 
         String fileName = "csvtest.csv";
         PrintWriter outputStream = null;
@@ -37,9 +37,9 @@ class WriteSampleToCsv {
         String newLine = "\n";
 
 
-        for (Container c: data
+        for (Box c: data
              ) {
-            outputStream.append("Container " + i);
+            outputStream.append("Box " + i);
             outputStream.append(newLine);
             outputStream.append(String.valueOf(c.getLength()));
             outputStream.append(delim);

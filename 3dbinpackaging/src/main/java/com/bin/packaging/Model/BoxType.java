@@ -3,7 +3,7 @@ package com.bin.packaging.Model;
 /**
  * Created by Wannes Fransen.
  */
-public enum ContainerType {
+public enum BoxType {
     SMALLEST(120,80,100),
     BIGGEST(150,100,120);
 
@@ -11,7 +11,7 @@ public enum ContainerType {
     private final int width;
     private final int height;
 
-    ContainerType(int length, int width, int height) {
+    BoxType(int length, int width, int height) {
         this.length = length;
         this.width = width;
         this.height = height;

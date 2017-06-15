@@ -8,12 +8,12 @@ import java.util.List;
  * Algorithm explained by Bram Vanderbruggen.
  */
 public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
-    private Container container;
+    private Box container;
     private int amount;
     private List<Subspace> unused;
 
     @Override
-    public Container fillContainer(Container container, Box samplebox, int amount) {
+    public Box fillContainer(Box container, Column samplebox, int amount) {
         this.unused = new ArrayList<>();
         this.container = container;
         this.amount = amount;
@@ -34,7 +34,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
         return VolumeObjectFactory.createContainer(container);
     }
 
-    private void recursiveSubspaceallocator(Subspace subspace, Box box) {
+    private void recursiveSubspaceallocator(Subspace subspace, Column box) {
         box = calculateLowestSetup(subspace, box);
         if (box.getLength() <= subspace.getLength() && box.getWidth() <= subspace.getWidth() &&
                 box.getHeight() <= subspace.getHeight() && amount > 0) {
@@ -51,7 +51,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
         }
     }
 
-    private void allocateNewSubspaces(Subspace subspace, Box box, String[] longestFirst) {
+    private void allocateNewSubspaces(Subspace subspace, Column box, String[] longestFirst) {
         Subspace sub1 = VolumeObjectFactory.createSubspace(
                 LocationFactory.createCoordinate(0, 0, 0),
                 subspace.getLength(), subspace.getWidth(), subspace.getHeight());

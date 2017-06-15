@@ -5,35 +5,87 @@
  */
 package com.bin.packaging.Model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * Created by Wannes Fransen.
  */
-public class Box extends VolumeObject{
+public class Box extends VolumeObject {
+    private final Map<Coordinate,Column> items;
+    private static FillBehaviour fillBehaviour;
 
     public Box(int length, int width, int height) {
         setLength(length);
         setWidth(width);
         setHeight(height);
-    }
-    // Width becomes height, height becomes width
-    public void turnZaxis(){
-        int tmp = getWidth();
-        setWidth(getLength());
-        setLength(tmp);
+        this.items = new HashMap<>();
     }
 
-    // Length becomes height, height becomes length
-    public void turnYaxis(){
-        int tmp = getHeight();
-        setHeight(getLength());
-        setLength(tmp);
+    public Box(Box container) {
+        setLength(container.getLength());
+        setWidth(container.getWidth());
+        setHeight(container.getHeight());
+        this.items = container.getItems();
     }
 
-    // Width becomes height, height becomes width
-    public void turnXaxis(){
-        int tmp = getHeight();
-        setHeight(getWidth());
-        setWidth(tmp);
+
+    public static List<Box> fillContainersMax(int height, int width, int length, int amount) {
+        Column samplebox = VolumeObjectFactory.createBox(length,width,height);
+        List<Box> filledContainers = new ArrayList<>();
+        for (BoxType containerType : BoxType.values()) {
+            Box filledContainer = fillBehaviour.fillContainer(VolumeObjectFactory.createContainer(containerType),samplebox,amount);
+            filledContainers.add(filledContainer);
+        }
+        return filledContainers;
+    }
+
+    public static Box fillContainer(BoxType containerType, int length, int width, int height, int amount) {
+        return fillBehaviour.fillContainer(VolumeObjectFactory.createContainer(containerType),VolumeObjectFactory.createBox(length, width, height),amount);
+    }
+
+    public static void setFillBehaviour(FillBehaviour algo){
+        fillBehaviour = algo;
+    }
+
+    public float getFilled() {
+        if (items.size()>0) {
+            Column temp = (Column) items.values().toArray()[0];
+            float volume = temp.getVolume();
+            float objectsVolume = volume * getAmountOfItems();
+            return objectsVolume / getVolume();
+        }
+        return 0;
+    }
+
+    public Map<Coordinate,Column> getItems() {
+        return items;
+    }
+
+    public int getAmountOfItems(){
+        return items.size();
+    }
+
+    public void addItem(Coordinate coordinate,Column box) {
+        this.items.put(coordinate,box);
+        //TODO: Sanity check
+    }
+    
+    public void removeItem(Coordinate coordinate) {
+        this.items.remove(coordinate);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Box) {
+            if (this.getLength() != ((Box) obj).getLength()){return false;}
+            if (this.getWidth() != ((Box) obj).getWidth()){return false;}
+            if (this.getHeight() != ((Box) obj).getHeight()){return false;}
+            if (this.getAmountOfItems() != ((Box) obj).getAmountOfItems()){return false;}
+        }else {return false;}
+        return true;
     }
 }

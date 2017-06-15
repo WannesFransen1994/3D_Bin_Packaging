@@ -10,5 +10,5 @@ package com.bin.packaging.Model;
  * Created by Wannes Fransen.
  */
 public interface FillBehaviour {
-    Container fillContainer(Container container, Box samplebox, int amount);
+    Box fillContainer(Box container, Column samplebox, int amount);
 }
