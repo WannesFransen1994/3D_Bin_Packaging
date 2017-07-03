@@ -17,29 +17,7 @@ function generateContainerLayers(obj) {
 
     containerCounter = 0;
     var totalAmount = 0;
-    var mHeader = $("<div id=\"hMb\" class = header-wrapper>");
-    var sC = $("<div id=\"hSc\" class = site-name>");
     var cont = $("<div id=\"cont\" class = container>");
-    var divtag2 = $("<div id=\"bl\" class = block>");
-
-    //$("#visualisation").append(Main);
-    //$("#visualisation").append(Menu);
-    //$("#visualisation").append(cont);
-
-
-    var mainHeader = $("<h1>BOX VISUALIZATION</h1>");
-    var subHeader = $("<h2>Storeganizer</h2>");
-
-
-
-
-
-
-    //$("#Main").append(sC);
-    //$("#hSc").append(mainHeader);
-    //$("#hSc").append(subHeader);
-
-
 
 
     obj.forEach(function (entry) {
