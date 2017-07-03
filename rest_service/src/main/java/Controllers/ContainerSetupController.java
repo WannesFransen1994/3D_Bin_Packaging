@@ -24,7 +24,14 @@ public class ContainerSetupController {
     }
 
     @RequestMapping("/api/containersetup")
-    public String containerSetup(@RequestParam("boxlength") int boxlength,@RequestParam("boxwidth") int boxwidth,@RequestParam("boxheight") int boxheight,@RequestParam("boxamount") int boxamount,@RequestParam("numberpockets") int pockets){
-        return gson.toJson(facade.getTranslatedSetup(boxlength, boxwidth, boxheight, boxamount, pockets));
+    public String containerSetup(
+            @RequestParam("boxlength") int boxlength,
+            @RequestParam("boxwidth") int boxwidth,
+            @RequestParam("boxheight") int boxheight,
+            @RequestParam("boxamount") int boxamount,
+            @RequestParam("numberpockets") int pockets){
+        return gson.toJson(
+                facade.getTranslatedSetup(
+                        boxlength, boxwidth, boxheight, boxamount, pockets));
     }
 }

@@ -32,16 +32,14 @@ public class PackagingFacade {
         return Box.fillContainer(containerType,length,width,height,amount);
     }
 
-    public BoxSetup calculateSetup(int length, int width, int height, int amount){
-        return BoxSetup.calculateSetup(length, width, height, amount);
-    }
-
+    //Gets called upon by REST service
     public Map<Box,Integer> getTranslatedSetup(int length, int width, int height, int amount, int pockets){
         length = calculateLength(length);
         width = calculateWidth(width);
         height = calculateHeighth(height,pockets);
         amount = calculateAmount(amount);
-        return TranslatorContainersetup.convertFromContainerSetup(calculateSetup(length, width, height, amount));
+        return TranslatorContainersetup.convertFromContainerSetup(
+                BoxSetup.calculateSetup(length, width, height, amount));
     }
 
     //TODO: clean up constructor box and work with 1 sample box.
