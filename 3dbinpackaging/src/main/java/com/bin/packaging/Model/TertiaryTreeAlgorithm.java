@@ -13,45 +13,45 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
     private List<Subspace> unused;
 
     @Override
-    public Box fillContainer(Box container, Column samplebox, int amount) {
+    public Box fillContainer(Box container, Column samplecolumn, int amount) {
         this.unused = new ArrayList<>();
         this.container = container;
         this.amount = amount;
-        recursiveSubspaceallocator(VolumeObjectFactory.createSubspace(container), samplebox);
+        recursiveSubspaceallocator(VolumeObjectFactory.createSubspace(container), samplecolumn);
         List<Subspace> templist = new ArrayList<>(calculateCombinedSubspaceZAxis(unused));
         for (Subspace s : templist) {
-            recursiveSubspaceallocator(s, samplebox);
+            recursiveSubspaceallocator(s, samplecolumn);
         }
         templist = new ArrayList<>(calculateCombinedSubspaceYAxis(unused));
         for (Subspace s : templist) {
-            recursiveSubspaceallocator(s, samplebox);
+            recursiveSubspaceallocator(s, samplecolumn);
         }
         templist = new ArrayList<>(calculateCombinedSubspaceXAxis(unused));
         for (Subspace s : templist) {
-            recursiveSubspaceallocator(s, samplebox);
+            recursiveSubspaceallocator(s, samplecolumn);
         }
 
         return VolumeObjectFactory.createContainer(container);
     }
 
-    private void recursiveSubspaceallocator(Subspace subspace, Column box) {
-        box = calculateLowestSetup(subspace, box);
-        if (box.getLength() <= subspace.getLength() && box.getWidth() <= subspace.getWidth() &&
-                box.getHeight() <= subspace.getHeight() && amount > 0) {
+    private void recursiveSubspaceallocator(Subspace subspace, Column column) {
+        column = calculateLowestSetup(subspace, column);
+        if (column.getLength() <= subspace.getLength() && column.getWidth() <= subspace.getWidth() &&
+                column.getHeight() <= subspace.getHeight() && amount > 0) {
             amount--;
             container.addItem(
                     LocationFactory.createCoordinate(
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y(),
                             subspace.getCoordinate().getCoordinate_z()),
-                    VolumeObjectFactory.createBox(box.getLength(), box.getWidth(), box.getHeight()));
-            allocateNewSubspaces(subspace, box, longestSideHelperFunction(subspace));
+                    VolumeObjectFactory.createColumn(column));
+            allocateNewSubspaces(subspace, column, longestSideHelperFunction(subspace));
         } else {
             unused.add(subspace);
         }
     }
 
-    private void allocateNewSubspaces(Subspace subspace, Column box, String[] longestFirst) {
+    private void allocateNewSubspaces(Subspace subspace, Column column, String[] longestFirst) {
         Subspace sub1 = VolumeObjectFactory.createSubspace(
                 LocationFactory.createCoordinate(0, 0, 0),
                 subspace.getLength(), subspace.getWidth(), subspace.getHeight());
@@ -71,44 +71,44 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             sub1,
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y(),
-                            subspace.getCoordinate().getCoordinate_z() + box.getHeight(),
-                            box.getLength(),
-                            box.getWidth(),
-                            subspace.getHeight() - box.getHeight());
+                            subspace.getCoordinate().getCoordinate_z() + column.getHeight(),
+                            column.getLength(),
+                            column.getWidth(),
+                            subspace.getHeight() - column.getHeight());
                     sub2canBeMade = configureSubspaceHelper(
                             sub2,
                             subspace.getCoordinate().getCoordinate_x(),
-                            subspace.getCoordinate().getCoordinate_y() + box.getWidth(),
+                            subspace.getCoordinate().getCoordinate_y() + column.getWidth(),
                             subspace.getCoordinate().getCoordinate_z(),
-                            box.getLength(),
-                            subspace.getWidth() - box.getWidth(),
+                            column.getLength(),
+                            subspace.getWidth() - column.getWidth(),
                             subspace.getHeight());
                 } else {
                     //good job, this part works (this method call at least)
                     sub1canBeMade = configureSubspaceHelper(
                             sub1,
                             subspace.getCoordinate().getCoordinate_x(),
-                            subspace.getCoordinate().getCoordinate_y() + box.getWidth(),
+                            subspace.getCoordinate().getCoordinate_y() + column.getWidth(),
                             subspace.getCoordinate().getCoordinate_z(),
-                            box.getLength(),
-                            subspace.getWidth() - box.getWidth(),
-                            box.getHeight());
+                            column.getLength(),
+                            subspace.getWidth() - column.getWidth(),
+                            column.getHeight());
                     //good job, this part works (this method call at least)
                     sub2canBeMade = configureSubspaceHelper(
                             sub2,
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y(),
-                            subspace.getCoordinate().getCoordinate_z() + box.getHeight(),
-                            box.getLength(),
+                            subspace.getCoordinate().getCoordinate_z() + column.getHeight(),
+                            column.getLength(),
                             subspace.getWidth(),
-                            subspace.getHeight() - box.getHeight());
+                            subspace.getHeight() - column.getHeight());
                 }
                 sub3canBeMade = configureSubspaceHelper(
                         sub3,
-                        subspace.getCoordinate().getCoordinate_x() + box.getLength(),
+                        subspace.getCoordinate().getCoordinate_x() + column.getLength(),
                         subspace.getCoordinate().getCoordinate_y(),
                         subspace.getCoordinate().getCoordinate_z(),
-                        subspace.getLength() - box.getLength(),
+                        subspace.getLength() - column.getLength(),
                         subspace.getWidth(),
                         subspace.getHeight());
                 break;
@@ -118,45 +118,45 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             sub1,
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y(),
-                            subspace.getCoordinate().getCoordinate_z() + box.getHeight(),
-                            box.getLength(),
-                            box.getWidth(),
-                            subspace.getHeight() - box.getHeight());
+                            subspace.getCoordinate().getCoordinate_z() + column.getHeight(),
+                            column.getLength(),
+                            column.getWidth(),
+                            subspace.getHeight() - column.getHeight());
                     sub2canBeMade = configureSubspaceHelper(
                             sub2,
-                            subspace.getCoordinate().getCoordinate_x() + box.getLength(),
+                            subspace.getCoordinate().getCoordinate_x() + column.getLength(),
                             subspace.getCoordinate().getCoordinate_y(),
                             subspace.getCoordinate().getCoordinate_z(),
-                            subspace.getLength() - box.getLength(),
-                            box.getWidth(),
+                            subspace.getLength() - column.getLength(),
+                            column.getWidth(),
                             subspace.getHeight());
                 } else {
                     //this one dies after first subspacing
                     sub1canBeMade = configureSubspaceHelper(
                             sub1,
-                            subspace.getCoordinate().getCoordinate_x() + box.getLength(),
+                            subspace.getCoordinate().getCoordinate_x() + column.getLength(),
                             subspace.getCoordinate().getCoordinate_y(),
                             subspace.getCoordinate().getCoordinate_z(),
-                            subspace.getLength() - box.getLength(),
-                            box.getWidth(),
-                            box.getHeight());
+                            subspace.getLength() - column.getLength(),
+                            column.getWidth(),
+                            column.getHeight());
                     sub2canBeMade = configureSubspaceHelper(
                             sub2,
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y(),
-                            subspace.getCoordinate().getCoordinate_z() + box.getHeight(),
+                            subspace.getCoordinate().getCoordinate_z() + column.getHeight(),
                             subspace.getLength(),
-                            box.getWidth(),
-                            subspace.getHeight() - box.getHeight());
+                            column.getWidth(),
+                            subspace.getHeight() - column.getHeight());
 
                 }
                 sub3canBeMade = configureSubspaceHelper(
                         sub3,
                         subspace.getCoordinate().getCoordinate_x(),
-                        subspace.getCoordinate().getCoordinate_y() + box.getWidth(),
+                        subspace.getCoordinate().getCoordinate_y() + column.getWidth(),
                         subspace.getCoordinate().getCoordinate_z(),
                         subspace.getLength(),
-                        subspace.getWidth() - box.getWidth(),
+                        subspace.getWidth() - column.getWidth(),
                         subspace.getHeight());
 
                 break;
@@ -166,55 +166,55 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                     sub1canBeMade = configureSubspaceHelper(
                             sub1,
                             subspace.getCoordinate().getCoordinate_x(),
-                            subspace.getCoordinate().getCoordinate_y() + box.getWidth(),
+                            subspace.getCoordinate().getCoordinate_y() + column.getWidth(),
                             subspace.getCoordinate().getCoordinate_z(),
-                            box.getLength(),
-                            subspace.getWidth() - box.getWidth(),
-                            box.getHeight());
+                            column.getLength(),
+                            subspace.getWidth() - column.getWidth(),
+                            column.getHeight());
                     sub2canBeMade = configureSubspaceHelper(
                             sub2,
-                            subspace.getCoordinate().getCoordinate_x() + box.getLength(),
+                            subspace.getCoordinate().getCoordinate_x() + column.getLength(),
                             subspace.getCoordinate().getCoordinate_y(),
                             subspace.getCoordinate().getCoordinate_z(),
-                            subspace.getLength() - box.getLength(),
+                            subspace.getLength() - column.getLength(),
                             subspace.getWidth(),
-                            box.getHeight());
+                            column.getHeight());
                 } else {
                     sub1canBeMade = configureSubspaceHelper(
                             sub1,
-                            subspace.getCoordinate().getCoordinate_x() + box.getLength(),
+                            subspace.getCoordinate().getCoordinate_x() + column.getLength(),
                             subspace.getCoordinate().getCoordinate_y(),
                             subspace.getCoordinate().getCoordinate_z(),
-                            subspace.getLength() - box.getLength(),
-                            box.getWidth(),
-                            box.getHeight());
+                            subspace.getLength() - column.getLength(),
+                            column.getWidth(),
+                            column.getHeight());
                     sub2canBeMade = configureSubspaceHelper(
                             sub2,
                             subspace.getCoordinate().getCoordinate_x(),
-                            subspace.getCoordinate().getCoordinate_y() + box.getWidth(),
+                            subspace.getCoordinate().getCoordinate_y() + column.getWidth(),
                             subspace.getCoordinate().getCoordinate_z(),
                             subspace.getLength(),
-                            subspace.getWidth() - box.getWidth(),
-                            box.getHeight());
+                            subspace.getWidth() - column.getWidth(),
+                            column.getHeight());
                 }
                 sub3canBeMade = configureSubspaceHelper(
                         sub3,
                         subspace.getCoordinate().getCoordinate_x(),
                         subspace.getCoordinate().getCoordinate_y(),
-                        subspace.getCoordinate().getCoordinate_z() + box.getHeight(),
+                        subspace.getCoordinate().getCoordinate_z() + column.getHeight(),
                         subspace.getLength(),
                         subspace.getWidth(),
-                        subspace.getHeight() - box.getHeight());
+                        subspace.getHeight() - column.getHeight());
                 break;
         }
         if (sub1canBeMade) {
-            recursiveSubspaceallocator(sub1, box);
+            recursiveSubspaceallocator(sub1, column);
         }
         if (sub2canBeMade) {
-            recursiveSubspaceallocator(sub2, box);
+            recursiveSubspaceallocator(sub2, column);
         }
         if (sub3canBeMade) {
-            recursiveSubspaceallocator(sub3, box);
+            recursiveSubspaceallocator(sub3, column);
         }
     }
 

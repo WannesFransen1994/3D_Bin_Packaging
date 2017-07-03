@@ -32,19 +32,8 @@ public class Box extends VolumeObject {
         this.items = container.getItems();
     }
 
-
-    public static List<Box> fillContainersMax(int height, int width, int length, int amount) {
-        Column samplebox = VolumeObjectFactory.createBox(length,width,height);
-        List<Box> filledContainers = new ArrayList<>();
-        for (BoxType containerType : BoxType.values()) {
-            Box filledContainer = fillBehaviour.fillContainer(VolumeObjectFactory.createContainer(containerType),samplebox,amount);
-            filledContainers.add(filledContainer);
-        }
-        return filledContainers;
-    }
-
-    public static Box fillContainer(BoxType containerType, int length, int width, int height, int amount) {
-        return fillBehaviour.fillContainer(VolumeObjectFactory.createContainer(containerType),VolumeObjectFactory.createBox(length, width, height),amount);
+    public static Box fillContainer(BoxType containerType, Column c, int amount) {
+        return fillBehaviour.fillContainer(VolumeObjectFactory.createContainer(containerType),c,amount);
     }
 
     public static void setFillBehaviour(FillBehaviour algo){

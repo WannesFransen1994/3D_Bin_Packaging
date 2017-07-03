@@ -12,14 +12,13 @@ import java.util.Map;
 public class BoxSetup {
     private Map<Box,Float> containersSetup;
     private float lostSpace;
+    private static CalculateBehaviour calculateBehaviour;
+    private static PackagingFacade facade;
 
     public BoxSetup(List<Box> containers) {
         lostSpace = 0;
         this.containersSetup = sortContainers(containers);
     }
-
-    private static CalculateBehaviour calculateBehaviour;
-    private static PackagingFacade facade;
 
     public static void setCalculateBehaviour(CalculateBehaviour c) {
         calculateBehaviour = c;
@@ -28,12 +27,14 @@ public class BoxSetup {
         facade = f;
     }
 
-    public static BoxSetup calculateSetup(int length, int width, int height, int amount) {
-        return calculateBehaviour.calculateSetup(length,width,height,amount);
+    public static BoxSetup calculateSetup(int length, int width, int height,int pockets, int amount) {
+        return calculateBehaviour.calculateSetup(
+                VolumeObjectFactory.createColumn(length, width, height, pockets),
+                amount);
     }
 
-    static Box getLoadedContainer(BoxType type, int length, int width, int height, int amount){
-        return facade.getSpecificLoadedContainer(type, length, width, height, amount);
+    static Box getLoadedContainer(BoxType type, Column c, int amount){
+        return facade.getSpecificLoadedContainer(type, c, amount);
     }
 
     public Map<Box, Float> getContainersSetup() {

@@ -12,57 +12,22 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
  * Created by Wannes Fransen.
  */
 public class PackagingFacade {
-    final double SAFETY_MARGIN= 1.05;
-
     public PackagingFacade(FillBehaviour fillBehaviour, CalculateBehaviour calculateBehaviour) {
         Box.setFillBehaviour(fillBehaviour);
         BoxSetup.setFacade(this);
         BoxSetup.setCalculateBehaviour(calculateBehaviour);
     }
 
-    public List<Box> getMaxLoadedContainers(int length, int width, int height, int amount) {
-        return Box.fillContainersMax(height,width,length,amount);
-    }
-
-    public Box getSpecificLoadedContainer(BoxType containerType, int length, int width, int height, int amount) {
-        return Box.fillContainer(containerType,length,width,height,amount);
+    public Box getSpecificLoadedContainer(BoxType containerType, Column c, int amount) {
+        return Box.fillContainer(containerType, c, amount);
     }
 
     //Gets called upon by REST service
-    public Map<Box,Integer> getTranslatedSetup(int length, int width, int height, int amount, int pockets){
-        length = calculateLength(length);
-        width = calculateWidth(width);
-        height = calculateHeighth(height,pockets);
-        amount = calculateAmount(amount);
+    public Map<Box, Integer> getTranslatedSetup(int length, int width, int height, int amount, int pockets) {
         return TranslatorContainersetup.convertFromContainerSetup(
-                BoxSetup.calculateSetup(length, width, height, amount));
-    }
-
-    //TODO: clean up constructor box and work with 1 sample box.
-    //TODO: Move this to the box constructor.
-    public int calculateHeighth(int height,int pockets){
-        double temp = ((height*0.05) + ((pockets +1)*0.6))*2 + 5;
-        return (int)Math.ceil(temp*SAFETY_MARGIN);
-    }
-
-    public int calculateLength(int length){
-        double temp = length*1.10;
-        return (int)Math.ceil(temp*SAFETY_MARGIN);
-    }
-
-    public int calculateWidth(int width){
-        double temp = width*1.15;
-        return (int)Math.ceil(temp*SAFETY_MARGIN);
-    }
-
-    public int calculateAmount(int amount){
-        if (amount%2==1){
-            return (amount+1)/2;
-        }
-        return amount/2;
+                BoxSetup.calculateSetup(length, width, height, pockets, amount));
     }
 }

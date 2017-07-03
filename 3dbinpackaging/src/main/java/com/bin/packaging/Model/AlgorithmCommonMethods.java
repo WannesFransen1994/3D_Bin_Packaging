@@ -30,23 +30,23 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
         return lostHeight * lostLength * lostWidth;
     }
 
-    Column calculateLowestSetup(VolumeObject subspace, Column box) {
+    Column calculateLowestSetup(VolumeObject subspace, Column column) {
         int counter = 1, lowest, lost;
         List<Column> lowestBoxSetups = new ArrayList<>();
-        lowestBoxSetups.add(VolumeObjectFactory.createBox(box.getLength(), box.getWidth(), box.getHeight()));
-        lowest = moduloCalculateLostSpace(subspace, box);
+        lowestBoxSetups.add(VolumeObjectFactory.createColumn(column));
+        lowest = moduloCalculateLostSpace(subspace, column);
         while (counter <= 7) {
-            turnBox(counter, box);
+            turnBox(counter, column);
             counter++;
-            if (subspace.getWidth() >= box.getWidth() && subspace.getHeight() >= box.getHeight() && subspace.getLength() >= box.getLength()) {
-                lost = moduloCalculateLostSpace(subspace, box);
+            if (subspace.getWidth() >= column.getWidth() && subspace.getHeight() >= column.getHeight() && subspace.getLength() >= column.getLength()) {
+                lost = moduloCalculateLostSpace(subspace, column);
                 if (lost <= lowest) {
                     if (lost < lowest) {
                         lowestBoxSetups = new ArrayList<>();
                     }
 
-                    lowest = moduloCalculateLostSpace(subspace, box);
-                    lowestBoxSetups.add(VolumeObjectFactory.createBox(box.getLength(), box.getWidth(), box.getHeight()));
+                    lowest = moduloCalculateLostSpace(subspace, column);
+                    lowestBoxSetups.add(VolumeObjectFactory.createColumn(column));
                 }
             }
         }
