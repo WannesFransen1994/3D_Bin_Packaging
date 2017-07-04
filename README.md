@@ -15,7 +15,7 @@ Deployment (Developers)
 
 If you want to run the project: 
 
-	1. Make sure you have jre1.8 or later installed. 
+	1. Make sure you have jre1.8 installed. 
 	2. Download the rest client .jar file. (Location: ./rest_service/release_builds/rest_service-X.X.jar)
 	3. Run the jar file:
 		3.1 Open your CMD.
@@ -37,3 +37,6 @@ Extra:
 Flaws:
 
 	1. Right now, we only allow 2 hard-coded containers. We could make an admin panel to manage containers, but the algorithm we currently use to have the best container setup, only allows 2 types.
+
+Bugs: 
+	1. Copying a Box containing items, copies the items in random order... which results in floating objects, though the calculations are right
