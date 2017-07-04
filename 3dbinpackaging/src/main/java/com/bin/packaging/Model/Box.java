@@ -62,10 +62,6 @@ public class Box extends VolumeObject {
         this.items.put(coordinate,box);
         //TODO: Sanity check
     }
-    
-    public void removeItem(Coordinate coordinate) {
-        this.items.remove(coordinate);
-    }
 
     @Override
     public boolean equals(Object obj) {

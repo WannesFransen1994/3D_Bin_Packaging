@@ -38,7 +38,8 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
         while (counter <= 7) {
             turnBox(counter, column);
             counter++;
-            if (subspace.getWidth() >= column.getWidth() && subspace.getHeight() >= column.getHeight() && subspace.getLength() >= column.getLength()) {
+            if (subspace.getWidth() >= column.getWidth() && subspace.getHeight() >= column.getHeight()
+                    && subspace.getLength() >= column.getLength()) {
                 lost = moduloCalculateLostSpace(subspace, column);
                 if (lost <= lowest) {
                     if (lost < lowest) {
@@ -61,9 +62,11 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
                 for (Column box : bestSetups) {
                     if (box.getLength() < bestfit.getLength()) {
                         bestfit = box;
-                    } else if (mostImportant[1].equals("width") && box.getLength() == bestfit.getLength() && box.getWidth() < bestfit.getWidth()) {
+                    } else if (mostImportant[1].equals("width") && box.getLength() == bestfit.getLength() &&
+                            box.getWidth() < bestfit.getWidth()) {
                         bestfit = box;
-                    } else if (mostImportant[1].equals("height") && box.getLength() == bestfit.getLength() && box.getHeight() < bestfit.getHeight()) {
+                    } else if (mostImportant[1].equals("height") && box.getLength() == bestfit.getLength() &&
+                            box.getHeight() < bestfit.getHeight()) {
                         bestfit = box;
                     }
                 }
@@ -72,9 +75,11 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
                 for (Column box : bestSetups) {
                     if (box.getWidth() < bestfit.getWidth()) {
                         bestfit = box;
-                    } else if (mostImportant[1].equals("length") && box.getWidth() == bestfit.getWidth() && box.getLength() < bestfit.getLength()) {
+                    } else if (mostImportant[1].equals("length") && box.getWidth() == bestfit.getWidth() &&
+                            box.getLength() < bestfit.getLength()) {
                         bestfit = box;
-                    } else if (mostImportant[1].equals("height") && box.getWidth() == bestfit.getWidth() && box.getHeight() < bestfit.getHeight()) {
+                    } else if (mostImportant[1].equals("height") && box.getWidth() == bestfit.getWidth() &&
+                            box.getHeight() < bestfit.getHeight()) {
                         bestfit = box;
                     }
                 }
@@ -83,9 +88,11 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
                 for (Column box : bestSetups) {
                     if (box.getHeight() < bestfit.getHeight()) {
                         bestfit = box;
-                    } else if (mostImportant[1].equals("length") && box.getHeight() == bestfit.getHeight() && box.getLength() < bestfit.getLength()) {
+                    } else if (mostImportant[1].equals("length") && box.getHeight() == bestfit.getHeight() &&
+                            box.getLength() < bestfit.getLength()) {
                         bestfit = box;
-                    } else if (mostImportant[1].equals("height") && box.getHeight() == bestfit.getHeight() && box.getWidth() < bestfit.getWidth()) {
+                    } else if (mostImportant[1].equals("height") && box.getHeight() == bestfit.getHeight() &&
+                            box.getWidth() < bestfit.getWidth()) {
                         bestfit = box;
                     }
                 }
@@ -94,7 +101,6 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
         return bestfit;
     }
 
-    //TODO: review this horror-code....
     String[] longestSideHelperFunction(VolumeObject subspace) {
         String[] importantList = new String[3];
         if (subspace.getLength() > subspace.getWidth() && subspace.getLength() > subspace.getHeight()) {

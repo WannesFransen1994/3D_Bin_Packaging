@@ -14,44 +14,47 @@ public class OnlyTwoTypes implements CalculateBehaviour {
     }
 
     private List<BoxSetup> makeSetups(Column c, int amount) {
+        int counter = 0, number = amount;
         List<BoxSetup> setups = new ArrayList<>();
-        int counter = 0, number = amount, maxcount;
-        List<Box> containers;
+        List<Box> boxes;
         Box biggest = BoxSetup.getLoadedContainer(BoxType.BIGGEST, c, number);
         Box smallest = BoxSetup.getLoadedContainer(BoxType.SMALLEST, c, number);
 
-        maxcount = amount / biggest.getAmountOfItems();
+        //this value is the maximum amount of big boxes we'll need to pack all of the columns.
+        //If it fits in 6 big boxes, we'll only have to calculate all setups until 6big and 0 small boxes.
+        //This value determines the max amount of iterations.
+        int maxAmountBoxes = amount / biggest.getAmountOfItems();
 
         if (amount % biggest.getAmountOfItems() != 0) {
-            maxcount++;
+            maxAmountBoxes++;
         }
-        while (counter <= maxcount) {
+        while (counter <= maxAmountBoxes) {
             number = amount;
-            containers = new ArrayList<>();
+            boxes = new ArrayList<>();
             while (number > 0) {
                 if (number > smallest.getAmountOfItems()) {
                     for (int i = 0; (i < counter && number > 0); i++) {
                         if (number <= biggest.getAmountOfItems()) {
-                            containers.add(BoxSetup.getLoadedContainer(BoxType.BIGGEST, c, number));
+                            boxes.add(BoxSetup.getLoadedContainer(BoxType.BIGGEST, c, number));
                             number = 0;
                             break;
                         }
-                        containers.add(BoxSetup.getLoadedContainer(BoxType.BIGGEST, c, number));
+                        boxes.add(BoxSetup.getLoadedContainer(BoxType.BIGGEST, c, number));
                         number -= biggest.getAmountOfItems();
                     }
                     if (number > smallest.getAmountOfItems()) {
-                        containers.add(BoxSetup.getLoadedContainer(BoxType.SMALLEST, c, number));
+                        boxes.add(BoxSetup.getLoadedContainer(BoxType.SMALLEST, c, number));
                         number -= smallest.getAmountOfItems();
                     } else if (number > 0) {
-                        containers.add(BoxSetup.getLoadedContainer(BoxType.SMALLEST, c, number));
+                        boxes.add(BoxSetup.getLoadedContainer(BoxType.SMALLEST, c, number));
                         number = 0;
                     }
                 } else {
-                    containers.add(BoxSetup.getLoadedContainer(BoxType.SMALLEST, c, number));
+                    boxes.add(BoxSetup.getLoadedContainer(BoxType.SMALLEST, c, number));
                     break;
                 }
             }
-            setups.add(new BoxSetup(containers));
+            setups.add(new BoxSetup(boxes));
             counter++;
         }
         return setups;

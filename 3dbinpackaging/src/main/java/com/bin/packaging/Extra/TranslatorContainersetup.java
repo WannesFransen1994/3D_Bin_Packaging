@@ -16,7 +16,7 @@ public class TranslatorContainersetup {
         boolean start = true;
         boolean addme = true;
         Box objectToAdd=null;
-        for (Box cs: setup.getContainersSetup().keySet()) {
+        for (Box cs: setup.getBoxSetup().keySet()) {
             if (start){containerAmountMap.put(cs, 1);start = false;continue;}
             for (Box container:containerAmountMap.keySet()){
                 if (cs.equals(container)){
