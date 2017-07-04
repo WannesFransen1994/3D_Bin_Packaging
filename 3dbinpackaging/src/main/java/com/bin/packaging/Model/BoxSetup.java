@@ -13,7 +13,6 @@ public class BoxSetup {
     private Map<Box, Float> boxSetup;
     private float lostSpace;
     private static CalculateBehaviour calculateBehaviour;
-    private static PackagingFacade facade;
 
     public BoxSetup(List<Box> containers) {
         lostSpace = 0;
@@ -24,19 +23,8 @@ public class BoxSetup {
         calculateBehaviour = c;
     }
 
-    public static void setFacade(PackagingFacade f) {
-        facade = f;
-    }
-
-    public static BoxSetup calculateSetup(int length, int width, int height, int pockets, int amount) {
-        return calculateBehaviour.calculateSetup(
-                VolumeObjectFactory.createColumn(length, width, height, pockets),
-                amount);
-    }
-
-    //has to go away
-    static Box getLoadedContainer(BoxType type, Column c, int amount) {
-        return facade.getSpecificLoadedContainer(type, c, amount);
+    public static BoxSetup calculateSetup(List<Box> bigSmall, int amount) {
+        return calculateBehaviour.calculateSetup(bigSmall,amount);
     }
 
     public Map<Box, Float> getBoxSetup() {

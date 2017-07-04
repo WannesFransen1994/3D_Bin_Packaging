@@ -18,20 +18,15 @@ public class ContainerSetupController {
     Gson gson = builder.create();
     PackagingFacade facade = new PackagingFacade(new TertiaryTreeAlgorithm(), new OnlyTwoTypes());
 
-    @RequestMapping("/api/testsetup")
-    public String testSetup(){
-        return gson.toJson(facade.getTranslatedSetup(20,50,45,38, 9));
-    }
-
     @RequestMapping("/api/containersetup")
     public String containerSetup(
-            @RequestParam("boxlength") int boxlength,
-            @RequestParam("boxwidth") int boxwidth,
-            @RequestParam("boxheight") int boxheight,
-            @RequestParam("boxamount") int boxamount,
-            @RequestParam("numberpockets") int pockets){
+            @RequestParam("columnLength") int columnLength,
+            @RequestParam("columnWidth") int columnWidth,
+            @RequestParam("columnHeight") int columnHeight,
+            @RequestParam("columnAmount") int columnAmount,
+            @RequestParam("pocketsNumber") int pocketsNumber){
         return gson.toJson(
                 facade.getTranslatedSetup(
-                        boxlength, boxwidth, boxheight, boxamount, pockets));
+                        columnLength, columnWidth, columnHeight, columnAmount, pocketsNumber));
     }
 }

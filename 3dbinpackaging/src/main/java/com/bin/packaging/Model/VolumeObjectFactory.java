@@ -9,23 +9,26 @@ public class VolumeObjectFactory {
         return new Subspace(coordinate, length, width, height);
     }
 
-    public static Subspace createSubspace(Box container) {
-        return new Subspace(container);
+    public static Subspace createSubspace(Box box) {
+        return new Subspace(box);
     }
 
     public static Column createColumn(int length, int width, int height, int pockets) {
         return new Column(length, width, height, pockets);
     }
 
-    public static Column createColumn(Column column) {
+    public static Column copyColumn(Column column) {
         return new Column(column);
     }
 
-    public static Box createContainer(BoxType type) {
+    public static Box createBox(BoxType type) {
         return new Box(type.getLength(), type.getWidth(), type.getHeight());
     }
 
-    public static Box createContainer(Box container) {
-        return new Box(container);
+    public static Box copyBox(Box box) {
+        return new Box(box);
+    }
+    public static Box copyBoxAmountItems(Box box, int amount) {
+        return new Box(box,amount);
     }
 }

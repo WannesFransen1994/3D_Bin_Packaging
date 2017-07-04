@@ -25,15 +25,38 @@ public class Box extends VolumeObject {
         this.items = new HashMap<>();
     }
 
-    public Box(Box container) {
-        setLength(container.getLength());
-        setWidth(container.getWidth());
-        setHeight(container.getHeight());
-        this.items = container.getItems();
+    public Box(Box box) {
+        setLength(box.getLength());
+        setWidth(box.getWidth());
+        setHeight(box.getHeight());
+        this.items = box.getItems();
     }
 
-    public static Box fillContainer(BoxType containerType, Column c, int amount) {
-        return fillBehaviour.fillContainer(VolumeObjectFactory.createContainer(containerType),c,amount);
+    public Box(Box box, int amount) {
+        setLength(box.getLength());
+        setWidth(box.getWidth());
+        setHeight(box.getHeight());
+        int i = amount;
+        this.items = new HashMap<>();
+        for (Coordinate c :box.getItems().keySet()) {
+            if (i>0){
+                this.items.put(c,box.getItems().get(c));
+                i--;
+            }
+        }
+    }
+
+    public static Box fillBox(BoxType boxType, Column c, int amount) {
+        return fillBehaviour.fillContainer(VolumeObjectFactory.createBox(boxType),c,amount);
+    }
+
+    public static List<Box> getAllTypeFilledBoxes(int length, int width, int height, int amount, int pockets){
+        Column c = VolumeObjectFactory.createColumn(length, width, height, pockets);
+        List<Box> listBoxTypes = new ArrayList<>();
+        for (BoxType boxType : BoxType.values()) {
+            listBoxTypes.add(fillBox(boxType,c,OnlyTwoTypes.calculateAmount(amount)));
+        }
+        return listBoxTypes;
     }
 
     public static void setFillBehaviour(FillBehaviour algo){
@@ -58,8 +81,8 @@ public class Box extends VolumeObject {
         return items.size();
     }
 
-    public void addItem(Coordinate coordinate,Column box) {
-        this.items.put(coordinate,box);
+    public void addItem(Coordinate coordinate,Column column) {
+        this.items.put(coordinate,column);
         //TODO: Sanity check
     }
 

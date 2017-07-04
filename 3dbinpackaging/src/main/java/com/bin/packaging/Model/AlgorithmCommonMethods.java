@@ -33,7 +33,7 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
     Column calculateLowestSetup(VolumeObject subspace, Column column) {
         int counter = 1, lowest, lost;
         List<Column> lowestBoxSetups = new ArrayList<>();
-        lowestBoxSetups.add(VolumeObjectFactory.createColumn(column));
+        lowestBoxSetups.add(VolumeObjectFactory.copyColumn(column));
         lowest = moduloCalculateLostSpace(subspace, column);
         while (counter <= 7) {
             turnBox(counter, column);
@@ -47,7 +47,7 @@ abstract class AlgorithmCommonMethods implements FillBehaviour {
                     }
 
                     lowest = moduloCalculateLostSpace(subspace, column);
-                    lowestBoxSetups.add(VolumeObjectFactory.createColumn(column));
+                    lowestBoxSetups.add(VolumeObjectFactory.copyColumn(column));
                 }
             }
         }

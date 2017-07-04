@@ -17,17 +17,18 @@ import java.util.Map;
 public class PackagingFacade {
     public PackagingFacade(FillBehaviour fillBehaviour, CalculateBehaviour calculateBehaviour) {
         Box.setFillBehaviour(fillBehaviour);
-        BoxSetup.setFacade(this);
         BoxSetup.setCalculateBehaviour(calculateBehaviour);
     }
 
-    public Box getSpecificLoadedContainer(BoxType containerType, Column c, int amount) {
-        return Box.fillContainer(containerType, c, amount);
+    public List<Box> getLoadedBoxTypes(int length, int width, int height, int amount, int pockets) {
+        return Box.getAllTypeFilledBoxes(length, width, height, amount, pockets);
     }
 
     //Gets called upon by REST service
     public Map<Box, Integer> getTranslatedSetup(int length, int width, int height, int amount, int pockets) {
         return TranslatorContainersetup.convertFromContainerSetup(
-                BoxSetup.calculateSetup(length, width, height, pockets, amount));
+                BoxSetup.calculateSetup(
+                        getLoadedBoxTypes(length, width, height, amount, pockets),
+                        amount));
     }
 }

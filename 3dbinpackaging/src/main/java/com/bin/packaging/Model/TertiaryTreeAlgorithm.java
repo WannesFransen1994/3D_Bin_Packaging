@@ -17,24 +17,24 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
         this.unused = new ArrayList<>();
         this.container = container;
         this.amount = amount;
-        recursiveSubspaceallocator(VolumeObjectFactory.createSubspace(container), samplecolumn);
+        recursiveSubspaceAllocator(VolumeObjectFactory.createSubspace(container), samplecolumn);
         List<Subspace> templist = new ArrayList<>(calculateCombinedSubspaceZAxis(unused));
         for (Subspace s : templist) {
-            recursiveSubspaceallocator(s, samplecolumn);
+            recursiveSubspaceAllocator(s, samplecolumn);
         }
         templist = new ArrayList<>(calculateCombinedSubspaceYAxis(unused));
         for (Subspace s : templist) {
-            recursiveSubspaceallocator(s, samplecolumn);
+            recursiveSubspaceAllocator(s, samplecolumn);
         }
         templist = new ArrayList<>(calculateCombinedSubspaceXAxis(unused));
         for (Subspace s : templist) {
-            recursiveSubspaceallocator(s, samplecolumn);
+            recursiveSubspaceAllocator(s, samplecolumn);
         }
 
-        return VolumeObjectFactory.createContainer(container);
+        return VolumeObjectFactory.copyBox(container);
     }
 
-    private void recursiveSubspaceallocator(Subspace subspace, Column column) {
+    private void recursiveSubspaceAllocator(Subspace subspace, Column column) {
         column = calculateLowestSetup(subspace, column);
         if (column.getLength() <= subspace.getLength() && column.getWidth() <= subspace.getWidth() &&
                 column.getHeight() <= subspace.getHeight() && amount > 0) {
@@ -44,7 +44,7 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                             subspace.getCoordinate().getCoordinate_x(),
                             subspace.getCoordinate().getCoordinate_y(),
                             subspace.getCoordinate().getCoordinate_z()),
-                    VolumeObjectFactory.createColumn(column));
+                    VolumeObjectFactory.copyColumn(column));
             allocateNewSubspaces(subspace, column, longestSideHelperFunction(subspace));
         } else {
             unused.add(subspace);
@@ -208,13 +208,13 @@ public class TertiaryTreeAlgorithm extends AlgorithmCommonMethods {
                 break;
         }
         if (sub1canBeMade) {
-            recursiveSubspaceallocator(sub1, column);
+            recursiveSubspaceAllocator(sub1, column);
         }
         if (sub2canBeMade) {
-            recursiveSubspaceallocator(sub2, column);
+            recursiveSubspaceAllocator(sub2, column);
         }
         if (sub3canBeMade) {
-            recursiveSubspaceallocator(sub3, column);
+            recursiveSubspaceAllocator(sub3, column);
         }
     }
 

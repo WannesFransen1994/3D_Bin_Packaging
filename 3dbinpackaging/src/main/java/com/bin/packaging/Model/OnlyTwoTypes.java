@@ -8,17 +8,25 @@ import java.util.List;
  */
 public class OnlyTwoTypes implements CalculateBehaviour {
     @Override
-    public BoxSetup calculateSetup(Column c, int amount) {
-        List<BoxSetup> list = makeSetups(c, calculateAmount(amount));
+    public BoxSetup calculateSetup(List<Box> bigSmall, int amount) {
+        List<BoxSetup> list = makeSetups(bigSmall, calculateAmount(amount));
         return calculateBestSetup(list);
     }
 
-    private List<BoxSetup> makeSetups(Column c, int amount) {
+    private List<BoxSetup> makeSetups(List<Box> bigSmall, int amount) {
         int counter = 0, number = amount;
         List<BoxSetup> setups = new ArrayList<>();
         List<Box> boxes;
-        Box biggest = BoxSetup.getLoadedContainer(BoxType.BIGGEST, c, number);
-        Box smallest = BoxSetup.getLoadedContainer(BoxType.SMALLEST, c, number);
+        Box biggest = bigSmall.get(0),smallest = bigSmall.get(0);
+
+        for (Box box : bigSmall) {
+            if (box.getVolume() < smallest.getVolume()){
+                smallest = box;
+            }
+            if (box.getVolume() > biggest.getVolume()){
+                biggest = box;
+            }
+        }
 
         //this value is the maximum amount of big boxes we'll need to pack all of the columns.
         //If it fits in 6 big boxes, we'll only have to calculate all setups until 6big and 0 small boxes.
@@ -35,22 +43,22 @@ public class OnlyTwoTypes implements CalculateBehaviour {
                 if (number > smallest.getAmountOfItems()) {
                     for (int i = 0; (i < counter && number > 0); i++) {
                         if (number <= biggest.getAmountOfItems()) {
-                            boxes.add(BoxSetup.getLoadedContainer(BoxType.BIGGEST, c, number));
+                            boxes.add(VolumeObjectFactory.copyBoxAmountItems(biggest,number));
                             number = 0;
                             break;
                         }
-                        boxes.add(BoxSetup.getLoadedContainer(BoxType.BIGGEST, c, number));
+                        boxes.add(VolumeObjectFactory.copyBoxAmountItems(biggest,biggest.getAmountOfItems()));
                         number -= biggest.getAmountOfItems();
                     }
                     if (number > smallest.getAmountOfItems()) {
-                        boxes.add(BoxSetup.getLoadedContainer(BoxType.SMALLEST, c, number));
+                        boxes.add(VolumeObjectFactory.copyBoxAmountItems(biggest,smallest.getAmountOfItems()));
                         number -= smallest.getAmountOfItems();
                     } else if (number > 0) {
-                        boxes.add(BoxSetup.getLoadedContainer(BoxType.SMALLEST, c, number));
+                        boxes.add(VolumeObjectFactory.copyBoxAmountItems(smallest,number));
                         number = 0;
                     }
                 } else {
-                    boxes.add(BoxSetup.getLoadedContainer(BoxType.SMALLEST, c, number));
+                    boxes.add(VolumeObjectFactory.copyBoxAmountItems(smallest,number));
                     break;
                 }
             }
@@ -70,7 +78,7 @@ public class OnlyTwoTypes implements CalculateBehaviour {
         return lowest;
     }
 
-    public int calculateAmount(int amount) {
+    public static int calculateAmount(int amount) {
         if (amount % 2 == 1) {
             return (amount + 1) / 2;
         }
