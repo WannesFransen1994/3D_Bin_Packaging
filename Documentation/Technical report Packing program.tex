@@ -39,13 +39,14 @@ Therefore, I'll be honest and say that the program is, in my opinion, not yet co
 \end{itemize}
 
 \paragraph{Todo list:} 
-There are still some small changes to be made. The newest version is updated on our \hyperref{https://git.iswleuven.be/erowan/3d_bin_packing}{}{}{git repository}*.\\
+There are still some small changes to be made. The newest version is updated on our \hyperref{https://github.com/WannesFransen1994/3D_Bin_Packaging}{}{}{git repository}*.\\
 \small \textit{Please do keep in mind that different students worked at this project. Not every commit is as it should be, or is professionally written.}
 \begin{itemize}
-	\item[] \xmark \space Update class names (Box = Column, Container = Box)
-	\item[] \xmark \space Review constructors usage
-	\item[] \xmark \space No calculations in Facade
-	\item[] \xmark \space Correctly implement Strategy pattern
+	\item[] \checkmark Update class names (Box = Column, Container = Box)
+	\item[] \checkmark Review constructors usage
+	\item[] \checkmark No calculations in Facade
+	\item[] \checkmark Correctly implement Strategy pattern
+	\item[] \xmark \space Copy constructor sort keys based on coordinates
 \end{itemize}
 \pagebreak
 
@@ -54,7 +55,7 @@ Here is a short overview. This diagram is generated through IntelliJ IDEA.\\
 
 \includegraphics[width=17cm]{Class_diagram_overview.png}\\
 
-There are 3 parts in this program with their respective classes. There are more classes, but those are referenced in either a general context (Factory classes) or are entities (Box, Coordinate, Subspace, etc...). 
+There are 3 parts in this program with their respective classes. There are more classes, but those are referenced in either a general context (Factory classes) or are entities (Column, Coordinate, Subspace, etc...). 
 \begin{enumerate}
 	\item The Facade: which is responsible for all communication with other programs. The rest service will communicate entirely through this class, but the class is not allowed to have any logic behind it.
 	\item The packing algorithm classes: Boxfitter, FillBehaviour, TertiaryTreeAlgorithm.
