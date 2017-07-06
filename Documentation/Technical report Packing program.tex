@@ -53,19 +53,19 @@ There are still some small changes to be made. The newest version is updated on 
 \subsection{Class diagram: General overview}
 Here is a short overview. This diagram is generated through IntelliJ IDEA.\\
 
-\includegraphics[width=17cm]{Class_diagram_overview.png}\\
+\includegraphics[width=17cm]{Class_diagram_overview2.png}\\
 
 There are 3 parts in this program with their respective classes. There are more classes, but those are referenced in either a general context (Factory classes) or are entities (Column, Coordinate, Subspace, etc...). 
 \begin{enumerate}
 	\item The Facade: which is responsible for all communication with other programs. The rest service will communicate entirely through this class, but the class is not allowed to have any logic behind it.
-	\item The packing algorithm classes: Boxfitter, FillBehaviour, TertiaryTreeAlgorithm.
-	\item The optimal setup algorithm classes: ContSetupCalculator, OnlyTwoTypes, ContainerSetup.
+	\item The packing algorithm classes: Box (and the static methods), FillBehaviour, TertiaryTreeAlgorithm.
+	\item The optimal setup algorithm classes: OnlyTwoTypes, BoxSetup, CalculateBehaviour.
 \end{enumerate}
 
 \pagebreak
 
 \subsection{Class diagram: Packing algorithm}
-\includegraphics[width=17cm]{Class_diagram_packing_classes.png}\\
+\includegraphics[width=17cm]{Class_diagram_packing_classes2.png}\\
 In the packing algorithm, this is the first step that happens. The data entered in the front-end is passed through the rest-service, then the Facade, and finally arrives here. \\
 
 A Strategy pattern is implemented for future algorithms. Right now, the Tertiary Tree Algorithm works only with 1 homogeneous object. In case you'd want to try a different algorithm or approach, you can just make a new class, implement FillBehaviour (or extend AlgorithmCommonMethods) and start coding. \\
@@ -78,8 +78,8 @@ Keep in mind that the creation of objects is entirely done through factories.
 
 
 \subsection{Class diagram: Setup algorithm}
-\includegraphics[width=12cm]{Class_diagram_setup_classes.png}\\
-These classes will determine what the best setup of boxes is. The packing algorithm will determine how much space is lost and how many columns can fit into a box. Afterwards, "ContSetupCalculator" will determine (according to the previous data) how many boxes will be necessary.\\
+\includegraphics[width=12cm]{Class_diagram_setup_classes2.png}\\
+These classes will determine what the best setup of boxes is. The packing algorithm will determine how much space is lost and how many columns can fit into a box. Afterwards, "BoxSetup" will determine (according to the previous data) how many boxes will be necessary.\\
 
 This algorithm is not the most performant, as it brute-forces all possibilities and then chooses the one setup with the least volume loss.\\
 
@@ -89,7 +89,7 @@ This algorithm is not the most performant, as it brute-forces all possibilities 
 	\item Only 2 containers are supported in the "OnlyTwoTypes" class. A better algorithm can easily be implemented by making a new class, and implementing "CalculateBehaviour". 
 \end{enumerate}
 
-After choosing the best "ContainerSetup", you'll return this to the Facade. Before returning it to the rest-service, it will be converted in another format. "TranslatorContainersetup" does this for you. After translating, it is sent to the rest-service. There it will be converted into JSON format.
+After choosing the best "BoxSetup", you'll return this to the Facade. Before returning it to the rest-service, it will be converted in another format. "TranslatorContainersetup" does this for you. After translating, it is sent to the rest-service. There it will be converted into JSON format.
 
 \section{Maven configurations}
 \subsection{back-end}
@@ -205,7 +205,7 @@ This project is just meant as a stepping stone for a more automated and easier a
 
 Enum file as a reference:
 \begin{lstlisting}
-	public enum ContainerType {
+	public enum BoxType {
 		SMALLEST(120,80,100),
 		BIGGEST(150,100,120);
 		
@@ -213,7 +213,7 @@ Enum file as a reference:
 		private final int width;
 		private final int height;
 		
-		ContainerType(int length, int width, int height) {
+		BoxType(int length, int width, int height) {
 			this.length = length;
 			this.width = width;
 			this.height = height;
