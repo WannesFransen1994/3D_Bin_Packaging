@@ -4,12 +4,12 @@ package com.bin.packaging.Model;
  * Created by Wannes Fransen.
  */
 public enum BoxType {
-    SMALLEST(120,80,100),
-    BIGGEST(150,100,120);
+    BOX1(120,80,100),
+    BOX2(150,100,120);
 
-    private final int length;
-    private final int width;
-    private final int height;
+    private int length;
+    private int width;
+    private int height;
 
     BoxType(int length, int width, int height) {
         this.length = length;
@@ -27,5 +27,17 @@ public enum BoxType {
 
     public int getHeight() {
         return height;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 }

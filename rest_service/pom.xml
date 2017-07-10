@@ -6,7 +6,7 @@
 
     <groupId>binpackaging</groupId>
     <artifactId>rest_service</artifactId>
-    <version>1.5</version>
+    <version>1.6</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
