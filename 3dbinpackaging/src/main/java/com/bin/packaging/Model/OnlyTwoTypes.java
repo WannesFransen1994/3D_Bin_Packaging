@@ -51,7 +51,7 @@ public class OnlyTwoTypes implements CalculateBehaviour {
                         number -= biggest.getAmountOfItems();
                     }
                     if (number > smallest.getAmountOfItems()) {
-                        boxes.add(VolumeObjectFactory.copyBoxAmountItems(biggest,smallest.getAmountOfItems()));
+                        boxes.add(VolumeObjectFactory.copyBoxAmountItems(smallest,smallest.getAmountOfItems()));
                         number -= smallest.getAmountOfItems();
                     } else if (number > 0) {
                         boxes.add(VolumeObjectFactory.copyBoxAmountItems(smallest,number));
