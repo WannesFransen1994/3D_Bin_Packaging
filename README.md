@@ -1,13 +1,13 @@
 Intro
 ==================
 
-This project is made to pack objects in a container.
+This project is made to pack columns in a box.
 
 Following requirements must be met:
 
 	1. Objects have the same size. 
 	2. Most optimal packaging algorithm will be used.
-	3. (For now) There are 2 types of containers. The most optimal distribution will be used.
+	3. There are 2 types of boxes. The most optimal distribution will be used.
     4. Packaging must be visualized.
 
 Deployment (Developers)
@@ -16,7 +16,7 @@ Deployment (Developers)
 If you want to run the project: 
 
 	1. Make sure you have jre1.8 installed. 
-	2. Download the rest client .jar file. (Location: ./rest_service/release_builds/rest_service-X.X.jar)
+	2. Download the latest rest client .jar file. (Location: ./rest_service/release_builds/rest_service-X.X.jar)
 	3. Run the jar file:
 		3.1 Open your CMD.
 		3.2 execute: "java -version" without quotes. If you get java version"1.8.X", go to step 3.5 .
@@ -36,7 +36,8 @@ Extra:
 
 Flaws:
 
-	1. Right now, we only allow 2 hard-coded containers. We could make an admin panel to manage containers, but the algorithm we currently use to have the best container setup, only allows 2 types.
+	1. Right now, we only allow 2 boxes passed through parameters.
 
 Bugs: 
-	1. Copying a Box containing items, copies the items in random order... which results in floating objects, though the calculations are right
+
+	1. Copying a Box containing items, copies the items in random order. which results in floating objects, though the calculations are right

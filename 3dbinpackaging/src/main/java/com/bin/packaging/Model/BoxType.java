@@ -30,14 +30,17 @@ public enum BoxType {
     }
 
     public void setLength(int length) {
+        if (length<=0) length=1;
         this.length = length;
     }
 
     public void setWidth(int width) {
+        if (width<=0) width=1;
         this.width = width;
     }
 
     public void setHeight(int height) {
+        if (height<=0) height=1;
         this.height = height;
     }
 }

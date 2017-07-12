@@ -14,7 +14,7 @@ public class Test {
 
         PackagingFacade f = new PackagingFacade(new TertiaryTreeAlgorithm(),new OnlyTwoTypes());
 
-        f.setBoxSize(80,80,80,1000,1000,1000);
+        f.setBoxSize(80,80,80,0,0,0);
         Map map = f.getTranslatedSetup(15,29,259,153,6);
 
         System.out.print(map);
