@@ -1,0 +1,1 @@
+mvn deploy:deploy-file -Durl=file:///Users/wannes/Documents/git/3D_Bin_Packaging/rest_service/repo/ -Dfile=target/3dbinpackaging-1.6.jar -DgroupId=com.bin -DartifactId=3dbinpackaging -Dpackaging=jar -Dversion=1.6

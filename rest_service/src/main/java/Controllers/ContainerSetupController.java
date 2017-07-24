@@ -37,4 +37,9 @@ public class ContainerSetupController {
                 facade.getTranslatedSetup(
                         columnLength, columnWidth, columnHeight, columnAmount, pocketsNumber));
     }
+
+    @RequestMapping(value ="/")
+    public String test(){
+        return gson.toJson("hi");
+    }
 }

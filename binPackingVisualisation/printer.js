@@ -1,5 +1,5 @@
 function submitform() {
-    $.getJSON('http://localhost:8080/api/containersetup', $("form").serialize(), function (data) {
+    $.getJSON('https://bin-packing-3d-rest.herokuapp.com/api/containersetup', $("form").serialize(), function (data) {
         $("#visualisation").empty();
 
         generateContainerLayers(data);
