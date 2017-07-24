@@ -1,0 +1,1 @@
+web: java -jar release_builds/rest_service-1.6.jar
