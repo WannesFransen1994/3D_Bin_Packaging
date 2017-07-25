@@ -1,7 +1,7 @@
 Intro
 ==================
 
-This project is made to pack columns in a box.
+This project is made to pack columns in a box. The site is deployed at : https://bin-packing-visualisation.herokuapp.com (sometimes it goes to sleep, so first call might be a bit slower than normal)
 
 Following requirements must be met:
 
@@ -13,7 +13,7 @@ Following requirements must be met:
 Deployment (Developers)
 ==================
 
-If you want to run the project: 
+If you want to run the project locally: 
 
 	1. Make sure you have jre1.8 installed. 
 	2. Download the latest rest client .jar file. (Location: ./rest_service/release_builds/rest_service-X.X.jar)

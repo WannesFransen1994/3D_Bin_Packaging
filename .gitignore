@@ -3,6 +3,6 @@
 /.idea/
 */.idea/
 /*/.idea/
-idea/
+idea
 idea/*
 /rest_service/target/
