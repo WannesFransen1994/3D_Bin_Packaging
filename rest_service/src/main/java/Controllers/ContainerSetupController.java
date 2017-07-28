@@ -19,6 +19,11 @@ public class ContainerSetupController {
     Gson gson = builder.create();
     PackagingFacade facade = new PackagingFacade(new TertiaryTreeAlgorithm(), new OnlyTwoTypes());
 
+    @RequestMapping(method = RequestMethod.GET, value = "/api/online")
+    public String online(){
+        return gson.toJson("yes");
+    }
+
     @RequestMapping(method = RequestMethod.GET, value ="/api/containersetup")
     public String containerSetup(
             @RequestParam("box1Length") int box1Length,
