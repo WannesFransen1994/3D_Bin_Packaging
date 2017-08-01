@@ -19,12 +19,12 @@ public class ContainerSetupController {
     Gson gson = builder.create();
     PackagingFacade facade = new PackagingFacade(new TertiaryTreeAlgorithm(), new OnlyTwoTypes());
 
-    @RequestMapping(method = RequestMethod.GET, value = "/api/online")
+    @RequestMapping(method = RequestMethod.GET, value = "/api/online",produces = "application/json")
     public String online(){
         return gson.toJson("yes");
     }
 
-    @RequestMapping(method = RequestMethod.GET, value ="/api/containersetup")
+    @RequestMapping(method = RequestMethod.GET, value ="/api/containersetup",produces = "application/json")
     public String containerSetup(
             @RequestParam("box1Length") int box1Length,
             @RequestParam("box1Width") int box1Width,
@@ -43,7 +43,7 @@ public class ContainerSetupController {
                         columnLength, columnWidth, columnHeight, columnAmount, pocketsNumber));
     }
 
-    @RequestMapping(value ="/")
+    @RequestMapping(value ="/",produces = "application/json")
     public String test(){
         return gson.toJson("hi");
     }
