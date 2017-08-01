@@ -34,9 +34,8 @@ public class PackagingFacade {
     }
 
     //Gets called upon by REST service
-    public Map<Box, Integer> getTranslatedSetup(int length, int width, int height, int amount, int pockets) {
-        return TranslatorContainersetup.convertFromContainerSetup(
-                BoxSetup.calculateSetup(
+    public TranslatedBoxSetup getTranslatedSetup(int length, int width, int height, int amount, int pockets) {
+        return new TranslatedBoxSetup(BoxSetup.calculateSetup(
                         getLoadedBoxTypes(length, width, height, amount, pockets),
                         amount));
     }

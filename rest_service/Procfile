@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar release_builds/rest_service-1.6.jar --server.port=$PORT $JAR_OPTS
+web: java $JAVA_OPTS -jar target/rest_service-1.7.jar --server.port=$PORT $JAR_OPTS

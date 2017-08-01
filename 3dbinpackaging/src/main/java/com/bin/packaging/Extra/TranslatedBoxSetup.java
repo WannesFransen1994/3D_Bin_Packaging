@@ -9,9 +9,14 @@ import java.util.Map;
 /**
  * Created by Wannes Fransen.
  */
-public class TranslatorContainersetup {
+public class TranslatedBoxSetup {
+    Map<Box, Integer> boxAmount;
 
-    public static Map<Box, Integer> convertFromContainerSetup(BoxSetup setup) {
+    public TranslatedBoxSetup(BoxSetup setup) {
+        setBoxAmount(setup);
+    }
+
+    private void setBoxAmount(BoxSetup setup) {
         Map<Box, Integer> containerAmountMap = new HashMap<>();
         boolean start = true;
         boolean addme = true;
@@ -41,6 +46,7 @@ public class TranslatorContainersetup {
                 addme = false;
             }
         }
-        return containerAmountMap;
+        this.boxAmount = containerAmountMap;
     }
 }
+
