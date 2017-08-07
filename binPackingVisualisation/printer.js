@@ -1,7 +1,6 @@
 function submitform() {
     $.getJSON('https://bin-packing-3d-rest.herokuapp.com/api/containersetup', $("form").serialize(), function (data) {
         $("#visualisation").empty();
-
         generateContainerLayers(data);
     });
 }
@@ -20,11 +19,10 @@ function generateContainerLayers(obj) {
     var cont = $("<div id=\"cont\" class = container>");
 
 
-    obj.forEach(function (entry) {
+    obj.boxAmount.forEach(function (entry) {
         layerCounter = 0;
         containerCounter++;
 
-        console.log(entry[0])
         var locations = entry[0].items;
         var volumeContainer=entry[0].length*entry[0].width*entry[0].height;
         var volumeObject = locations[0][1].height*locations[0][1].width*locations[0][1].length;
